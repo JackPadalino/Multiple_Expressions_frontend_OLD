@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+import Router from "./components/Router";
 
 function App() {
   return (
     <>
-      <p>This is the App component!</p>
+      <Router />
     </>
   )
 }
