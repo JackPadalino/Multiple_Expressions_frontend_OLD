@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import Router from "./components/Router";
-import { setStoreUsers } from "../src/store/musicSlice";
+import { setStoreUsers } from "./store/userSlice";
 
 function App() {
   const dispatch = useDispatch();
@@ -12,12 +12,12 @@ function App() {
     axios
       .get("http://localhost:8000/api/users/all")
       .then((userData) => {
-        const mappedUsers = userData.data.map(user => ({
+        const mappedUsers = userData.data.map((user) => ({
           id: user.id,
-          username:user.username,
+          username: user.username,
           firstName: user.first_name,
           lastName: user.last_name,
-          profilePhoto:`http://localhost:8000${user.profile.profile_photo}`
+          profilePhoto: `http://localhost:8000${user.profile.profile_photo}`,
         }));
         dispatch(setStoreUsers(mappedUsers));
         setLoading(false);
@@ -37,7 +37,7 @@ function App() {
     <>
       <Router />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
