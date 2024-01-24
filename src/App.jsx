@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Router from "./components/Router";
 import { setStoreUsers } from "./store/userSlice";
 import { setStoreTracks, setStoreVideos } from "./store/musicSlice";
+import "./app.css";
 
 function App() {
   const dispatch = useDispatch();
