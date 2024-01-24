@@ -50,9 +50,9 @@ function App() {
 
   if (loading) return <p>Loading...</p>;
   return (
-    <>
+    <div className="appContainer">
       <Router />
-    </>
+    </div>
   );
 }
 

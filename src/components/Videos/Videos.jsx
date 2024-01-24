@@ -16,13 +16,19 @@ const Videos = () => {
   };
 
   return (
-    <div style={{ display: "flex", gap: "50px" }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+      }}
+    >
       <div>
         <h1>This is the Videos component</h1>
         {storeVideos.map((video) => (
           <div key={video.id}>
             <h3 onClick={() => handlePlay(video)} style={{ cursor: "pointer" }}>
-              {video.title} - {video.upload_date}
+              {/* {video.title} - {video.upload_date} */}
+              {video.title}
             </h3>
             <div style={{ display: "flex", gap: "10px" }}>
               {video.tags.map((tag) => (
