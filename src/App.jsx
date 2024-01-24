@@ -3,6 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import Router from "./components/Router";
 import { setStoreUsers } from "./store/userSlice";
+import { setStoreTracks, setStoreVideos } from "./store/musicSlice";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,8 +22,29 @@ function App() {
       });
   };
 
+  const fetchData = () => {
+    axios
+      .get("http://localhost:8000/api/users/all")
+      .then((userData) => {
+        dispatch(setStoreUsers(userData.data));
+        return axios.get("http://localhost:8000/api/music/tracks/all");
+      })
+      .then((trackData) => {
+        dispatch(setStoreTracks(trackData.data));
+        return axios.get("http://localhost:8000/api/music/videos/all");
+      })
+      .then((videoData) => {
+        dispatch(setStoreVideos(videoData.data));
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      });
+  };
+
   useEffect(() => {
-    fetchUsers();
+    fetchData();
   }, []);
 
   if (loading) return <p>Loading...</p>;
