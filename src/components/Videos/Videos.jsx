@@ -14,7 +14,7 @@ const Videos = () => {
             {user.username} - {user.id}
           </p>
           <img
-            src={user.profilePhoto}
+            src={`http://localhost:8000${user.profile.profile_photo}`}
             alt={`Profile of ${user.username}`}
             style={{ width: "300px", height: "200px" }}
           />

@@ -12,14 +12,7 @@ function App() {
     axios
       .get("http://localhost:8000/api/users/all")
       .then((userData) => {
-        const mappedUsers = userData.data.map((user) => ({
-          id: user.id,
-          username: user.username,
-          firstName: user.first_name,
-          lastName: user.last_name,
-          profilePhoto: `http://localhost:8000${user.profile.profile_photo}`,
-        }));
-        dispatch(setStoreUsers(mappedUsers));
+        dispatch(setStoreUsers(userData.data));
         setLoading(false);
       })
       .catch((error) => {
