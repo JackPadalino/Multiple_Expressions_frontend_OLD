@@ -41,8 +41,8 @@ const Videos = () => {
       {renderPlayer && (
         <div>
           <ReactPlayer
+            config={{ file: { attributes: { controlsList: "nodownload" } } }}
             url={`http://localhost:8000${playingVideo.file}`}
-            // url="https://www.youtube.com/watch?v=HkKr8HG3qUA"
             controls={true}
             muted={false}
             volume={1}
