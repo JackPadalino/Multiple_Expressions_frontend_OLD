@@ -21,30 +21,39 @@ const Exhibits = () => {
     <div className="exhibitsMainContainer">
       <div>
         <h1>Exhibits</h1>
-        {storeVideos.map((video) => (
-          <div key={video.id}>
-            <p>{video.upload_date}</p>
-            <h2 onClick={() => handlePlay(video)} style={{ cursor: "pointer" }}>
-              {video.title}
-            </h2>
-            <div style={{ display: "flex", gap: "10px" }}>
-              {video.users.map((user) => (
-                <a
-                  key={user.id}
-                  href={`#`}
-                  style={{ textDecoration: "none", color: "#3366cc" }}
-                >
-                  {user.username}
-                </a>
-              ))}
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          {storeVideos.map((video) => (
+            <div key={video.id}>
+              {/* <img
+              src={video.video_photo}
+              style={{ width: "250px", height: "175px" }}
+            /> */}
+              {/* <p>{video.upload_date}</p> */}
+              <h2
+                onClick={() => handlePlay(video)}
+                style={{ cursor: "pointer" }}
+              >
+                {video.title}
+              </h2>
+              <div style={{ display: "flex", gap: "10px" }}>
+                {video.users.map((user) => (
+                  <a
+                    key={user.id}
+                    href={`#`}
+                    style={{ textDecoration: "none", color: "#3366cc" }}
+                  >
+                    {user.username}
+                  </a>
+                ))}
+              </div>
+              <div style={{ display: "flex", gap: "10px" }}>
+                {video.tags.map((tag) => (
+                  <p key={tag.id}>#{tag.title}</p>
+                ))}
+              </div>
             </div>
-            <div style={{ display: "flex", gap: "10px" }}>
-              {video.tags.map((tag) => (
-                <p key={tag.id}>#{tag.title}</p>
-              ))}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
       {renderPlayer && (
         <div className="playerContainer">
