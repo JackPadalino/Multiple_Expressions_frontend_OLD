@@ -11,13 +11,12 @@ const Router = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/videos" element={<Videos />} />
-      {/* Pass the successQueryParam as a prop to the Success component */}
       {/* <Route
         path="/checkout"
         element={<Checkout successQueryParam={successQueryParam} />}
       /> */}
+      <Route path="/" element={<Home />} />
+      <Route path="/videos" element={<Videos />} />
     </Routes>
   );
 };
