@@ -47,6 +47,7 @@ const Videos = () => {
               volume={1}
               width="100%"
               height="100%"
+              playsinline={true}
             />
           </div>
           {/* <div style={{ display: "flex", gap: "10px" }}>
