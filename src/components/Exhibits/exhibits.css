@@ -1,12 +1,12 @@
 @media only screen and (max-width: 600px) {
-  .videoMainContainer {
+  .exhibitsMainContainer {
     display: flex;
     flex-direction: column;
   }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
-  .videoMainContainer {
+  .exhibitsMainContainer {
     display: flex;
     justify-content: space-between;
   }
@@ -17,7 +17,7 @@
 }
 
 @media only screen and (min-width: 1280px) {
-  .videoMainContainer {
+  .exhibitsMainContainer {
     display: flex;
     justify-content: space-between;
   }

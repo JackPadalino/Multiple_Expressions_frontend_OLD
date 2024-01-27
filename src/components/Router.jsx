@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { Home, Videos } from ".";
+import { Home, Exhibits } from ".";
+// import Exhibits from "./Exhibits/Exhibits";
 
 const Router = () => {
   //   const location = useLocation();
@@ -16,7 +17,7 @@ const Router = () => {
         element={<Checkout successQueryParam={successQueryParam} />}
       /> */}
       <Route path="/" element={<Home />} />
-      <Route path="/videos" element={<Videos />} />
+      <Route path="/exhibits" element={<Exhibits />} />
     </Routes>
   );
 };

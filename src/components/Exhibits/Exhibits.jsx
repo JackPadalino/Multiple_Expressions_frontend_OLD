@@ -3,12 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import React from "react";
 import ReactPlayer from "react-player";
 
-import "./videos.css";
+import "./exhibits.css";
 
-const Videos = () => {
+const Exhibits = () => {
   const { storeVideos } = useSelector((state) => state.music);
   const [renderPlayer, setRenderPlayer] = useState(false);
   const [playingVideo, setPlayingVideo] = useState("");
+
+  console.log(storeVideos);
 
   const handlePlay = (video) => {
     setRenderPlayer(true);
@@ -16,15 +18,26 @@ const Videos = () => {
   };
 
   return (
-    <div className="videoMainContainer">
+    <div className="exhibitsMainContainer">
       <div>
-        <h1>This is the Videos component</h1>
+        <h1>Exhibits</h1>
         {storeVideos.map((video) => (
           <div key={video.id}>
-            <h3 onClick={() => handlePlay(video)} style={{ cursor: "pointer" }}>
-              {/* {video.title} - {video.upload_date} */}
+            <p>{video.upload_date}</p>
+            <h2 onClick={() => handlePlay(video)} style={{ cursor: "pointer" }}>
               {video.title}
-            </h3>
+            </h2>
+            <div style={{ display: "flex", gap: "10px" }}>
+              {video.users.map((user) => (
+                <a
+                  key={user.id}
+                  href={`#`}
+                  style={{ textDecoration: "none", color: "#3366cc" }}
+                >
+                  {user.username}
+                </a>
+              ))}
+            </div>
             <div style={{ display: "flex", gap: "10px" }}>
               {video.tags.map((tag) => (
                 <p key={tag.id}>#{tag.title}</p>
@@ -34,7 +47,6 @@ const Videos = () => {
         ))}
       </div>
       {renderPlayer && (
-        // <div style={{ border: "1px solid red", width: "50%" }}>
         <div className="playerContainer">
           <div className="playerWrapper">
             <ReactPlayer
@@ -47,7 +59,7 @@ const Videos = () => {
               volume={1}
               width="100%"
               height="100%"
-              playsinline={true}
+              playsinline={true} //disables 'auto full screen' on mobile - consider using for mobile!
             />
           </div>
           {/* <div style={{ display: "flex", gap: "10px" }}>
@@ -61,4 +73,4 @@ const Videos = () => {
   );
 };
 
-export default Videos;
+export default Exhibits;
