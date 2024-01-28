@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import React from "react";
 import ReactPlayer from "react-player";
-import "./exhibits.css";
+import "./visual.css";
 
-const Exhibits = () => {
+const Visual = () => {
   const { storeVideos } = useSelector((state) => state.music);
   const [renderPlayer, setRenderPlayer] = useState(false);
   const [playingVideo, setPlayingVideo] = useState("");
@@ -15,9 +15,9 @@ const Exhibits = () => {
   };
 
   return (
-    <div className="exhibitsMainContainer">
+    <div className="visualMainContainer">
       <div>
-        <h1>Exhibits</h1>
+        <h1>Visual</h1>
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           {storeVideos.map((video) => (
             <div key={video.id}>
@@ -79,4 +79,4 @@ const Exhibits = () => {
   );
 };
 
-export default Exhibits;
+export default Visual;

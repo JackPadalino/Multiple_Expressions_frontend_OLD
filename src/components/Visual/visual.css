@@ -1,0 +1,28 @@
+@media only screen and (max-width: 600px) {
+  .visualMainContainer {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1280px) {
+  .visualMainContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .playerContainer {
+    width: 75%;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .visualMainContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .playerContainer {
+    width: 50%;
+  }
+}

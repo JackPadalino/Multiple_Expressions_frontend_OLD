@@ -3,9 +3,9 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, useLocation } from "react-router-dom";
 
-import { Home, Exhibits, Waveform } from "..";
 import { setStoreUsers } from "../../store/userSlice";
 import { setStoreTracks, setStoreVideos } from "../../store/musicSlice";
+import { Home, Expressions, Visual, Auditory, Waveform } from "..";
 import "./app.css";
 
 function App() {
@@ -59,7 +59,9 @@ function App() {
         element={<Checkout successQueryParam={successQueryParam} />}
       /> */}
         <Route path="/" element={<Home />} />
-        <Route path="/exhibits" element={<Exhibits />} />
+        <Route path="/expressions" element={<Expressions />} />
+        <Route path="/expressions/visual" element={<Visual />} />
+        <Route path="/expressions/auditory" element={<Auditory />} />
       </Routes>
       <Waveform />
     </div>
