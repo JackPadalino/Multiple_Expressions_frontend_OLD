@@ -10,6 +10,7 @@ import "./app.css";
 
 function App() {
   const dispatch = useDispatch();
+  const { displayWaveform } = useSelector((state) => state.waveform);
   const [loading, setLoading] = useState(true);
 
   const fetchData = () => {
@@ -63,7 +64,7 @@ function App() {
         <Route path="/auditory" element={<Auditory />} />
         <Route path="/live" element={<Live />} />
       </Routes>
-      <Waveform />
+      {displayWaveform && <Waveform />}
     </div>
   );
 }
