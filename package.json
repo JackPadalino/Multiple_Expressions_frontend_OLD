@@ -18,7 +18,7 @@
     "react-redux": "^9.1.0",
     "react-router": "^6.21.3",
     "react-router-dom": "^6.21.3",
-    "wavesurfer.js": "^7.6.5"
+    "wavesurfer.js": "^7.7.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
