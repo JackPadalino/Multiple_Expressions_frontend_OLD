@@ -5,7 +5,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 
 import { setStoreUsers } from "../../store/userSlice";
 import { setStoreTracks, setStoreVideos } from "../../store/musicSlice";
-import { Home, Expressions, Visual, Auditory, Waveform } from "..";
+import { Home, Expressions, Visual, Auditory, Live, Waveform } from "..";
 import "./app.css";
 
 function App() {
@@ -62,6 +62,7 @@ function App() {
         <Route path="/expressions" element={<Expressions />} />
         <Route path="/expressions/visual" element={<Visual />} />
         <Route path="/expressions/auditory" element={<Auditory />} />
+        <Route path="/live" element={<Live />} />
       </Routes>
       <Waveform />
     </div>
