@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const Live = () => {
   return (
     <>
-      <h1>This is the Live component</h1>
+      <h1>Live</h1>
     </>
   );
 };
