@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import Router from "./components/Router";
-import Waveform from "./components/Waveform/Waveform";
-import { setStoreUsers } from "./store/userSlice";
-import { setStoreTracks, setStoreVideos } from "./store/musicSlice";
+import { Routes, Route, useLocation } from "react-router-dom";
+
+import { Home, Exhibits, Waveform } from "..";
+import { setStoreUsers } from "../../store/userSlice";
+import { setStoreTracks, setStoreVideos } from "../../store/musicSlice";
 import "./app.css";
 
 function App() {
@@ -42,10 +43,24 @@ function App() {
     fetchData();
   }, []);
 
+  // const location = useLocation();
+  // const urlParams = new URLSearchParams(location.search);
+
+  // Get the value of the 'success' query parameter
+  // const successQueryParam = urlParams.get("success");
+
   if (loading) return <p>Loading...</p>;
   return (
     <div className="appContainer">
-      <Router />
+      {/* <Router /> */}
+      <Routes>
+        {/* <Route
+        path="/checkout"
+        element={<Checkout successQueryParam={successQueryParam} />}
+      /> */}
+        <Route path="/" element={<Home />} />
+        <Route path="/exhibits" element={<Exhibits />} />
+      </Routes>
       <Waveform />
     </div>
   );

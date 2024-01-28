@@ -2,15 +2,12 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import React from "react";
 import ReactPlayer from "react-player";
-
 import "./exhibits.css";
 
 const Exhibits = () => {
   const { storeVideos } = useSelector((state) => state.music);
   const [renderPlayer, setRenderPlayer] = useState(false);
   const [playingVideo, setPlayingVideo] = useState("");
-
-  console.log(storeVideos);
 
   const handlePlay = (video) => {
     setRenderPlayer(true);
