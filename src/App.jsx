@@ -18,7 +18,6 @@ function App() {
     } else {
       url = import.meta.env.VITE_PROD_URL;
     }
-    console.log(url);
     axios
       .get(`${url}/api/users/all`)
       .then((userData) => {

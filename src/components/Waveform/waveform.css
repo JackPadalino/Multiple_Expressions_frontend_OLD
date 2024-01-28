@@ -1,3 +1,15 @@
+@media only screen and (max-width: 600px) {
+  .waveformContainer {
+    font-size: 10px;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1280px) {
+}
+
+@media only screen and (min-width: 1280px) {
+}
+
 .waveformContainer {
   display: flex;
   justify-content: center;
