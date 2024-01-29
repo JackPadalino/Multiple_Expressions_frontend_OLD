@@ -12,12 +12,12 @@ import WaveSurfer from "wavesurfer.js";
 
 const Auditory = () => {
   const dispatch = useDispatch();
+  const [mobileView, setMobileView] = useState(false);
   const { storeTracks } = useSelector((state) => state.music);
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
 
   const handlePlay = (track) => {
-    console.log(waveformRef.current);
     if (waveformRef.current) {
       if (wavesurferRef.current) {
         // destroy the current instance before creating a new one
@@ -27,9 +27,10 @@ const Auditory = () => {
 
       wavesurferRef.current = WaveSurfer.create({
         url: track.file,
-        container: document.body,
+        container: waveformRef.current,
         waveColor: "rgb(200, 0, 200)",
-        progressColor: "rgb(100, 100, 100)",
+        progressColor: "rgb(200, 200, 200)",
+        height: mobileView ? 50 : 100,
         mediaControls: false,
         barWidth: 2,
         barGap: NaN,
@@ -44,6 +45,11 @@ const Auditory = () => {
       });
     }
   };
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 1280px)");
+    setMobileView(mediaQuery.matches);
+  }, []);
 
   return (
     <div className="auditoryMainContainer">
@@ -78,7 +84,9 @@ const Auditory = () => {
           ))}
         </div>
       </div>
-      <div ref={waveformRef}></div>
+      <div className="waveformDiv">
+        <div ref={waveformRef}></div>
+      </div>
     </div>
   );
 };
