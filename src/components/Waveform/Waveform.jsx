@@ -31,6 +31,8 @@ const Waveform = () => {
         dragToSeek: true,
         backend: "MediaElement",
         normalize: true,
+        // for now we are pre-generating a random array of peaks - not ideal!
+        peaks: Array.from({ length: 1000 }, () => Math.random()),
       });
 
       wavesurferRef.current.on("ready", () => {
@@ -40,6 +42,13 @@ const Waveform = () => {
       wavesurferRef.current.on("play", () => {
         return null;
       });
+
+      // we can log the actual peaks data once the audio file has been
+      // decoded
+      // wavesurferRef.current.on("decode", () => {
+      //   const peaks = wavesurferRef.current.exportPeaks();
+      //   console.log(JSON.stringify(peaks));
+      // });
     }
   };
 
