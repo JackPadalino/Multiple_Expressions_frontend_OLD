@@ -1,29 +1,18 @@
 @media only screen and (max-width: 600px) {
-  /* .appContainer {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-  } */
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
-  /* .appContainer {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-  } */
 }
 
 @media only screen and (min-width: 1280px) {
-  /* .appContainer {
+}
+
+/* .appContainer {
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
     padding-right: 10px;
   } */
-}
 
 * {
   margin: 0px;
