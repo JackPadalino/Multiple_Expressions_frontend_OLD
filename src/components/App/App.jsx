@@ -5,12 +5,13 @@ import { Routes, Route, useLocation } from "react-router-dom";
 
 import { setStoreUsers } from "../../store/userSlice";
 import { setStoreTracks, setStoreVideos } from "../../store/musicSlice";
+import { setMobileView } from "../../store/mobileViewSlice";
 import { Home, Visual, Auditory, Live, Waveform } from "..";
 import "./app.css";
 
 function App() {
   const dispatch = useDispatch();
-  const { displayWaveform } = useSelector((state) => state.waveform);
+  const { waveformTrack } = useSelector((state) => state.waveform);
   const [loading, setLoading] = useState(true);
 
   const fetchData = () => {
@@ -40,8 +41,14 @@ function App() {
       });
   };
 
+  const checkMobileView = () => {
+    const mediaQuery = window.matchMedia("(max-width: 1280px)");
+    dispatch(setMobileView(mediaQuery.matches));
+  };
+
   useEffect(() => {
     fetchData();
+    checkMobileView();
   }, []);
 
   // const location = useLocation();
@@ -64,7 +71,7 @@ function App() {
         <Route path="/auditory" element={<Auditory />} />
         <Route path="/live" element={<Live />} />
       </Routes>
-      {/* {displayWaveform && <Waveform />} */}
+      {Object.keys(waveformTrack).length > 0 && <Waveform />}
     </div>
   );
 }

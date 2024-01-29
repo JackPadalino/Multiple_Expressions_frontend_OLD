@@ -1,21 +1,52 @@
 @media only screen and (max-width: 600px) {
-  .waveformContainer {
-    font-size: 10px;
+  .waveformDiv {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+  }
+
+  .waveformDiv > :nth-child(1) {
+    width: 95%;
   }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
+  .waveformDiv {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+  }
+
+  .waveformDiv > :nth-child(1) {
+    width: 95%;
+  }
 }
 
 @media only screen and (min-width: 1280px) {
-}
+  .waveformDiv {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 
-.waveformContainer {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  bottom: 0;
-  position: fixed;
-  background-color: black;
-  color: white;
+  .waveformDiv > :nth-child(1) {
+    width: 95%;
+  }
 }
