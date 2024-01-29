@@ -1,13 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import {
   setDisplayWaveform,
   setWaveformTrack,
 } from "../../store/waveformSlice";
-
 import "./auditory.css";
-
 import WaveSurfer from "wavesurfer.js";
 
 const Auditory = () => {
@@ -16,11 +13,16 @@ const Auditory = () => {
   const { storeTracks } = useSelector((state) => state.music);
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
+  const [playerLoading, setPlayerLoading] = useState({});
 
   const handlePlay = (track) => {
+    setPlayerLoading((prevStates) => ({
+      ...prevStates,
+      [track.id]: true,
+    }));
+
     if (waveformRef.current) {
       if (wavesurferRef.current) {
-        // destroy the current instance before creating a new one
         wavesurferRef.current.destroy();
         wavesurferRef.current = null;
       }
@@ -28,8 +30,8 @@ const Auditory = () => {
       wavesurferRef.current = WaveSurfer.create({
         url: track.file,
         container: waveformRef.current,
-        waveColor: "rgb(200, 0, 200)",
-        progressColor: "rgb(200, 200, 200)",
+        waveColor: "rgb(200, 200, 200)",
+        progressColor: "rgb(200, 0, 200)",
         height: mobileView ? 50 : 100,
         mediaControls: false,
         barWidth: 2,
@@ -38,10 +40,20 @@ const Auditory = () => {
         barHeight: NaN,
         interact: true,
         dragToSeek: true,
+        backend: "MediaElement",
+        normalize: true,
       });
 
       wavesurferRef.current.on("ready", () => {
         wavesurferRef.current.play();
+      });
+
+      wavesurferRef.current.on("play", () => {
+        // Set loading state to false once playback starts
+        setPlayerLoading((prevStates) => ({
+          ...prevStates,
+          [track.id]: false,
+        }));
       });
     }
   };
@@ -58,12 +70,17 @@ const Auditory = () => {
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           {storeTracks.map((track) => (
             <div key={track.id}>
-              <h2
-                onClick={() => handlePlay(track)}
-                style={{ cursor: "pointer" }}
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "5px" }}
               >
-                {track.title}
-              </h2>
+                <h2
+                  onClick={() => handlePlay(track)}
+                  style={{ cursor: "pointer" }}
+                >
+                  {track.title}
+                </h2>
+                {playerLoading[track.id] && <p>Loading...</p>}
+              </div>
               <div style={{ display: "flex", gap: "10px" }}>
                 {track.users.map((user) => (
                   <a
