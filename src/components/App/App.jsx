@@ -64,7 +64,7 @@ function App() {
         <Route path="/auditory" element={<Auditory />} />
         <Route path="/live" element={<Live />} />
       </Routes>
-      {displayWaveform && <Waveform />}
+      {/* {displayWaveform && <Waveform />} */}
     </div>
   );
 }
