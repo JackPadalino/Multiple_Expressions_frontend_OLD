@@ -25,6 +25,7 @@ import MailIcon from "@mui/icons-material/Mail";
 function App() {
   const dispatch = useDispatch();
   const { waveformTrack } = useSelector((state) => state.waveform);
+  const { mobileView } = useSelector((state) => state.mobileView);
   const [loading, setLoading] = useState(true);
   const [trackModalState, setTrackModalState] = useState(false); // modal state
 
@@ -122,10 +123,23 @@ function App() {
         <Route path="/auditory" element={<Auditory />} />
         <Route path="/live" element={<Live />} />
       </Routes>
-      {/* {Object.keys(waveformTrack).length > 0 && <Waveform />} */}
-      {Object.keys(waveformTrack).length > 0 && (
-        <React.Fragment key={"bottom"}>
-          <Button onClick={toggleDrawer("bottom", true)}>{"bottom"}</Button>
+      {mobileView ? (
+        <>
+          {Object.keys(waveformTrack).length > 0 && (
+            <Box
+              onClick={toggleDrawer("bottom", true)}
+              sx={{
+                position: "fixed",
+                bottom: "0",
+                width: "100%",
+                backgroundColor: "black",
+              }}
+            >
+              <h1 style={{ textAlign: "center", color: "white" }}>
+                {waveformTrack.title}
+              </h1>
+            </Box>
+          )}
           <Drawer
             anchor={"bottom"}
             open={trackModalState}
@@ -138,7 +152,9 @@ function App() {
             {/* {list("bottom")} */}
             <Waveform />
           </Drawer>
-        </React.Fragment>
+        </>
+      ) : (
+        Object.keys(waveformTrack).length > 0 && <Waveform />
       )}
     </div>
   );
