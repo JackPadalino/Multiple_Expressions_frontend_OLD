@@ -26,49 +26,7 @@ function App() {
   const dispatch = useDispatch();
   const { waveformTrack } = useSelector((state) => state.waveform);
   const [loading, setLoading] = useState(true);
-
-  // modal state
-  const [state, setState] = useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
-
-  // modal function
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
-  };
-
-  // modal function
-  const list = (anchor) => (
-    <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
+  const [trackModalState, setTrackModalState] = useState(false); // modal state
 
   const fetchData = () => {
     let url;
@@ -97,6 +55,43 @@ function App() {
       });
   };
 
+  // modal toggle function
+  const toggleDrawer = () => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setTrackModalState(!trackModalState);
+  };
+
+  // modal content
+  const list = (anchor) => (
+    <Box
+      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
+
+  // check for mobile view - send state up to redux store
+  // to be used by other components like waveform
   const checkMobileView = () => {
     const mediaQuery = window.matchMedia("(max-width: 1280px)");
     dispatch(setMobileView(mediaQuery.matches));
@@ -127,22 +122,24 @@ function App() {
         <Route path="/auditory" element={<Auditory />} />
         <Route path="/live" element={<Live />} />
       </Routes>
-      {Object.keys(waveformTrack).length > 0 && <Waveform />}
-      <React.Fragment key={"bottom"}>
-        <Button onClick={toggleDrawer("bottom", true)}>{"bottom"}</Button>
-        <Drawer
-          anchor={"bottom"}
-          open={state["bottom"]}
-          onClose={toggleDrawer("bottom", false)}
-          // variant="temporary"
-          ModalProps={{
-            keepMounted: true,
-          }}
-        >
-          {/* {list("bottom")} */}
-          <div className="drawerWaveformDiv"></div>
-        </Drawer>
-      </React.Fragment>
+      {/* {Object.keys(waveformTrack).length > 0 && <Waveform />} */}
+      {Object.keys(waveformTrack).length > 0 && (
+        <React.Fragment key={"bottom"}>
+          <Button onClick={toggleDrawer("bottom", true)}>{"bottom"}</Button>
+          <Drawer
+            anchor={"bottom"}
+            open={trackModalState}
+            onClose={toggleDrawer("bottom", false)}
+            // variant="temporary"
+            ModalProps={{
+              keepMounted: true,
+            }}
+          >
+            {/* {list("bottom")} */}
+            <Waveform />
+          </Drawer>
+        </React.Fragment>
+      )}
     </div>
   );
 }
