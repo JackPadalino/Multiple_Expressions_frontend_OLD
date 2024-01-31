@@ -33,13 +33,13 @@ const Visual = () => {
                 {video.title}
               </h2>
               <div style={{ display: "flex", gap: "10px" }}>
-                {video.users.map((user) => (
+                {video.artists.map((artist) => (
                   <a
-                    key={user.id}
+                    key={artist.id}
                     href={`#`}
                     style={{ textDecoration: "none", color: "#3366cc" }}
                   >
-                    {user.username}
+                    {artist.name}
                   </a>
                 ))}
               </div>

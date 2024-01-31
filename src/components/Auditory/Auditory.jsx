@@ -83,13 +83,13 @@ const Auditory = () => {
               {/* {playerLoading[track.id] && <p>-_-</p>} */}
               {/* </div> */}
               <div style={{ display: "flex", gap: "10px" }}>
-                {track.users.map((user) => (
+                {track.artists.map((artist) => (
                   <a
-                    key={user.id}
+                    key={artist.id}
                     href={`#`}
                     style={{ textDecoration: "none", color: "#3366cc" }}
                   >
-                    {user.username}
+                    {artist.name}
                   </a>
                 ))}
               </div>

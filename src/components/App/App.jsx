@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, useLocation } from "react-router-dom";
 
-import { setStoreUsers } from "../../store/userSlice";
+import { setStoreArtists } from "../../store/artistSlice";
 import { setStoreTracks, setStoreVideos } from "../../store/musicSlice";
 import { setMobileView } from "../../store/mobileViewSlice";
 import { Home, Visual, Auditory, Live, Waveform, MobileWaveform } from "..";
@@ -23,9 +23,9 @@ function App() {
       url = import.meta.env.VITE_PROD_URL;
     }
     axios
-      .get(`${url}/api/users/all`)
-      .then((userData) => {
-        dispatch(setStoreUsers(userData.data));
+      .get(`${url}/api/music/artists/all`)
+      .then((artistData) => {
+        dispatch(setStoreArtists(artistData.data));
         return axios.get(`${url}/api/music/tracks/all`);
       })
       .then((trackData) => {

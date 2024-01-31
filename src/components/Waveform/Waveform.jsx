@@ -97,9 +97,9 @@ const Waveform = () => {
                 {waveformTrack.title}
               </Typography>
               {Object.keys(waveformTrack).length > 0 &&
-                waveformTrack.users.map((user) => (
-                  <Typography key={user.id} sx={{ color: "white" }}>
-                    {user.username}
+                waveformTrack.artists.map((artist) => (
+                  <Typography key={artist.id} sx={{ color: "white" }}>
+                    {artist.name}
                   </Typography>
                 ))}
               <Typography sx={{ color: "white" }}>

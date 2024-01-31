@@ -36,9 +36,9 @@ const ModalDiv2 = ({
         <Typography variant="h5">{waveformTrack.title}</Typography>
         <Box className="trackUsersDiv">
           {Object.keys(waveformTrack).length > 0 &&
-            waveformTrack.users.map((user) => (
-              <Typography variant="h6" key={user.id} sx={{ color: "white" }}>
-                {user.username}
+            waveformTrack.artists.map((artist) => (
+              <Typography variant="h6" key={artist.id} sx={{ color: "white" }}>
+                {artist.name}
               </Typography>
             ))}
         </Box>
