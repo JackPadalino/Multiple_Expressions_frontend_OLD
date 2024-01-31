@@ -1,13 +1,28 @@
 import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import WaveSurfer from "wavesurfer.js";
-import "./waveform.css";
+import "./mobileWaveform.css";
 
-const Waveform = () => {
+// modal imports
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import List from "@mui/material/List";
+import Divider from "@mui/material/Divider";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import MailIcon from "@mui/icons-material/Mail";
+
+const MobileWaveform = () => {
   const { mobileView } = useSelector((state) => state.mobileView);
   const { waveformTrack } = useSelector((state) => state.waveform);
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
+  const [trackModalState, setTrackModalState] = useState(false); // modal state
 
   const playSong = (track) => {
     if (waveformRef.current) {
@@ -52,6 +67,18 @@ const Waveform = () => {
     }
   };
 
+  // modal toggle function
+  const toggleDrawer = () => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setTrackModalState(!trackModalState);
+  };
+
   useEffect(() => {
     playSong(waveformTrack);
   }, [waveformTrack]);
@@ -59,12 +86,26 @@ const Waveform = () => {
   return (
     <>
       {Object.keys(waveformTrack).length > 0 && (
-        <div className="waveformDiv">
-          <div ref={waveformRef}></div>
-        </div>
+        <Box className="modalTriggerDiv" onClick={toggleDrawer("bottom", true)}>
+          <Typography variant="h5">{waveformTrack.title}</Typography>
+        </Box>
       )}
+      <Drawer
+        anchor={"bottom"}
+        open={trackModalState}
+        onClose={toggleDrawer("bottom", false)}
+        // variant="temporary"
+        ModalProps={{
+          keepMounted: true,
+        }}
+      >
+        <Box className="drawerDiv">
+          <Typography variant="h5">{waveformTrack.title}</Typography>
+          <Box ref={waveformRef}></Box>
+        </Box>
+      </Drawer>
     </>
   );
 };
 
-export default Waveform;
+export default MobileWaveform;
