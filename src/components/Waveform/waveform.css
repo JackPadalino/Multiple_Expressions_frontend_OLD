@@ -1,6 +1,6 @@
 .waveformDiv {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   position: fixed;
   bottom: 0;
@@ -13,7 +13,7 @@
 }
 
 .waveformDiv > :nth-child(1) {
-  width: 20%;
+  width: 25%;
 }
 
 .waveformDiv > :nth-child(3) {
@@ -28,15 +28,21 @@
   display: flex;
   color: white;
   /* align-items: center; */
+  /* justify-content: center; */
   overflow: hidden;
-  gap: 5px;
+  gap: 10px;
 }
 
 .trackTitle {
   font-size: 20px;
+  color: rgb(234, 162, 42);
 }
 
 .trackImg {
   width: auto;
   height: 70px;
+}
+
+.controlsDiv {
+  display: flex;
 }

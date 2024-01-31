@@ -16,9 +16,17 @@ const Waveform = () => {
   const { waveformTrack } = useSelector((state) => state.waveform);
 
   const [isPlaying, setIsPlaying] = useState(false);
+  const [trackDuration, setTrackDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
 
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
+
+  // function to format seconds into 00:00 format
+  const formatTime = (seconds) =>
+    [seconds / 60, seconds % 60]
+      .map((v) => `0${Math.floor(v)}`.slice(-2))
+      .join(":");
 
   const playSong = (track) => {
     if (waveformRef.current) {
@@ -47,7 +55,14 @@ const Waveform = () => {
       });
 
       wavesurferRef.current.on("ready", () => {
+        const seconds = wavesurferRef.current.getDuration();
+        setTrackDuration(formatTime(seconds));
         wavesurferRef.current.play();
+      });
+
+      wavesurferRef.current.on("audioprocess", () => {
+        const seconds = wavesurferRef.current.getCurrentTime();
+        setCurrentTime(formatTime(seconds));
       });
 
       wavesurferRef.current.on("play", () => {
@@ -87,11 +102,13 @@ const Waveform = () => {
                     {user.username}
                   </Typography>
                 ))}
+              <Typography sx={{ color: "white" }}>
+                {currentTime}/{trackDuration}
+              </Typography>
             </Box>
           </Box>
           <Box ref={waveformRef}></Box>
           <Box className="controlsDiv">
-            {/* <Typography variant="h6">{currentTime}</Typography> */}
             <IconButton onClick={() => wavesurferRef.current.playPause()}>
               {isPlaying ? (
                 <PauseIcon
@@ -109,7 +126,6 @@ const Waveform = () => {
                 />
               )}
             </IconButton>
-            {/* <Typography variant="h6">{trackDuration}</Typography> */}
           </Box>
         </Box>
       )}
