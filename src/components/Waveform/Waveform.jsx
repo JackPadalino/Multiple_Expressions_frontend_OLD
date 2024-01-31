@@ -1,11 +1,23 @@
 import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import WaveSurfer from "wavesurfer.js";
+
+// modal imports
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from "@mui/icons-material/Pause";
+
 import "./waveform.css";
 
 const Waveform = () => {
   const { mobileView } = useSelector((state) => state.mobileView);
   const { waveformTrack } = useSelector((state) => state.waveform);
+
+  const [isPlaying, setIsPlaying] = useState(false);
+
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
 
@@ -19,8 +31,8 @@ const Waveform = () => {
       wavesurferRef.current = WaveSurfer.create({
         url: track.file,
         container: waveformRef.current,
-        waveColor: "rgb(200, 200, 200)",
-        progressColor: "rgb(200, 0, 200)",
+        waveColor: "rgb(232, 214, 184)",
+        progressColor: "rgb(234, 162, 42)",
         height: mobileView ? 50 : 100,
         mediaControls: false,
         barWidth: 2,
@@ -40,7 +52,11 @@ const Waveform = () => {
       });
 
       wavesurferRef.current.on("play", () => {
-        return null;
+        setIsPlaying(true);
+      });
+
+      wavesurferRef.current.on("pause", () => {
+        setIsPlaying(false);
       });
 
       // we can log the actual peaks data once the audio file has been
@@ -61,6 +77,27 @@ const Waveform = () => {
       {Object.keys(waveformTrack).length > 0 && (
         <div className="waveformDiv">
           <div ref={waveformRef}></div>
+          <Box className="controlsDiv">
+            {/* <Typography variant="h6">{currentTime}</Typography> */}
+            <IconButton onClick={() => wavesurferRef.current.playPause()}>
+              {isPlaying ? (
+                <PauseIcon
+                  fontSize="large"
+                  sx={{
+                    color: "white",
+                  }}
+                />
+              ) : (
+                <PlayArrowIcon
+                  fontSize="large"
+                  sx={{
+                    color: "white",
+                  }}
+                />
+              )}
+            </IconButton>
+            {/* <Typography variant="h6">{trackDuration}</Typography> */}
+          </Box>
         </div>
       )}
     </>

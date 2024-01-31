@@ -68,6 +68,13 @@ const MobileWaveform = () => {
       wavesurferRef.current.on("pause", () => {
         setIsPlaying(false);
       });
+
+      // we can log the actual peaks data once the audio file has been
+      // decoded
+      // wavesurferRef.current.on("decode", () => {
+      //   const peaks = wavesurferRef.current.exportPeaks();
+      //   console.log(JSON.stringify(peaks));
+      // });
     }
   };
 
