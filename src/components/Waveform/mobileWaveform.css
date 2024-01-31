@@ -34,3 +34,10 @@
 .drawerDiv > :nth-child(3) {
   width: 95%;
 }
+
+.controlsDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
