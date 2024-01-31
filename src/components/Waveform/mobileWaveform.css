@@ -40,6 +40,11 @@
   width: 95%;
 }
 
+.modalImg {
+  width: auto;
+  height: 40px;
+}
+
 .controlsDiv {
   display: flex;
   justify-content: center;

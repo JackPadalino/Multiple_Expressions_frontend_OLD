@@ -6,11 +6,37 @@
   bottom: 0;
   width: 100%;
   height: 100px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  /* padding-top: 10px;
+  padding-bottom: 10px; */
+  padding: 10px;
   background-color: black;
 }
 
 .waveformDiv > :nth-child(1) {
-  width: 95%;
+  width: 20%;
+}
+
+.waveformDiv > :nth-child(3) {
+  width: 10%;
+}
+
+.waveformDiv > :nth-child(2) {
+  width: 70%;
+}
+
+.trackinfoDiv {
+  display: flex;
+  color: white;
+  /* align-items: center; */
+  overflow: hidden;
+  gap: 5px;
+}
+
+.trackTitle {
+  font-size: 20px;
+}
+
+.trackImg {
+  width: auto;
+  height: 70px;
 }

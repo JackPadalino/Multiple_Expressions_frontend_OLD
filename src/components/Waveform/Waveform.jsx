@@ -4,7 +4,6 @@ import WaveSurfer from "wavesurfer.js";
 
 // modal imports
 import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
@@ -75,8 +74,22 @@ const Waveform = () => {
   return (
     <>
       {Object.keys(waveformTrack).length > 0 && (
-        <div className="waveformDiv">
-          <div ref={waveformRef}></div>
+        <Box className="waveformDiv">
+          <Box className="trackinfoDiv">
+            <img src={waveformTrack.track_photo} className="trackImg" />
+            <Box>
+              <Typography className="trackTitle">
+                {waveformTrack.title}
+              </Typography>
+              {Object.keys(waveformTrack).length > 0 &&
+                waveformTrack.users.map((user) => (
+                  <Typography key={user.id} sx={{ color: "white" }}>
+                    {user.username}
+                  </Typography>
+                ))}
+            </Box>
+          </Box>
+          <Box ref={waveformRef}></Box>
           <Box className="controlsDiv">
             {/* <Typography variant="h6">{currentTime}</Typography> */}
             <IconButton onClick={() => wavesurferRef.current.playPause()}>
@@ -98,7 +111,7 @@ const Waveform = () => {
             </IconButton>
             {/* <Typography variant="h6">{trackDuration}</Typography> */}
           </Box>
-        </div>
+        </Box>
       )}
     </>
   );
