@@ -34,7 +34,7 @@ const MobileWaveform = () => {
       wavesurferRef.current = WaveSurfer.create({
         url: track.file,
         container: waveformRef.current,
-        waveColor: "rgb(237, 217, 183)",
+        waveColor: "rgb(232, 214, 184)",
         progressColor: "rgb(234, 162, 42)",
         height: mobileView ? 50 : 100,
         mediaControls: false,
