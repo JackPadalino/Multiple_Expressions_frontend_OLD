@@ -31,7 +31,12 @@
   color: white;
 }
 
-.drawerDiv > :nth-child(3) {
+.trackUsersDiv {
+  display: flex;
+  gap: 10px;
+}
+
+.waveformRef {
   width: 95%;
 }
 

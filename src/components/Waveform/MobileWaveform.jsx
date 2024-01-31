@@ -19,6 +19,7 @@ const MobileWaveform = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackDuration, setTrackDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [trackUsers, setTrackUsers] = useState([]);
 
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
@@ -64,6 +65,7 @@ const MobileWaveform = () => {
       wavesurferRef.current.on("audioprocess", () => {
         const seconds = wavesurferRef.current.getCurrentTime();
         setCurrentTime(formatTime(seconds));
+        setTrackUsers(waveformTrack.users);
       });
 
       wavesurferRef.current.on("play", () => {
@@ -136,8 +138,16 @@ const MobileWaveform = () => {
             src={waveformTrack.track_photo}
             style={{ width: "auto", height: "100px" }}
           />
-          <Typography variant="h6">{waveformTrack.title}</Typography>
-          <Box ref={waveformRef}></Box>
+          <Typography variant="h5">{waveformTrack.title}</Typography>
+          <Box className="trackUsersDiv">
+            {Object.keys(waveformTrack).length > 0 &&
+              waveformTrack.users.map((user) => (
+                <Typography variant="h6" key={user.id} sx={{ color: "white" }}>
+                  {user.username}
+                </Typography>
+              ))}
+          </Box>
+          <Box ref={waveformRef} className="waveformRef"></Box>
           <Box className="controlsDiv">
             <Typography variant="h6">{currentTime}</Typography>
             <IconButton onClick={() => wavesurferRef.current.playPause()}>
