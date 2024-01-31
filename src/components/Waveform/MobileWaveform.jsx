@@ -7,22 +7,17 @@ import "./mobileWaveform.css";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import IconButton from "@mui/material/IconButton";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from "@mui/icons-material/Pause";
 
 const MobileWaveform = () => {
   const { mobileView } = useSelector((state) => state.mobileView);
   const { waveformTrack } = useSelector((state) => state.waveform);
+  const [trackModalState, setTrackModalState] = useState(false); // modal state
+  const [isPlaying, setIsPlaying] = useState(false);
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
-  const [trackModalState, setTrackModalState] = useState(false); // modal state
 
   const playSong = (track) => {
     if (waveformRef.current) {
@@ -55,15 +50,12 @@ const MobileWaveform = () => {
       });
 
       wavesurferRef.current.on("play", () => {
-        return null;
+        setIsPlaying(true);
       });
 
-      // we can log the actual peaks data once the audio file has been
-      // decoded
-      // wavesurferRef.current.on("decode", () => {
-      //   const peaks = wavesurferRef.current.exportPeaks();
-      //   console.log(JSON.stringify(peaks));
-      // });
+      wavesurferRef.current.on("pause", () => {
+        setIsPlaying(false);
+      });
     }
   };
 
@@ -83,11 +75,36 @@ const MobileWaveform = () => {
     playSong(waveformTrack);
   }, [waveformTrack]);
 
+  //   console.log(waveformTrack);
+
   return (
     <>
       {Object.keys(waveformTrack).length > 0 && (
-        <Box className="modalTriggerDiv" onClick={toggleDrawer("bottom", true)}>
-          <Typography variant="h5">{waveformTrack.title}</Typography>
+        <Box className="modalTriggerDiv">
+          <img
+            src={waveformTrack.track_photo}
+            style={{ width: "auto", height: "40px" }}
+          />
+          <Typography variant="h6" onClick={toggleDrawer("bottom", true)}>
+            {waveformTrack.title}
+          </Typography>
+          <IconButton onClick={() => wavesurferRef.current.playPause()}>
+            {isPlaying ? (
+              <PauseIcon
+                fontSize="large"
+                sx={{
+                  color: "white",
+                }}
+              />
+            ) : (
+              <PlayArrowIcon
+                fontSize="large"
+                sx={{
+                  color: "white",
+                }}
+              />
+            )}
+          </IconButton>
         </Box>
       )}
       <Drawer
@@ -100,8 +117,29 @@ const MobileWaveform = () => {
         }}
       >
         <Box className="drawerDiv">
-          <Typography variant="h5">{waveformTrack.title}</Typography>
+          <img
+            src={waveformTrack.track_photo}
+            style={{ width: "auto", height: "100px" }}
+          />
+          <Typography variant="h6">{waveformTrack.title}</Typography>
           <Box ref={waveformRef}></Box>
+          <IconButton onClick={() => wavesurferRef.current.playPause()}>
+            {isPlaying ? (
+              <PauseIcon
+                fontSize="large"
+                sx={{
+                  color: "white",
+                }}
+              />
+            ) : (
+              <PlayArrowIcon
+                fontSize="large"
+                sx={{
+                  color: "white",
+                }}
+              />
+            )}
+          </IconButton>
         </Box>
       </Drawer>
     </>
