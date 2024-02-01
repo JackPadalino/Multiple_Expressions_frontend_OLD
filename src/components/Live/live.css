@@ -1,0 +1,9 @@
+.playerContainer {
+  display: flex;
+  /* justify-content: center; */
+  width: 100%;
+}
+
+.playerWrapper {
+  width: 50%;
+}
