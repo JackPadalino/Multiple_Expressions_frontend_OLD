@@ -1,28 +1,27 @@
-.waveformDiv {
+.waveformMain {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   position: fixed;
   bottom: 0;
   width: 100%;
   height: 100px;
-  /* padding-top: 10px;
-  padding-bottom: 10px; */
-  padding: 10px;
+  gap: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
   background-color: black;
 }
 
-.waveformDiv > :nth-child(1) {
-  width: 25%;
+.waveformMain > :nth-child(1) {
+  width: 20%;
 }
 
-.waveformDiv > :nth-child(3) {
-  width: 10%;
+.waveformMain > :nth-child(2) {
+  width: 75%;
 }
 
-.waveformDiv > :nth-child(2) {
-  width: 70%;
-}
+/* .waveformMain > :nth-child(3) {
+  width: 5%;
+} */
 
 .trackinfoDiv {
   display: flex;
@@ -30,6 +29,7 @@
   /* align-items: center; */
   /* justify-content: center; */
   overflow: hidden;
+  white-space: nowrap;
   gap: 10px;
 }
 
@@ -43,6 +43,11 @@
   height: 70px;
 }
 
-.controlsDiv {
+/* .waveformDiv {
+} */
+
+/* .controlsDiv {
   display: flex;
-}
+  justify-content: end;
+  background-color: red;
+} */

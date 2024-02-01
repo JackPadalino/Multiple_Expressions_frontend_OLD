@@ -40,7 +40,7 @@ const Waveform = () => {
         container: waveformRef.current,
         waveColor: "rgb(232, 214, 184)",
         progressColor: "rgb(234, 162, 42)",
-        height: mobileView ? 50 : 100,
+        height: 75,
         mediaControls: false,
         barWidth: 2,
         barGap: NaN,
@@ -89,7 +89,7 @@ const Waveform = () => {
   return (
     <>
       {Object.keys(waveformTrack).length > 0 && (
-        <Box className="waveformDiv">
+        <Box className="waveformMain">
           <Box className="trackinfoDiv">
             <img src={waveformTrack.track_photo} className="trackImg" />
             <Box>
@@ -107,7 +107,7 @@ const Waveform = () => {
               </Typography>
             </Box>
           </Box>
-          <Box ref={waveformRef}></Box>
+          <Box ref={waveformRef} className="waveformDiv"></Box>
           <Box className="controlsDiv">
             <IconButton onClick={() => wavesurferRef.current.playPause()}>
               {isPlaying ? (
