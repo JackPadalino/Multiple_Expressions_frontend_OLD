@@ -1,13 +1,43 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import React from "react";
 import ReactPlayer from "react-player";
 import "./visual.css";
+
+import VideoJS from "./VideoJS";
 
 const Visual = () => {
   const { storeVideos } = useSelector((state) => state.music);
   const [renderPlayer, setRenderPlayer] = useState(false);
   const [playingVideo, setPlayingVideo] = useState("");
+
+  // videoJS
+  const playerRef = useRef(null);
+
+  const videoJsOptions = {
+    autoplay: true,
+    controls: true,
+    responsive: true,
+    fluid: true,
+    sources: [
+      {
+        src: playingVideo.file,
+        type: "video/mp4",
+      },
+    ],
+  };
+
+  const handlePlayerReady = (player) => {
+    playerRef.current = player;
+
+    // You can handle player events here, for example:
+    // player.on("waiting", () => {
+    //   videojs.log("player is waiting");
+    // });
+
+    // player.on("dispose", () => {
+    //   videojs.log("player will dispose");
+    // });
+  };
 
   const handlePlay = (video) => {
     setRenderPlayer(true);
@@ -52,7 +82,7 @@ const Visual = () => {
           ))}
         </div>
       </div>
-      {renderPlayer && (
+      {/* {renderPlayer && (
         <div className="playerContainer">
           <div className="playerWrapper">
             <ReactPlayer
@@ -68,12 +98,10 @@ const Visual = () => {
               playsinline={true} //disables 'auto full screen' on mobile - consider using for mobile!
             />
           </div>
-          {/* <div style={{ display: "flex", gap: "10px" }}>
-            {playingVideo.tags.map((tag) => (
-              <p key={tag.id}>#{tag.title}</p>
-            ))}
-          </div> */}
         </div>
+      )} */}
+      {renderPlayer && (
+        <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
       )}
     </div>
   );

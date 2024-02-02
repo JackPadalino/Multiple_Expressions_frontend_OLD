@@ -3,6 +3,12 @@
     display: flex;
     flex-direction: column;
   }
+
+  .video-js {
+    width: 300px;
+    height: auto;
+    /* aspect-ratio: 16 / 9; */
+  }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
@@ -14,6 +20,12 @@
   .playerContainer {
     width: 75%;
   }
+
+  .video-js {
+    width: 300px;
+    height: auto;
+    /* aspect-ratio: 16 / 9; */
+  }
 }
 
 @media only screen and (min-width: 1280px) {
@@ -24,5 +36,11 @@
 
   .playerContainer {
     width: 50%;
+  }
+
+  .video-js {
+    width: 800px;
+    height: auto;
+    /* aspect-ratio: 16 / 9; */
   }
 }
