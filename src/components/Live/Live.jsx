@@ -1,14 +1,45 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import ReactPlayer from "react-player";
 import "./live.css";
 
+import VideoJS from "../VideoJS/VideoJS";
+
 const Live = () => {
+  // videoJS
+  const playerRef = useRef(null);
+
+  const videoJsOptions = {
+    autoplay: true,
+    controls: true,
+    responsive: true,
+    fluid: true,
+    sources: [
+      {
+        src: import.meta.env.VITE_LIVE_STREAM_LINK,
+        type: "application/x-mpegURL",
+      },
+    ],
+  };
+
+  const handlePlayerReady = (player) => {
+    playerRef.current = player;
+
+    // You can handle player events here, for example:
+    // player.on("waiting", () => {
+    //   videojs.log("player is waiting");
+    // });
+
+    // player.on("dispose", () => {
+    //   videojs.log("player will dispose");
+    // });
+  };
+
   return (
     <>
       <h1>Live</h1>
       {/* <Link to={import.meta.env.VITE_LIVE_STREAM_LINK}>Join live</Link> */}
-      <div className="playerContainer">
+      {/* <div className="playerContainer">
         <div className="playerWrapper">
           <ReactPlayer
             className="react-player"
@@ -26,7 +57,8 @@ const Live = () => {
             onEnded={() => console.log("Video has ended")}
           />
         </div>
-      </div>
+      </div> */}
+      <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
     </>
   );
 };

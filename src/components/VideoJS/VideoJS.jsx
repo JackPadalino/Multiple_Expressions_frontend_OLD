@@ -4,12 +4,11 @@ import "video.js/dist/video-js.css";
 
 // video js
 import "@videojs/themes/dist/city/index.css";
-import "./visual.css";
+import "./videoJS.css";
 
-export const VideoJS = (props) => {
+const VideoJS = ({ options, onReady }) => {
   const videoRef = useRef(null);
   const playerRef = useRef(null);
-  const { options, onReady } = props;
 
   useEffect(() => {
     // Make sure Video.js player is only initialized once

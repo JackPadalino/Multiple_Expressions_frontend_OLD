@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import ReactPlayer from "react-player";
 import "./visual.css";
 
-import VideoJS from "./VideoJS";
+import VideoJS from "../VideoJS/VideoJS";
 
 const Visual = () => {
   const { storeVideos } = useSelector((state) => state.music);
