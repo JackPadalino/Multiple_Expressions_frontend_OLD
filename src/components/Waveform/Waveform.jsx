@@ -3,11 +3,18 @@ import { useSelector, useDispatch } from "react-redux";
 import WaveSurfer from "wavesurfer.js";
 
 // modal imports
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
+// import Box from "@mui/material/Box";
+// import Typography from "@mui/material/Typography";
+// import Avatar from "@mui/material/Avatar";
+// import IconButton from "@mui/material/IconButton";
+import { Box, Typography, Avatar, IconButton } from "@mui/material";
+
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
+import PauseCircleIcon from "@mui/icons-material/PauseCircle";
+import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFilledWhiteOutlined";
+import Replay10OutlinedIcon from "@mui/icons-material/Replay10Outlined";
+import Forward10OutlinedIcon from "@mui/icons-material/Forward10Outlined";
 
 import "./waveform.css";
 
@@ -102,31 +109,60 @@ const Waveform = () => {
                     {artist.name}
                   </Typography>
                 ))}
-              <Typography sx={{ color: "white" }}>
-                {currentTime}/{trackDuration}
-              </Typography>
             </Box>
           </Box>
           <Box ref={waveformRef} className="waveformDiv"></Box>
-          <Box className="controlsDiv">
+          <div className="controlsDiv">
+            <Typography sx={{ color: "white" }}>{currentTime}</Typography>
+            {/* <Replay10OutlinedIcon
+              fontSize="large"
+              sx={{
+                color: "white",
+              }}
+            /> */}
             <IconButton onClick={() => wavesurferRef.current.playPause()}>
               {isPlaying ? (
-                <PauseIcon
-                  fontSize="large"
+                <Avatar
                   sx={{
-                    color: "white",
+                    bgcolor: "black",
+                    border: "2px solid white",
+                    width: 50,
+                    height: 50,
                   }}
-                />
+                >
+                  <PauseIcon
+                    fontSize="large"
+                    sx={{
+                      color: "white",
+                    }}
+                  />
+                </Avatar>
               ) : (
-                <PlayArrowIcon
-                  fontSize="large"
+                <Avatar
                   sx={{
-                    color: "white",
+                    bgcolor: "white",
+                    border: "2px solid white",
+                    width: 50,
+                    height: 50,
                   }}
-                />
+                >
+                  <PlayArrowIcon
+                    fontSize="large"
+                    sx={{
+                      color: "black",
+                    }}
+                  />
+                </Avatar>
               )}
             </IconButton>
-          </Box>
+            {/* <Forward10OutlinedIcon
+              fontSize="large"
+              sx={{
+                color: "white",
+              }}
+            /> */}
+            <Typography sx={{ color: "white" }}>{trackDuration}</Typography>
+          </div>
         </Box>
       )}
     </>

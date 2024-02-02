@@ -5,10 +5,11 @@
   bottom: 0;
   width: 100%;
   height: 100px;
-  gap: 5px;
+  justify-content: space-between;
   padding-left: 10px;
   padding-right: 10px;
   background-color: black;
+  box-sizing: border-box;
 }
 
 .waveformMain > :nth-child(1) {
@@ -16,18 +17,16 @@
 }
 
 .waveformMain > :nth-child(2) {
-  width: 75%;
+  width: calc(67% - 10px); /* adjusted to account for padding on both sides */
 }
 
 /* .waveformMain > :nth-child(3) {
-  width: 5%;
+  width: 10%;
 } */
 
 .trackinfoDiv {
   display: flex;
   color: white;
-  /* align-items: center; */
-  /* justify-content: center; */
   overflow: hidden;
   white-space: nowrap;
   gap: 10px;
@@ -47,7 +46,4 @@
 } */
 
 /* .controlsDiv {
-  display: flex;
-  justify-content: end;
-  background-color: red;
 } */
