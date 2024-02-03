@@ -37,7 +37,11 @@ const Live = () => {
       }
 
       const response = await axios.post(`${url}/api/users/token`, credentials);
-      if (response.status === 200 || response.status === 204) {
+      if (
+        response.status === 200 ||
+        response.status === 204 ||
+        response.status === 205
+      ) {
         window.localStorage.clear();
         window.localStorage.setItem("access_token", response.data.access);
         window.localStorage.setItem("refresh_token", response.data.refresh);
@@ -78,7 +82,11 @@ const Live = () => {
         refresh_token: token,
       });
 
-      if (response.status === 200 || response.status === 204) {
+      if (
+        response.status === 200 ||
+        response.status === 204 ||
+        response.status === 205
+      ) {
         window.localStorage.clear();
         setIsAuthenticated(false);
       } else {
