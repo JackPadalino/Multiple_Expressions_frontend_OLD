@@ -6,7 +6,15 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { setStoreArtists } from "../../store/artistSlice";
 import { setStoreTracks, setStoreVideos } from "../../store/musicSlice";
 import { setMobileView } from "../../store/mobileViewSlice";
-import { Home, Visual, Auditory, Live, Waveform, MobileWaveform } from "..";
+import {
+  Home,
+  Visual,
+  Auditory,
+  Live,
+  Waveform,
+  MobileWaveform,
+  Nav,
+} from "..";
 import "./app.css";
 
 function App() {
@@ -63,7 +71,9 @@ function App() {
   if (loading) return <p>Loading...</p>;
   return (
     <div className="appContainer">
+      <Nav />
       {/* <Router /> */}
+
       <Routes>
         {/* <Route
         path="/checkout"

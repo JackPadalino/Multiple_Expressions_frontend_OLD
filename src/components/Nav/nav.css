@@ -1,0 +1,12 @@
+.navContainer {
+  display: flex;
+  gap: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
+}
+
+.navContainer > * {
+  text-decoration: none;
+  color: blue;
+}

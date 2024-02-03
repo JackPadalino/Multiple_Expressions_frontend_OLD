@@ -5,3 +5,4 @@ export { default as Live } from "./Live/Live";
 export { default as Waveform } from "./Waveform/Waveform";
 export { default as VideoJS } from "./VideoJS/VideoJS";
 export { default as MobileWaveform } from "./Waveform/MobileWaveform";
+export { default as Nav } from "./Nav/Nav";
