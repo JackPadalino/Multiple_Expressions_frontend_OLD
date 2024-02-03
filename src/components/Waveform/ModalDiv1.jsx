@@ -15,7 +15,7 @@ const ModalDiv1 = ({
 }) => {
   return (
     <Box className="modalTriggerDiv">
-      <img src={waveformTrack.track_photo} className="modalImg" />
+      <img src={waveformTrack.track_photo} className="drawerImg1" />
       <Typography variant="h6" onClick={toggleDrawer("bottom", true)}>
         {waveformTrack.title}
       </Typography>

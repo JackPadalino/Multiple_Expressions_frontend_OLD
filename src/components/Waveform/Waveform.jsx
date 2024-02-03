@@ -2,13 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import WaveSurfer from "wavesurfer.js";
 
-// modal imports
-// import Box from "@mui/material/Box";
-// import Typography from "@mui/material/Typography";
-// import Avatar from "@mui/material/Avatar";
-// import IconButton from "@mui/material/IconButton";
+// MUI imports
 import { Box, Typography, Avatar, IconButton } from "@mui/material";
-
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import PauseCircleIcon from "@mui/icons-material/PauseCircle";

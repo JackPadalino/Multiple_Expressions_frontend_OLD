@@ -1,10 +1,7 @@
 import "./mobileWaveform.css";
 
-// modal imports
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
+// MUI imports
+import { Box, Typography, Avatar, IconButton, Drawer } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 
@@ -31,7 +28,7 @@ const ModalDiv2 = ({
       <Box className="drawerDiv">
         <img
           src={waveformTrack.track_photo}
-          style={{ width: "auto", height: "100px" }}
+          style={{ width: "auto", height: "125px" }}
         />
         <Typography variant="h5">{waveformTrack.title}</Typography>
         <Box className="trackUsersDiv">
@@ -47,19 +44,37 @@ const ModalDiv2 = ({
           <Typography variant="h6">{currentTime}</Typography>
           <IconButton onClick={() => wavesurferRef.current.playPause()}>
             {isPlaying ? (
-              <PauseIcon
-                fontSize="large"
+              <Avatar
                 sx={{
-                  color: "white",
+                  bgcolor: "black",
+                  border: "2px solid white",
+                  width: 50,
+                  height: 50,
                 }}
-              />
+              >
+                <PauseIcon
+                  fontSize="large"
+                  sx={{
+                    color: "white",
+                  }}
+                />
+              </Avatar>
             ) : (
-              <PlayArrowIcon
-                fontSize="large"
+              <Avatar
                 sx={{
-                  color: "white",
+                  bgcolor: "white",
+                  border: "2px solid white",
+                  width: 50,
+                  height: 50,
                 }}
-              />
+              >
+                <PlayArrowIcon
+                  fontSize="large"
+                  sx={{
+                    color: "black",
+                  }}
+                />
+              </Avatar>
             )}
           </IconButton>
           <Typography variant="h6">{trackDuration}</Typography>

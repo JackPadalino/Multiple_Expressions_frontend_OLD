@@ -36,7 +36,7 @@ const MobileWaveform = () => {
         container: waveformRef.current,
         waveColor: "rgb(232, 214, 184)",
         progressColor: "rgb(234, 162, 42)",
-        height: mobileView ? 50 : 100,
+        height: 50,
         mediaControls: false,
         barWidth: 2,
         barGap: NaN,

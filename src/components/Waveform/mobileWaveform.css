@@ -40,9 +40,14 @@
   width: 95%;
 }
 
-.modalImg {
-  width: auto;
+.drawerImg1 {
   height: 40px;
+  width: auto;
+}
+
+.drawerImg2 {
+  height: "125px";
+  width: "auto";
 }
 
 .controlsDiv {
