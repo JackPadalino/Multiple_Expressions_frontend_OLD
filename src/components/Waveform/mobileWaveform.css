@@ -21,7 +21,7 @@
   display: flex;
   gap: 5px;
   padding-top: 10px;
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
   flex-direction: column;
   justify-content: center;
   align-items: center;
