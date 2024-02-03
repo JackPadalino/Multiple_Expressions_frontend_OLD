@@ -6,9 +6,6 @@ const Home = () => {
   return (
     <>
       <h1>Multiple Expressions</h1>
-      <Link to="/auditory">Auditory</Link>
-      <Link to="/visual">Visual</Link>
-      <Link to="/live">Live</Link>
     </>
   );
 };
