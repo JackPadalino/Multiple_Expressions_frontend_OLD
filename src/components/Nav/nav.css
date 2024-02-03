@@ -1,12 +1,17 @@
 .navContainer {
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
   padding-top: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid black;
 }
 
-.navContainer > * {
+.navContainer > :nth-child(1) {
+  display: flex;
+  gap: 10px;
+}
+
+.navLink {
   text-decoration: none;
   color: blue;
 }

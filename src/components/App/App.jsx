@@ -14,6 +14,7 @@ import {
   Waveform,
   MobileWaveform,
   Nav,
+  Admin,
 } from "..";
 import "./app.css";
 
@@ -83,6 +84,7 @@ function App() {
         <Route path="/visual" element={<Visual />} />
         <Route path="/auditory" element={<Auditory />} />
         <Route path="/live" element={<Live />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
       {/* {Object.keys(waveformTrack).length > 0 && <Waveform />} */}
       {mobileView ? <MobileWaveform /> : <Waveform />}
