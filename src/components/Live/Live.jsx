@@ -4,6 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import ReactPlayer from "react-player";
 import VideoJS from "../VideoJS/VideoJS";
+// import {
+//   setStoreAccessToken,
+//   resetStoreAccessToken,
+// } from "../../store/usersSlice";
 import {
   Box,
   Container,
@@ -21,6 +25,7 @@ const Live = () => {
     password: "",
   });
   const [isAuthenicated, setIsAuthenticated] = useState(false);
+  // const { storeAccessToken } = useSelector((state) => state.users);
 
   const onCredentialsChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -45,6 +50,7 @@ const Live = () => {
         window.localStorage.clear();
         window.localStorage.setItem("access_token", response.data.access);
         window.localStorage.setItem("refresh_token", response.data.refresh);
+        // dispatchEvent(setStoreAccessToken(response.data.access));
         setIsAuthenticated(true);
       } else {
         console.error(`Unexpected response status: ${response.status}`);
@@ -88,6 +94,7 @@ const Live = () => {
         response.status === 205
       ) {
         window.localStorage.clear();
+        // dispatchEvent(resetStoreAccessToken());
         setIsAuthenticated(false);
       } else {
         console.error(`Unexpected response status: ${response.status}`);
@@ -109,7 +116,7 @@ const Live = () => {
   };
 
   useEffect(() => {
-    // check for the presence of a token in localStorage
+    // check for the presence of an access token in localStorage
     const token = localStorage.getItem("access_token");
 
     if (token) {
