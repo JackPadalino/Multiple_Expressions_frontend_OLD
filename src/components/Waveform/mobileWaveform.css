@@ -1,7 +1,25 @@
 @media only screen and (max-width: 600px) {
+  .drawerImg1 {
+    height: 40px;
+    width: auto;
+  }
+
+  .drawerImg2 {
+    height: "125px";
+    width: "auto";
+  }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
+  .drawerImg1 {
+    height: 40px;
+    width: auto;
+  }
+
+  .drawerImg2 {
+    height: "100px";
+    width: "auto";
+  }
 }
 
 .modalTriggerDiv {
@@ -38,16 +56,6 @@
 
 .waveformRef {
   width: 95%;
-}
-
-.drawerImg1 {
-  height: 40px;
-  width: auto;
-}
-
-.drawerImg2 {
-  height: "125px";
-  width: "auto";
 }
 
 .controlsDiv {

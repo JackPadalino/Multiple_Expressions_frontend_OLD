@@ -1,14 +1,7 @@
 import "./mobileWaveform.css";
 
 // MUI imports
-import {
-  Box,
-  Typography,
-  Avatar,
-  IconButton,
-  Drawer,
-  SwipeableDrawer,
-} from "@mui/material";
+import { Box, Typography, Avatar, IconButton, Drawer } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 
@@ -23,7 +16,7 @@ const ModalDiv2 = ({
   trackDuration,
 }) => {
   return (
-    <SwipeableDrawer
+    <Drawer
       anchor={"bottom"}
       open={trackModalState}
       onClose={toggleDrawer("bottom", false)}
@@ -87,7 +80,7 @@ const ModalDiv2 = ({
           <Typography variant="h6">{trackDuration}</Typography>
         </Box>
       </Box>
-    </SwipeableDrawer>
+    </Drawer>
   );
 };
 
