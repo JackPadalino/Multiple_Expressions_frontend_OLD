@@ -66,7 +66,14 @@ const Live = () => {
   };
 
   //~~~~~~~~~~Amazon IVS~~~~~~~~~~//
-  const [channelConfigSelect, setChannelConfigSelect] = useState("");
+  const [client, setClient] = useState({});
+  const [streamConfig, setStreamConfig] = useState(
+    IVSBroadcastClient.BASIC_LANDSCAPE
+  );
+  const [permissions, setPermissions] = useState({});
+  const [devices, setDevices] = useState({});
+  // const [ingestEndpoint, setIngestEndpoint] = useState("");
+  const [streamKey, setStreamKey] = useState("");
 
   // stream configuration choices
   const channelConfigSelectOptions = [
@@ -84,24 +91,36 @@ const Live = () => {
   };
 
   const handleStreamConfigChange = (e) => {
-    console.log(channelConfigs[e.target.value]);
-    setChannelConfigSelect(channelConfigs[e.target.value]);
+    const stream = channelConfigs[e.target.value];
+    setStreamConfig(stream);
+  };
+
+  // const handleIngestEndpointChange = (e) => {
+  //   setIngestEndpoint(e.target.value);
+  // };
+
+  const handleStreamKeyChange = (e) => {
+    setStreamKey(e.target.value);
   };
 
   // create IVS client
   const createClient = () => {
     const client = IVSBroadcastClient.create({
       // Enter the desired stream configuration
-      streamConfig: IVSBroadcastClient.STANDARD_PORTRAIT,
+      streamConfig: streamConfig,
       // Enter the ingest endpoint from the AWS console or CreateChannel API
       ingestEndpoint:
         "rtmps://b45aff1d0b29.global-contribute.live-video.net:443/app/",
     });
-
-    console.log({ client });
+    setClient(client);
   };
 
-  // andle audio/video device enumeration
+  // update the client whenever the stream config settings are changed
+  useEffect(() => {
+    createClient();
+  }, [streamConfig]);
+
+  // checking for available decices - "audio/video device enumeration"
   async function getDevices() {
     const devices = await navigator.mediaDevices.enumerateDevices();
     const videoDevices = devices.filter((d) => d.kind === "videoinput");
@@ -114,8 +133,7 @@ const Live = () => {
       console.log("No audio devices found");
       // setError("No audio devices found.");
     }
-    console.log({ videoDevices, audioDevices });
-    return { videoDevices, audioDevices };
+    setDevices({ videoDevices, audioDevices });
   }
 
   async function handlePermissions() {
@@ -132,8 +150,8 @@ const Live = () => {
         track.stop();
       }
       permissions = { video: true, audio: true };
+      setPermissions(permissions);
     } catch (err) {
-      permissions = { video: false, audio: false };
       console.error(err.message);
     }
     // If we still don't have permissions after requesting them display the error message
@@ -144,10 +162,14 @@ const Live = () => {
     }
   }
 
-  useEffect(() => {
+  const init = () => {
     createClient();
     getDevices();
     handlePermissions();
+  };
+
+  useEffect(() => {
+    init();
   }, []);
 
   return (
@@ -157,36 +179,61 @@ const Live = () => {
       )}
       {isAuthenicated && (
         <>
-          {/* stream config select */}
           <label htmlFor="stream-config">Select Channel Config</label>
           <select
-            // disabled
             id="stream-config"
-            defaultValue=""
+            defaultValue={streamConfig}
             onChange={handleStreamConfigChange}
           >
-            <option disabled value="">
-              Choose Option
-            </option>
+            <option value="">Choose Option</option>
             {channelConfigSelectOptions.map((option, index) => (
               <option key={index} value={option}>
                 {option}
               </option>
             ))}
           </select>
-          {/* <label htmlFor="video-devices">Select Webcam</label>
+          {/* <section className="container">
+            <label htmlFor="ingest-endpoint">Ingest Endpoint</label>
+            <input
+              type="text"
+              id="ingest-endpoint"
+              value={ingestEndpoint}
+              onChange={handleIngestEndpointChange}
+            />
+          </section> */}
+          <section className="container">
+            <label htmlFor="stream-key">Stream Key</label>
+            <input
+              type="text"
+              id="stream-key"
+              value={streamKey}
+              onChange={handleStreamKeyChange}
+            />
+          </section>
+          {/* preview component */}
+          <section className="container">
+            <canvas id="preview"></canvas>
+          </section>
+          {/* video device select */}
+          <label htmlFor="video-devices">Select Webcam</label>
           <select id="video-devices">
-            <option selected disabled>
-              Choose Option
-            </option>
+            <option value="">Choose Option</option>
+            {devices.videoDevices.map((device, index) => (
+              <option key={index} value={device.deviceId}>
+                {device.label}
+              </option>
+            ))}
           </select>
 
           <label htmlFor="audio-devices">Select Microphone</label>
           <select id="audio-devices">
-            <option selected disabled>
-              Choose Option
-            </option>
-          </select> */}
+            <option value="">Choose Option</option>
+            {devices.audioDevices.map((device, index) => (
+              <option key={index} value={device.deviceId}>
+                {device.label}
+              </option>
+            ))}
+          </select>
         </>
       )}
     </>
