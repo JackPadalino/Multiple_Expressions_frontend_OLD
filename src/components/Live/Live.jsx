@@ -20,6 +20,9 @@ import "./live.css";
 import IVSBroadcastClient, {
   Errors,
   BASIC_LANDSCAPE,
+  STANDARD_LANDSCAPE,
+  BASIC_PORTRAIT,
+  STANDARD_PORTRAIT,
 } from "amazon-ivs-web-broadcast";
 
 const Live = () => {
@@ -66,75 +69,71 @@ const Live = () => {
   };
 
   //~~~~~~~~~~Amazon IVS~~~~~~~~~~//
+
+  const previewRef = useRef();
+
   const [client, setClient] = useState({});
+
+  const [config, setConfig] = useState({
+    ingestEndpoint:
+      "rtmps://b45aff1d0b29.global-contribute.live-video.net:443/app/",
+    streamConfig: IVSBroadcastClient.BASIC_LANDSCAPE,
+    logLevel: IVSBroadcastClient.LOG_LEVEL.DEBUG,
+  });
+
   const [streamConfig, setStreamConfig] = useState(
     IVSBroadcastClient.BASIC_LANDSCAPE
   );
+  const [ingestEndpoint, setIngestEndpoint] = useState(
+    "rtmps://b45aff1d0b29.global-contribute.live-video.net:443/app/"
+  );
+
   const [permissions, setPermissions] = useState({});
   const [devices, setDevices] = useState({});
-  // const [ingestEndpoint, setIngestEndpoint] = useState("");
-  const [streamKey, setStreamKey] = useState("");
 
-  // stream configuration choices
-  const channelConfigSelectOptions = [
-    "Basic: Landscape",
-    "Basic: Portrait",
-    "Standard: Landscape",
-    "Standard: Portrait",
-  ];
+  const [streamKey, setStreamKey] = useState(
+    "sk_us-east-1_EVdONQUNwsAa_MWqkcRHhtkMQ6y1sAPNSHg9XWIE0YU"
+  );
+  const [selectedVideo, setSelectedVideo] = useState(0);
+  const [selectedAudio, setSelectedAudio] = useState(0);
 
-  const channelConfigs = {
-    "Basic: Landscape": IVSBroadcastClient.BASIC_LANDSCAPE,
-    "Basic: Portrait": IVSBroadcastClient.BASIC_PORTRAIT,
-    "Standard: Landscape": IVSBroadcastClient.STANDARD_LANDSCAPE,
-    "Standard: Portrait": IVSBroadcastClient.STANDARD_PORTRAIT,
-  };
+  // // stream configuration choices
+  // const channelConfigSelectOptions = [
+  //   "Basic: Landscape",
+  //   "Basic: Portrait",
+  //   "Standard: Landscape",
+  //   "Standard: Portrait",
+  // ];
 
-  const handleStreamConfigChange = (e) => {
-    const stream = channelConfigs[e.target.value];
-    setStreamConfig(stream);
-  };
-
-  // const handleIngestEndpointChange = (e) => {
-  //   setIngestEndpoint(e.target.value);
+  // const channelConfigs = {
+  //   "Basic: Landscape": IVSBroadcastClient.BASIC_LANDSCAPE,
+  //   "Basic: Portrait": IVSBroadcastClient.BASIC_PORTRAIT,
+  //   "Standard: Landscape": IVSBroadcastClient.STANDARD_LANDSCAPE,
+  //   "Standard: Portrait": IVSBroadcastClient.STANDARD_PORTRAIT,
   // };
 
-  const handleStreamKeyChange = (e) => {
-    setStreamKey(e.target.value);
+  // const handleStreamConfigChange = (e) => {
+  //   const stream = channelConfigs[e.target.value];
+  //   setStreamConfig(stream);
+  //   setClient;
+  // };
+
+  const handleSelectedVideoChange = (e) => {
+    window.selectedVideoDeviceId = e.target.value;
+    // createClient();
+    createVideoStream();
   };
 
-  // create IVS client
-  const createClient = () => {
-    const client = IVSBroadcastClient.create({
-      // Enter the desired stream configuration
-      streamConfig: streamConfig,
-      // Enter the ingest endpoint from the AWS console or CreateChannel API
-      ingestEndpoint:
-        "rtmps://b45aff1d0b29.global-contribute.live-video.net:443/app/",
-    });
-    setClient(client);
+  const handleSelectedAudioChange = (e) => {
+    window.selectedAudioDeviceId = e.target.value;
+    // createClient();
+    createAudioStream();
   };
 
   // update the client whenever the stream config settings are changed
-  useEffect(() => {
-    createClient();
-  }, [streamConfig]);
-
-  // checking for available decices - "audio/video device enumeration"
-  async function getDevices() {
-    const devices = await navigator.mediaDevices.enumerateDevices();
-    const videoDevices = devices.filter((d) => d.kind === "videoinput");
-    if (!videoDevices.length) {
-      console.log("No video devices found");
-      // setError("No video devices found.");
-    }
-    const audioDevices = devices.filter((d) => d.kind === "audioinput");
-    if (!audioDevices.length) {
-      console.log("No audio devices found");
-      // setError("No audio devices found.");
-    }
-    setDevices({ videoDevices, audioDevices });
-  }
+  // useEffect(() => {
+  //   createClient();
+  // }, [previewRef.current]);
 
   async function handlePermissions() {
     let permissions = {
@@ -162,10 +161,104 @@ const Live = () => {
     }
   }
 
+  // checking for available decices - "audio/video device enumeration"
+  async function getDevices() {
+    const devices = await navigator.mediaDevices.enumerateDevices();
+    const videoDevices = devices.filter((d) => d.kind === "videoinput");
+    if (!videoDevices.length) {
+      console.log("No video devices found");
+      // setError("No video devices found.");
+    }
+    const audioDevices = devices.filter((d) => d.kind === "audioinput");
+    if (!audioDevices.length) {
+      console.log("No audio devices found");
+      // setError("No audio devices found.");
+    }
+    setDevices({ videoDevices, audioDevices });
+  }
+
+  // create IVS client
+  async function createClient() {
+    window.broadcastClient = IVSBroadcastClient.create({
+      ingestEndpoint:
+        "rtmps://b45aff1d0b29.global-contribute.live-video.net:443/app/",
+      streamConfig: IVSBroadcastClient.STANDARD_LANDSCAPE,
+      logLevel: IVSBroadcastClient.LOG_LEVEL.DEBUG,
+    });
+
+    //   const previewEl = document.getElementById("preview");
+    if (previewRef.current) {
+      window.broadcastClient.attachPreview(previewRef.current);
+    }
+  }
+
+  const createVideoStream = async () => {
+    if (
+      window.broadcastClient &&
+      window.broadcastClient.getVideoInputDevice("camera1")
+    )
+      window.broadcastClient.removeVideoInputDevice("camera1");
+    const streamConfig = IVSBroadcastClient.STANDARD_LANDSCAPE;
+    window.videoStream = await navigator.mediaDevices.getUserMedia({
+      video: {
+        deviceId: { exact: window.selectedVideoDeviceId },
+        width: {
+          ideal: streamConfig.maxResolution.width,
+          max: streamConfig.maxResolution.width,
+        },
+        height: {
+          ideal: streamConfig.maxResolution.height,
+          max: streamConfig.maxResolution.height,
+        },
+      },
+    });
+    if (window.broadcastClient)
+      window.broadcastClient.addVideoInputDevice(
+        window.videoStream,
+        "camera1",
+        { index: 0 }
+      );
+  };
+
+  const createAudioStream = async () => {
+    if (
+      window.broadcastClient &&
+      window.broadcastClient.getAudioInputDevice("mic1")
+    )
+      window.broadcastClient.removeAudioInputDevice("mic1");
+    window.audioStream = await navigator.mediaDevices.getUserMedia({
+      audio: {
+        deviceId: window.selectedAudioDeviceId,
+      },
+    });
+    if (window.broadcastClient)
+      window.broadcastClient.addAudioInputDevice(window.audioStream, "mic1");
+  };
+
+  const previewVideo = () => {
+    if (previewRef.current)
+      window.broadcastClient.attachPreview(previewRef.current);
+  };
+
+  const startBroadcast = () => {
+    window.broadcastClient.startBroadcast(streamKey, ingestEndpoint);
+  };
+
+  const stopBroadcast = () => {
+    window.broadcastClient.stopBroadcast();
+  };
+
+  // useEffect(() => {
+  //   createClient();
+  // }, [previewRef]);
+
   const init = () => {
-    createClient();
     getDevices();
     handlePermissions();
+    createClient();
+
+    createVideoStream();
+    createAudioStream();
   };
 
   useEffect(() => {
@@ -179,7 +272,7 @@ const Live = () => {
       )}
       {isAuthenicated && (
         <>
-          <label htmlFor="stream-config">Select Channel Config</label>
+          {/* <label htmlFor="stream-config">Select Channel Config</label>
           <select
             id="stream-config"
             defaultValue={streamConfig}
@@ -191,7 +284,7 @@ const Live = () => {
                 {option}
               </option>
             ))}
-          </select>
+          </select> */}
           {/* <section className="container">
             <label htmlFor="ingest-endpoint">Ingest Endpoint</label>
             <input
@@ -201,7 +294,7 @@ const Live = () => {
               onChange={handleIngestEndpointChange}
             />
           </section> */}
-          <section className="container">
+          {/* <section className="container">
             <label htmlFor="stream-key">Stream Key</label>
             <input
               type="text"
@@ -209,14 +302,14 @@ const Live = () => {
               value={streamKey}
               onChange={handleStreamKeyChange}
             />
-          </section>
+          </section> */}
           {/* preview component */}
           <section className="container">
-            <canvas id="preview"></canvas>
+            <canvas id="preview" ref={previewRef}></canvas>
           </section>
-          {/* video device select */}
+
           <label htmlFor="video-devices">Select Webcam</label>
-          <select id="video-devices">
+          <select id="video-devices" onChange={handleSelectedVideoChange}>
             <option value="">Choose Option</option>
             {devices.videoDevices.map((device, index) => (
               <option key={index} value={device.deviceId}>
@@ -226,7 +319,7 @@ const Live = () => {
           </select>
 
           <label htmlFor="audio-devices">Select Microphone</label>
-          <select id="audio-devices">
+          <select id="audio-devices" onChange={handleSelectedAudioChange}>
             <option value="">Choose Option</option>
             {devices.audioDevices.map((device, index) => (
               <option key={index} value={device.deviceId}>
@@ -234,6 +327,8 @@ const Live = () => {
               </option>
             ))}
           </select>
+          <button onClick={() => startBroadcast()}>Start</button>
+          <button onClick={() => stopBroadcast()}>Stop</button>
         </>
       )}
     </>
