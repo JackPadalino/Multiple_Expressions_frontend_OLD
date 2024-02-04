@@ -24,8 +24,7 @@ const VideoJS = ({ options, onReady }) => {
         onReady && onReady(player);
       }));
 
-      // You could update an existing player in the `else` block here
-      // on prop change, for example:
+      // update the existing player on prop change, for example:
     } else {
       const player = playerRef.current;
 
@@ -34,7 +33,7 @@ const VideoJS = ({ options, onReady }) => {
     }
   }, [options, videoRef]);
 
-  // Dispose the Video.js player when the functional component unmounts
+  // destory the current player when the component unmounts
   useEffect(() => {
     const player = playerRef.current;
 
