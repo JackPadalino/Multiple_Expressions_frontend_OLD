@@ -18,7 +18,7 @@ import {
 } from "..";
 import "./app.css";
 
-function App() {
+const App = () => {
   const dispatch = useDispatch();
   const { waveformTrack } = useSelector((state) => state.waveform);
   const { mobileView } = useSelector((state) => state.mobileView);
@@ -90,6 +90,6 @@ function App() {
       {mobileView ? <MobileWaveform /> : <Waveform />}
     </div>
   );
-}
+};
 
 export default App;

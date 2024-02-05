@@ -112,7 +112,7 @@ const Live = () => {
     createAudioStream();
   };
 
-  async function handlePermissions() {
+  const handlePermissions = async () => {
     let permissions = {
       audio: false,
       video: false,
@@ -135,10 +135,10 @@ const Live = () => {
     } else if (!permissions.audio) {
       console.error("Failed to get audio permissions.");
     }
-  }
+  };
 
   // checking for available decices - "audio/video device enumeration"
-  async function getAvailableDevices() {
+  const getAvailableDevices = async () => {
     const devices = await navigator.mediaDevices.enumerateDevices();
     const videoDevices = devices.filter((d) => d.kind === "videoinput");
     if (!videoDevices.length) {
@@ -149,10 +149,10 @@ const Live = () => {
       console.log("No audio devices found");
     }
     setAvailableDevices({ videoDevices, audioDevices });
-  }
+  };
 
   // create IVS client
-  async function createClient() {
+  const createClient = async () => {
     window.broadcastClient = IVSBroadcastClient.create({
       ingestEndpoint:
         "rtmps://b45aff1d0b29.global-contribute.live-video.net:443/app/",
@@ -163,7 +163,7 @@ const Live = () => {
     // if (previewRef.current) {
     //   window.broadcastClient.attachPreview(previewRef.current);
     // }
-  }
+  };
 
   const createVideoStream = async () => {
     if (
