@@ -72,49 +72,52 @@ const Live = () => {
 
   const previewRef = useRef();
 
-  const [streamConfig, setStreamConfig] = useState("");
+  const [streamConfig, setStreamConfig] = useState(
+    IVSBroadcastClient.STANDARD_LANDSCAPE
+  );
 
   const [ingestEndpoint, setIngestEndpoint] = useState(
     "rtmps://b45aff1d0b29.global-contribute.live-video.net:443/app/"
   );
 
-  const [devices, setDevices] = useState({});
-
   const [streamKey, setStreamKey] = useState(
     "sk_us-east-1_EVdONQUNwsAa_MWqkcRHhtkMQ6y1sAPNSHg9XWIE0YU"
   );
-  const [selectedVideo, setSelectedVideo] = useState(0);
-  const [selectedAudio, setSelectedAudio] = useState(0);
 
-  // stream configuration choices
-  const channelConfigSelectOptions = [
-    "Basic: Landscape",
-    "Basic: Portrait",
-    "Standard: Landscape",
-    "Standard: Portrait",
-  ];
+  const [availableDevices, setAvailableDevices] = useState(null);
 
-  const channelConfigs = {
-    "Basic: Landscape": IVSBroadcastClient.BASIC_LANDSCAPE,
-    "Basic: Portrait": IVSBroadcastClient.BASIC_PORTRAIT,
-    "Standard: Landscape": IVSBroadcastClient.STANDARD_LANDSCAPE,
-    "Standard: Portrait": IVSBroadcastClient.STANDARD_PORTRAIT,
-  };
+  // // stream configuration choices
+  // const channelConfigSelectOptions = [
+  //   "Basic: Landscape",
+  //   "Basic: Portrait",
+  //   "Standard: Landscape",
+  //   "Standard: Portrait",
+  // ];
 
-  const handleStreamConfigChange = (e) => {
-    const stream = channelConfigs[e.target.value];
-    setStreamConfig(stream);
-  };
+  // const channelConfigs = {
+  //   "Basic: Landscape": IVSBroadcastClient.BASIC_LANDSCAPE,
+  //   "Basic: Portrait": IVSBroadcastClient.BASIC_PORTRAIT,
+  //   "Standard: Landscape": IVSBroadcastClient.STANDARD_LANDSCAPE,
+  //   "Standard: Portrait": IVSBroadcastClient.STANDARD_PORTRAIT,
+  // };
+
+  // const handleStreamConfigChange = (e) => {
+  //   const stream = channelConfigs[e.target.value];
+  //   setStreamConfig(stream);
+  // };
+
+  // // changes in stream config need to recreate a new client
+  // useEffect(() => {
+  //   createClient();
+  // }, [streamConfig]);
 
   const handleSelectedVideoChange = (e) => {
     window.selectedVideoDeviceId = e.target.value;
-    // createClient();
     createVideoStream();
   };
 
   const handleSelectedAudioChange = (e) => {
     window.selectedAudioDeviceId = e.target.value;
-    // createClient();
     createAudioStream();
   };
 
@@ -144,7 +147,7 @@ const Live = () => {
   }
 
   // checking for available decices - "audio/video device enumeration"
-  async function getDevices() {
+  async function getAvailableDevices() {
     const devices = await navigator.mediaDevices.enumerateDevices();
     const videoDevices = devices.filter((d) => d.kind === "videoinput");
     if (!videoDevices.length) {
@@ -154,7 +157,7 @@ const Live = () => {
     if (!audioDevices.length) {
       console.log("No audio devices found");
     }
-    setDevices({ videoDevices, audioDevices });
+    setAvailableDevices({ videoDevices, audioDevices });
   }
 
   // create IVS client
@@ -162,14 +165,13 @@ const Live = () => {
     window.broadcastClient = IVSBroadcastClient.create({
       ingestEndpoint:
         "rtmps://b45aff1d0b29.global-contribute.live-video.net:443/app/",
-      // streamConfig: IVSBroadcastClient.STANDARD_LANDSCAPE,
       streamConfig: streamConfig,
       logLevel: IVSBroadcastClient.LOG_LEVEL.DEBUG,
     });
 
-    if (previewRef.current) {
-      window.broadcastClient.attachPreview(previewRef.current);
-    }
+    // if (previewRef.current) {
+    //   window.broadcastClient.attachPreview(previewRef.current);
+    // }
   }
 
   const createVideoStream = async () => {
@@ -178,7 +180,6 @@ const Live = () => {
       window.broadcastClient.getVideoInputDevice("camera1")
     )
       window.broadcastClient.removeVideoInputDevice("camera1");
-    // const streamConfig = IVSBroadcastClient.STANDARD_LANDSCAPE;
     window.videoStream = await navigator.mediaDevices.getUserMedia({
       video: {
         deviceId: { exact: window.selectedVideoDeviceId },
@@ -224,7 +225,7 @@ const Live = () => {
   };
 
   const init = () => {
-    getDevices();
+    getAvailableDevices();
     handlePermissions();
     createClient();
 
@@ -241,10 +242,6 @@ const Live = () => {
     init();
   }, []);
 
-  useEffect(() => {
-    createClient();
-  }, [streamConfig]);
-
   return (
     <>
       {!isAuthenicated && (
@@ -252,7 +249,7 @@ const Live = () => {
       )}
       {isAuthenicated && (
         <>
-          <label htmlFor="stream-config">Select Channel Config</label>
+          {/* <label htmlFor="stream-config">Select Channel Config</label>
           <select
             id="stream-config"
             defaultValue={streamConfig}
@@ -264,46 +261,31 @@ const Live = () => {
                 {option}
               </option>
             ))}
-          </select>
-          {/* <section className="container">
-            <label htmlFor="ingest-endpoint">Ingest Endpoint</label>
-            <input
-              type="text"
-              id="ingest-endpoint"
-              value={ingestEndpoint}
-              onChange={handleIngestEndpointChange}
-            />
-          </section> */}
-          {/* <section className="container">
-            <label htmlFor="stream-key">Stream Key</label>
-            <input
-              type="text"
-              id="stream-key"
-              value={streamKey}
-              onChange={handleStreamKeyChange}
-            />
-          </section> */}
-          {/* preview component */}
+          </select> */}
+          {/* condintially rendering the select element if the available devices have been found */}
+          {availableDevices && (
+            <>
+              <label htmlFor="video-devices">Select Webcam</label>
+              <select id="video-devices" onChange={handleSelectedVideoChange}>
+                <option value="">Choose Option</option>
+                {availableDevices.videoDevices.map((device, index) => (
+                  <option key={index} value={device.deviceId}>
+                    {device.label}
+                  </option>
+                ))}
+              </select>
 
-          <label htmlFor="video-devices">Select Webcam</label>
-          <select id="video-devices" onChange={handleSelectedVideoChange}>
-            <option value="">Choose Option</option>
-            {devices.videoDevices.map((device, index) => (
-              <option key={index} value={device.deviceId}>
-                {device.label}
-              </option>
-            ))}
-          </select>
-
-          <label htmlFor="audio-devices">Select Microphone</label>
-          <select id="audio-devices" onChange={handleSelectedAudioChange}>
-            <option value="">Choose Option</option>
-            {devices.audioDevices.map((device, index) => (
-              <option key={index} value={device.deviceId}>
-                {device.label}
-              </option>
-            ))}
-          </select>
+              <label htmlFor="audio-devices">Select Microphone</label>
+              <select id="audio-devices" onChange={handleSelectedAudioChange}>
+                <option value="">Choose Option</option>
+                {availableDevices.audioDevices.map((device, index) => (
+                  <option key={index} value={device.deviceId}>
+                    {device.label}
+                  </option>
+                ))}
+              </select>
+            </>
+          )}
           <button onClick={() => startBroadcast()}>Start</button>
           <button onClick={() => stopBroadcast()}>Stop</button>
           <section className="container">
