@@ -50,7 +50,7 @@ const Admin = () => {
         window.localStorage.setItem("refresh_token", response.data.refresh);
         // dispatchEvent(setStoreAccessToken(response.data.access));
         setIsAuthenticated(true);
-        navigate("/live");
+        // navigate("/live");
       } else {
         console.error(`Unexpected response status: ${response.status}`);
         setIsAuthenticated(false);

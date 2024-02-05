@@ -28,16 +28,16 @@ import IVSBroadcastClient, {
 const Live = () => {
   const [isAuthenicated, setIsAuthenticated] = useState(false);
 
-  useEffect(() => {
-    // check for the presence of an access token in localStorage
-    const token = localStorage.getItem("access_token");
+  // useEffect(() => {
+  //   // check for the presence of an access token in localStorage
+  //   const token = localStorage.getItem("access_token");
 
-    if (token) {
-      setIsAuthenticated(true);
-    } else {
-      setIsAuthenticated(false);
-    }
-  }, []);
+  //   if (token) {
+  //     setIsAuthenticated(true);
+  //   } else {
+  //     setIsAuthenticated(false);
+  //   }
+  // }, []);
 
   // videoJS
   const playerRef = useRef(null);
@@ -69,7 +69,6 @@ const Live = () => {
   };
 
   //~~~~~~~~~~Amazon IVS~~~~~~~~~~//
-
   const previewRef = useRef();
 
   const [streamConfig, setStreamConfig] = useState(
@@ -234,7 +233,13 @@ const Live = () => {
   };
 
   useEffect(() => {
-    init();
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      setIsAuthenticated(true);
+      init();
+    } else {
+      setIsAuthenticated(false);
+    }
   }, []);
 
   return (
