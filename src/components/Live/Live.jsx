@@ -72,23 +72,12 @@ const Live = () => {
 
   const previewRef = useRef();
 
-  const [client, setClient] = useState({});
+  const [streamConfig, setStreamConfig] = useState("");
 
-  const [config, setConfig] = useState({
-    ingestEndpoint:
-      "rtmps://b45aff1d0b29.global-contribute.live-video.net:443/app/",
-    streamConfig: IVSBroadcastClient.BASIC_LANDSCAPE,
-    logLevel: IVSBroadcastClient.LOG_LEVEL.DEBUG,
-  });
-
-  const [streamConfig, setStreamConfig] = useState(
-    IVSBroadcastClient.BASIC_LANDSCAPE
-  );
   const [ingestEndpoint, setIngestEndpoint] = useState(
     "rtmps://b45aff1d0b29.global-contribute.live-video.net:443/app/"
   );
 
-  const [permissions, setPermissions] = useState({});
   const [devices, setDevices] = useState({});
 
   const [streamKey, setStreamKey] = useState(
@@ -97,26 +86,25 @@ const Live = () => {
   const [selectedVideo, setSelectedVideo] = useState(0);
   const [selectedAudio, setSelectedAudio] = useState(0);
 
-  // // stream configuration choices
-  // const channelConfigSelectOptions = [
-  //   "Basic: Landscape",
-  //   "Basic: Portrait",
-  //   "Standard: Landscape",
-  //   "Standard: Portrait",
-  // ];
+  // stream configuration choices
+  const channelConfigSelectOptions = [
+    "Basic: Landscape",
+    "Basic: Portrait",
+    "Standard: Landscape",
+    "Standard: Portrait",
+  ];
 
-  // const channelConfigs = {
-  //   "Basic: Landscape": IVSBroadcastClient.BASIC_LANDSCAPE,
-  //   "Basic: Portrait": IVSBroadcastClient.BASIC_PORTRAIT,
-  //   "Standard: Landscape": IVSBroadcastClient.STANDARD_LANDSCAPE,
-  //   "Standard: Portrait": IVSBroadcastClient.STANDARD_PORTRAIT,
-  // };
+  const channelConfigs = {
+    "Basic: Landscape": IVSBroadcastClient.BASIC_LANDSCAPE,
+    "Basic: Portrait": IVSBroadcastClient.BASIC_PORTRAIT,
+    "Standard: Landscape": IVSBroadcastClient.STANDARD_LANDSCAPE,
+    "Standard: Portrait": IVSBroadcastClient.STANDARD_PORTRAIT,
+  };
 
-  // const handleStreamConfigChange = (e) => {
-  //   const stream = channelConfigs[e.target.value];
-  //   setStreamConfig(stream);
-  //   setClient;
-  // };
+  const handleStreamConfigChange = (e) => {
+    const stream = channelConfigs[e.target.value];
+    setStreamConfig(stream);
+  };
 
   const handleSelectedVideoChange = (e) => {
     window.selectedVideoDeviceId = e.target.value;
@@ -129,11 +117,6 @@ const Live = () => {
     // createClient();
     createAudioStream();
   };
-
-  // update the client whenever the stream config settings are changed
-  // useEffect(() => {
-  //   createClient();
-  // }, [previewRef.current]);
 
   async function handlePermissions() {
     let permissions = {
@@ -149,7 +132,6 @@ const Live = () => {
         track.stop();
       }
       permissions = { video: true, audio: true };
-      setPermissions(permissions);
     } catch (err) {
       console.error(err.message);
     }
@@ -167,12 +149,10 @@ const Live = () => {
     const videoDevices = devices.filter((d) => d.kind === "videoinput");
     if (!videoDevices.length) {
       console.log("No video devices found");
-      // setError("No video devices found.");
     }
     const audioDevices = devices.filter((d) => d.kind === "audioinput");
     if (!audioDevices.length) {
       console.log("No audio devices found");
-      // setError("No audio devices found.");
     }
     setDevices({ videoDevices, audioDevices });
   }
@@ -182,11 +162,11 @@ const Live = () => {
     window.broadcastClient = IVSBroadcastClient.create({
       ingestEndpoint:
         "rtmps://b45aff1d0b29.global-contribute.live-video.net:443/app/",
-      streamConfig: IVSBroadcastClient.STANDARD_LANDSCAPE,
+      // streamConfig: IVSBroadcastClient.STANDARD_LANDSCAPE,
+      streamConfig: streamConfig,
       logLevel: IVSBroadcastClient.LOG_LEVEL.DEBUG,
     });
 
-    //   const previewEl = document.getElementById("preview");
     if (previewRef.current) {
       window.broadcastClient.attachPreview(previewRef.current);
     }
@@ -198,7 +178,7 @@ const Live = () => {
       window.broadcastClient.getVideoInputDevice("camera1")
     )
       window.broadcastClient.removeVideoInputDevice("camera1");
-    const streamConfig = IVSBroadcastClient.STANDARD_LANDSCAPE;
+    // const streamConfig = IVSBroadcastClient.STANDARD_LANDSCAPE;
     window.videoStream = await navigator.mediaDevices.getUserMedia({
       video: {
         deviceId: { exact: window.selectedVideoDeviceId },
@@ -235,11 +215,6 @@ const Live = () => {
       window.broadcastClient.addAudioInputDevice(window.audioStream, "mic1");
   };
 
-  const previewVideo = () => {
-    if (previewRef.current)
-      window.broadcastClient.attachPreview(previewRef.current);
-  };
-
   const startBroadcast = () => {
     window.broadcastClient.startBroadcast(streamKey, ingestEndpoint);
   };
@@ -248,10 +223,6 @@ const Live = () => {
     window.broadcastClient.stopBroadcast();
   };
 
-  // useEffect(() => {
-  //   createClient();
-  // }, [previewRef]);
-
   const init = () => {
     getDevices();
     handlePermissions();
@@ -259,11 +230,20 @@ const Live = () => {
 
     createVideoStream();
     createAudioStream();
+
+    // // attach preview after all resources are ready
+    // if (previewRef.current && window.broadcastClient) {
+    //   window.broadcastClient.attachPreview(previewRef.current);
+    // }
   };
 
   useEffect(() => {
     init();
   }, []);
+
+  useEffect(() => {
+    createClient();
+  }, [streamConfig]);
 
   return (
     <>
@@ -272,7 +252,7 @@ const Live = () => {
       )}
       {isAuthenicated && (
         <>
-          {/* <label htmlFor="stream-config">Select Channel Config</label>
+          <label htmlFor="stream-config">Select Channel Config</label>
           <select
             id="stream-config"
             defaultValue={streamConfig}
@@ -284,7 +264,7 @@ const Live = () => {
                 {option}
               </option>
             ))}
-          </select> */}
+          </select>
           {/* <section className="container">
             <label htmlFor="ingest-endpoint">Ingest Endpoint</label>
             <input
@@ -304,9 +284,6 @@ const Live = () => {
             />
           </section> */}
           {/* preview component */}
-          <section className="container">
-            <canvas id="preview" ref={previewRef}></canvas>
-          </section>
 
           <label htmlFor="video-devices">Select Webcam</label>
           <select id="video-devices" onChange={handleSelectedVideoChange}>
@@ -329,6 +306,9 @@ const Live = () => {
           </select>
           <button onClick={() => startBroadcast()}>Start</button>
           <button onClick={() => stopBroadcast()}>Stop</button>
+          <section className="container">
+            <canvas id="preview" ref={previewRef}></canvas>
+          </section>
         </>
       )}
     </>
