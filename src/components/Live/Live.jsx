@@ -76,14 +76,6 @@ const Live = () => {
     IVSBroadcastClient.STANDARD_LANDSCAPE
   );
 
-  const [ingestEndpoint, setIngestEndpoint] = useState(
-    "rtmps://b45aff1d0b29.global-contribute.live-video.net:443/app/"
-  );
-
-  const [streamKey, setStreamKey] = useState(
-    "sk_us-east-1_EVdONQUNwsAa_MWqkcRHhtkMQ6y1sAPNSHg9XWIE0YU"
-  );
-
   const [availableDevices, setAvailableDevices] = useState(null);
 
   // // stream configuration choices
@@ -217,7 +209,10 @@ const Live = () => {
   };
 
   const startBroadcast = () => {
-    window.broadcastClient.startBroadcast(streamKey, ingestEndpoint);
+    window.broadcastClient.startBroadcast(
+      import.meta.env.VITE_IVS_STREAM_KEY,
+      import.meta.env.VITE_IVS_INGEST_ENDPOINT
+    );
   };
 
   const stopBroadcast = () => {
