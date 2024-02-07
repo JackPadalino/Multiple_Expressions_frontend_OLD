@@ -39,7 +39,7 @@ const Live = () => {
         if (err.type === "ErrorNotAvailable") setIsPlaying(false);
       });
 
-      // clean up the player when the component unmounts
+      // pause the player when the component unmounts
       return () => {
         player.pause();
       };

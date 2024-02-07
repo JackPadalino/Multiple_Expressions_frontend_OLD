@@ -8,7 +8,7 @@ import {
   Avatar,
 } from "@mui/material";
 
-import "./live.css";
+// import "./live.css";
 
 const Live = () => {
   const [isAuthenicated, setIsAuthenticated] = useState(false);
