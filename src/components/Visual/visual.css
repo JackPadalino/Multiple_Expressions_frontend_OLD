@@ -7,7 +7,6 @@
   .video-js {
     width: 300px;
     height: auto;
-    /* aspect-ratio: 16 / 9; */
   }
 }
 
@@ -17,14 +16,9 @@
     justify-content: space-between;
   }
 
-  .playerContainer {
-    width: 75%;
-  }
-
   .video-js {
     width: 300px;
     height: auto;
-    /* aspect-ratio: 16 / 9; */
   }
 }
 
@@ -34,13 +28,8 @@
     justify-content: space-between;
   }
 
-  .playerContainer {
-    width: 50%;
-  }
-
   .video-js {
     width: 800px;
     height: auto;
-    /* aspect-ratio: 16 / 9; */
   }
 }

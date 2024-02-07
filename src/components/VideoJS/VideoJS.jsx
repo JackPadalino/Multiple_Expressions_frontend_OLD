@@ -46,12 +46,10 @@ const VideoJS = ({ options, onReady }) => {
   }, [playerRef]);
 
   return (
-    <div data-vjs-player>
-      <div
-        ref={videoRef}
-        className={"video-js vjs-big-play-centered vjs-theme-city"}
-      />
-    </div>
+    <div
+      ref={videoRef}
+      className={"video-js vjs-big-play-centered vjs-theme-city"}
+    />
   );
 };
 
