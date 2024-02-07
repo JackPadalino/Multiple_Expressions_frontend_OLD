@@ -7,3 +7,4 @@ export { default as VideoJS } from "./VideoJS/VideoJS";
 export { default as MobileWaveform } from "./Waveform/MobileWaveform";
 export { default as Nav } from "./Nav/Nav";
 export { default as Admin } from "./Admin/Admin";
+export { default as Chat } from "./Live/Chat";

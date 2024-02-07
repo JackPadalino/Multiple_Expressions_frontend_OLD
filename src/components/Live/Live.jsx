@@ -8,7 +8,7 @@ import {
   Avatar,
 } from "@mui/material";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
-
+import Chat from "./Chat";
 import "./live.css";
 
 const Live = () => {
@@ -68,36 +68,39 @@ const Live = () => {
   }, []);
 
   return (
-    <Box>
-      <ThemeProvider theme={theme}>
-        {!isPlaying && !hasEnded && (
-          <Typography variant="h6">
-            We are not live right now. Check back soon!
-          </Typography>
-        )}
-        {isPlaying && <Typography variant="h6">Live</Typography>}
-        {hasEnded && (
-          <Typography variant="h6">
-            Our live stream has ended. Thanks for coming!
-          </Typography>
-        )}
-        <Box className="playerContainer">
-          <video
-            ref={videoPlayerRef}
-            className="player"
-            id="video-player"
-            playsInline
-            controls
-          ></video>
-        </Box>
-        {!isPlaying && !hasEnded && (
-          <Typography variant="h6">
-            (If video <span style={{ fontStyle: "italic" }}>should</span> be
-            playing try refreshing.)
-          </Typography>
-        )}
-      </ThemeProvider>
-    </Box>
+    <>
+      <Box>
+        <ThemeProvider theme={theme}>
+          {!isPlaying && !hasEnded && (
+            <Typography variant="h6">
+              We are not live right now. Check back soon!
+            </Typography>
+          )}
+          {isPlaying && <Typography variant="h6">Live</Typography>}
+          {hasEnded && (
+            <Typography variant="h6">
+              Our live stream has ended. Thanks for coming!
+            </Typography>
+          )}
+          <Box className="playerContainer">
+            <video
+              ref={videoPlayerRef}
+              className="player"
+              id="video-player"
+              playsInline
+              controls
+            ></video>
+          </Box>
+          {!isPlaying && !hasEnded && (
+            <Typography variant="h6">
+              (If video <span style={{ fontStyle: "italic" }}>should</span> be
+              playing try refreshing.)
+            </Typography>
+          )}
+        </ThemeProvider>
+      </Box>
+      <Chat />
+    </>
   );
 };
 
