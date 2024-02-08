@@ -105,21 +105,20 @@ const Chat = () => {
           {message.username}: {message.content}
         </p>
       ))}
-      <p>this is where the messages go</p>
-      {/* {!chatToken && storeBroadcasting && ( */}
-      <div>
-        <h2>Join the chat</h2>
-        <form onSubmit={handleJoinChat}>
-          <input
-            type="text"
-            value={username}
-            onChange={handleUsernameChange}
-            placeholder="Enter a username"
-          />
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-      {/* )} */}
+      {!chatToken && storeBroadcasting && (
+        <div>
+          <h2>Join the chat</h2>
+          <form onSubmit={handleJoinChat}>
+            <input
+              type="text"
+              value={username}
+              onChange={handleUsernameChange}
+              placeholder="Enter a username"
+            />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      )}
       {chatToken && storeBroadcasting && (
         <div>
           <form onSubmit={handleSendMessage}>
