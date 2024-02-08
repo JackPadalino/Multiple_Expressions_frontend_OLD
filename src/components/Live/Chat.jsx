@@ -2,22 +2,39 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const Chat = () => {
-  const [tokenCreated, setTokenCreated] = useState(false);
-  const [userId, setUserId] = useState("");
+  const socket = "wss://edge.ivschat.us-east-1.amazonaws.com";
+  const [chatToken, setChatToken] = useState(null);
+  const [chatConnection, setChatConnection] = useState(null);
+  const [username, setUsername] = useState("");
   const [message, setMessage] = useState("");
+  const [chatMessages, setChatMessages] = useState([]);
 
-  const handleUserIdChange = (e) => {
-    setUserId(e.target.value);
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
   };
 
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
   };
 
+  const updateChat = (newMessage) => {
+    setChatMessages((prevChatMessages) => [...prevChatMessages, newMessage]);
+  };
+
   const handleSendMessage = (e) => {
     e.preventDefault();
-    console.log(message);
-    setMessage("");
+    if (chatToken) {
+      const payload = {
+        Action: "SEND_MESSAGE",
+        Content: message,
+      };
+      try {
+        chatConnection.send(JSON.stringify(payload));
+        setMessage("");
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   const handleJoinChat = async (e) => {
@@ -29,20 +46,29 @@ const Chat = () => {
       url = import.meta.env.VITE_PROD_URL;
     }
 
-    if (userId.trim() !== "") {
-      // check that userId is not an empty string or contains only whitespaces
+    // check that userId is not an empty string or contains only whitespaces
+    if (username.trim() !== "") {
       const body = {
-        userId: userId,
-        isAdmin: "true",
+        username: username,
+        role: "user",
       };
 
       try {
         const response = await axios.post(`${url}/api/chat/join`, body);
         if (response.status === 200 || response.status === 201) {
-          setTokenCreated(true);
-          console.log(response.data);
+          const token = response.data.token;
+          const connection = new WebSocket(socket, token);
+          connection.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            updateChat({
+              username: data.Sender.Attributes.username,
+              content: data.Content,
+              timestamp: data.SendTime,
+            });
+          };
+          setChatToken(token);
+          setChatConnection(connection);
         }
-        console.log(response.data);
       } catch (error) {
         if (error.response) {
           // a request was made, but the server responded with an error status
@@ -64,16 +90,23 @@ const Chat = () => {
     }
   };
 
+  console.log(chatMessages);
+
   return (
-    <>
-      {!tokenCreated ? (
+    <div className="chatContainer">
+      {chatMessages.map((message) => (
+        <p key={message.id}>
+          {message.username}: {message.content}
+        </p>
+      ))}
+      {!chatToken ? (
         <div>
           <h2>Join the chat</h2>
           <form onSubmit={handleJoinChat}>
             <input
               type="text"
-              value={userId}
-              onChange={handleUserIdChange}
+              value={username}
+              onChange={handleUsernameChange}
               placeholder="Enter a username"
             />
             <button type="submit">Submit</button>
@@ -94,7 +127,7 @@ const Chat = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

@@ -99,7 +99,9 @@ const Live = () => {
           )}
         </ThemeProvider>
       </Box>
-      <Chat />
+      <Box className="chatContainer">
+        <Chat />
+      </Box>
     </>
   );
 };
