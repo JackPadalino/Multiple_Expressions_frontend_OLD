@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import {
+  Box,
+  Typography,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+} from "@mui/material";
+import MessagesList from "./MessagesList";
 import "./chat.css";
 
 const Chat = () => {
@@ -62,20 +70,22 @@ const Chat = () => {
       if (storeBroadcasting) {
         try {
           const response = await axios.post(`${url}/api/chat/join`, body);
-          if (response.status === 200 || response.status === 201) {
-            const token = response.data.token;
-            const connection = new WebSocket(socket, token);
-            connection.onmessage = (event) => {
-              const data = JSON.parse(event.data);
-              updateChat({
-                username: data.Sender.Attributes.username,
-                content: data.Content,
-                timestamp: data.SendTime,
-              });
-            };
-            setChatToken(token);
-            setChatConnection(connection);
-          }
+          // if (response.status === 200 || response.status === 201) {
+          const token = response.data.token;
+          const connection = new WebSocket(socket, token);
+          // attach the updateChat function to the newly made connection to
+          // listen for new messages
+          connection.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            updateChat({
+              username: data.Sender.Attributes.username,
+              content: data.Content,
+              timestamp: data.SendTime,
+            });
+          };
+          setChatToken(token);
+          setChatConnection(connection);
+          // }
         } catch (error) {
           if (error.response) {
             // a request was made, but the server responded with an error status
@@ -100,33 +110,35 @@ const Chat = () => {
 
   return (
     <div className="chatMainContainer">
-      {chatMessages.map((message) => (
-        <p key={message.id}>
-          {message.username}: {message.content}
-        </p>
-      ))}
       {!chatToken && storeBroadcasting && (
         <div>
-          <h2>Join the chat</h2>
+          <h4>Join the chat</h4>
           <form onSubmit={handleJoinChat}>
             <input
               type="text"
               value={username}
               onChange={handleUsernameChange}
-              placeholder="Enter a username"
+              placeholder="Create username"
             />
             <button type="submit">Submit</button>
           </form>
         </div>
       )}
       {chatToken && storeBroadcasting && (
-        <div>
+        <div className="chatFeed">
+          <h4>Chat</h4>
+          <div className="messagesContainer">
+            <MessagesList
+              chatMessages={chatMessages}
+              setChatMessages={setChatMessages}
+            />
+          </div>
           <form onSubmit={handleSendMessage}>
             <input
               type="text"
               value={message}
-              onChange={handleMessageChange}
               placeholder="Say something nice"
+              onChange={handleMessageChange}
             />
             <button type="submit">Submit</button>
           </form>

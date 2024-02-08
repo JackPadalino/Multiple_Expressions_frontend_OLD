@@ -32,16 +32,13 @@ const Live = () => {
     },
   };
 
-  const initPlayer = () => {
+  const initPlayer = async () => {
     console.log("Initializing player setup...");
     // check if IVSPlayer is supported by the browser
     if (IVSPlayer.isPlayerSupported && videoPlayerRef.current) {
-      const player = IVSPlayer.create();
-      player.attachHTMLVideoElement(videoPlayerRef.current);
-      player.load(import.meta.env.VITE_LIVE_STREAM_LINK);
-      player.play();
+      const player = await IVSPlayer.create();
 
-      //listen for player events
+      // attach event listeners to listen for changes in player
       player.addEventListener(IVSPlayer.PlayerState.PLAYING, () => {
         setIsPlaying(true);
         setHasEnded(false);
@@ -54,10 +51,13 @@ const Live = () => {
         dispatch(setStoreBroadcasting(false)); // disabling message sending for live chat
       });
 
-      // listen for errors (use to auto start)
       player.addEventListener(IVSPlayer.PlayerEventType.ERROR, (err) => {
         if (err.type === "ErrorNotAvailable") setIsPlaying(false);
       });
+
+      player.attachHTMLVideoElement(videoPlayerRef.current);
+      player.load(import.meta.env.VITE_LIVE_STREAM_LINK);
+      player.play();
 
       // pause the player when the component unmounts
       return () => {
@@ -68,6 +68,7 @@ const Live = () => {
 
   useEffect(() => {
     initPlayer();
+    dispatch(setStoreBroadcasting(true)); // set up for testing - remove when in production!
   }, []);
 
   return (

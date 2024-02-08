@@ -1,5 +1,21 @@
-.chatMainContainer {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+@media only screen and (max-width: 600px) {
+  .chatFeed {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1280px) {
+  .chatFeed {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .chatFeed {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
