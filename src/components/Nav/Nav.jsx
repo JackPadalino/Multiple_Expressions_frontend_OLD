@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Box, Typography } from "@mui/material";
 import "./nav.css";
 
 const Nav = () => {
+  const { storeBroadcasting } = useSelector((state) => state.live);
+
   return (
     <Box className="navContainer">
       <Link to="/" className="navLink">
@@ -15,7 +18,7 @@ const Nav = () => {
         Visual
       </Link>
       <Link to="/live" className="navLink">
-        Live
+        {storeBroadcasting ? "Live (streaming now)" : "Live"}
       </Link>
     </Box>
   );

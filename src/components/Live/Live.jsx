@@ -1,4 +1,7 @@
 import { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setStoreBroadcasting } from "../../store/liveSlice";
+import Chat from "./Chat";
 import {
   Box,
   Container,
@@ -8,25 +11,22 @@ import {
   Avatar,
 } from "@mui/material";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
-import Chat from "./Chat";
 import "./live.css";
 
 const Live = () => {
+  const dispatch = useDispatch();
   const videoPlayerRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasEnded, setHasEnded] = useState(false);
+
+  const { storeBroadcasting } = useSelector((state) => state.live);
 
   const theme = createTheme();
 
   theme.typography.h6 = {
     fontFamily: "Arial",
     textAlign: "center",
-    "@media only screen and (max-width: 600px)": {
-      fontSize: "15px",
-    },
-    "@media only screen and (min-width: 600px) and (max-width: 1280px)": {
-      fontSize: "25px",
-    },
+    fontSize: "15px", // font size for portrait and landscape views
     "@media (min-width:1280px)": {
       fontSize: "25px",
     },
@@ -44,11 +44,14 @@ const Live = () => {
       //listen for player events
       player.addEventListener(IVSPlayer.PlayerState.PLAYING, () => {
         setIsPlaying(true);
+        setHasEnded(false);
+        dispatch(setStoreBroadcasting(true)); // sending a boolean up to the redux store to enable chat functionality
       });
 
       player.addEventListener(IVSPlayer.PlayerState.ENDED, () => {
-        setHasEnded(true);
         setIsPlaying(false);
+        setHasEnded(true);
+        dispatch(setStoreBroadcasting(false)); // disabling message sending for live chat
       });
 
       // listen for errors (use to auto start)
@@ -68,9 +71,10 @@ const Live = () => {
   }, []);
 
   return (
-    <>
-      <Box>
-        <ThemeProvider theme={theme}>
+    <Box className="liveMainContainer">
+      <Box className="phantomContainer" />
+      <ThemeProvider theme={theme}>
+        <Box className="playerContainer">
           {!isPlaying && !hasEnded && (
             <Typography variant="h6">
               We are not live right now. Check back soon!
@@ -82,27 +86,25 @@ const Live = () => {
               Our live stream has ended. Thanks for coming!
             </Typography>
           )}
-          <Box className="playerContainer">
-            <video
-              ref={videoPlayerRef}
-              className="player"
-              id="video-player"
-              playsInline
-              controls
-            ></video>
-          </Box>
+          <video
+            ref={videoPlayerRef}
+            className="player"
+            id="video-player"
+            playsInline
+            controls
+          ></video>
           {!isPlaying && !hasEnded && (
             <Typography variant="h6">
               (If video <span style={{ fontStyle: "italic" }}>should</span> be
               playing try refreshing.)
             </Typography>
           )}
-        </ThemeProvider>
-      </Box>
+        </Box>
+      </ThemeProvider>
       <Box className="chatContainer">
         <Chat />
       </Box>
-    </>
+    </Box>
   );
 };
 
