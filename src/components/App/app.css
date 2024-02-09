@@ -18,3 +18,9 @@
   margin: 0px;
   padding: 0px;
 }
+
+body {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}

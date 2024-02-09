@@ -1,9 +1,9 @@
 .navContainer {
   display: flex;
-  gap:10px;
+  justify-content: center;
+  gap: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
-  border-bottom: 1px solid black;
 }
 
 .navLink {
