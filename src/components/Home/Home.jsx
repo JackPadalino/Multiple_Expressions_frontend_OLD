@@ -4,9 +4,9 @@ import "./home.css";
 
 const Home = () => {
   return (
-    <>
-      <h1>Multiple Expressions</h1>
-    </>
+    <div className="homeMainContainer">
+      <h1 className="homeTitle">Multiple Expressions</h1>
+    </div>
   );
 };
 

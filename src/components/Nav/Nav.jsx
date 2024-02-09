@@ -4,7 +4,7 @@ import "./nav.css";
 
 const Nav = () => {
   return (
-    <Box className="navContainer">
+    <Box className="navMainContainer">
       <Link to="/" className="navLink">
         Multiple Expressions
       </Link>
