@@ -52,7 +52,10 @@ const Live = () => {
       });
 
       player.addEventListener(IVSPlayer.PlayerEventType.ERROR, (err) => {
-        if (err.type === "ErrorNotAvailable") setIsPlaying(false);
+        if (err.type === "ErrorNotAvailable") {
+          setIsPlaying(false);
+          dispatch(setStoreBroadcasting(false)); // disabling message sending for live chat
+        }
       });
 
       player.attachHTMLVideoElement(videoPlayerRef.current);
@@ -76,17 +79,6 @@ const Live = () => {
       <Box className="phantomContainer" />
       <ThemeProvider theme={theme}>
         <Box className="playerContainer">
-          {!isPlaying && !hasEnded && (
-            <Typography variant="h6">
-              We are not live right now. Check back soon!
-            </Typography>
-          )}
-          {isPlaying && <Typography variant="h6">Live</Typography>}
-          {hasEnded && (
-            <Typography variant="h6">
-              Our live stream has ended. Thanks for coming!
-            </Typography>
-          )}
           <video
             ref={videoPlayerRef}
             className="player"
@@ -96,8 +88,19 @@ const Live = () => {
           ></video>
           {!isPlaying && !hasEnded && (
             <Typography variant="h6">
+              We are not live right now. Check back soon!
+            </Typography>
+          )}
+          {!isPlaying && !hasEnded && (
+            <Typography variant="h6">
               (If video <span style={{ fontStyle: "italic" }}>should</span> be
               playing try refreshing.)
+            </Typography>
+          )}
+          {isPlaying && <Typography variant="h6">Live</Typography>}
+          {hasEnded && (
+            <Typography variant="h6">
+              Our live stream has ended. Thanks for coming!
             </Typography>
           )}
         </Box>

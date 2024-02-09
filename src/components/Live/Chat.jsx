@@ -18,6 +18,8 @@ const Chat = () => {
   const [username, setUsername] = useState("");
   const [message, setMessage] = useState("");
   const [chatMessages, setChatMessages] = useState([]);
+  const [firstMessageSent, setFirstMessageSent] = useState(false);
+  const [chatError, setChatError] = useState(null);
 
   const { storeBroadcasting } = useSelector((state) => state.live);
 
@@ -36,17 +38,26 @@ const Chat = () => {
   const handleSendMessage = (e) => {
     e.preventDefault();
     // send message if a token has been generated and we are currently broadcasting
-    if (chatToken && storeBroadcasting) {
-      const payload = {
-        Action: "SEND_MESSAGE",
-        Content: message,
-      };
-      try {
-        chatConnection.send(JSON.stringify(payload));
-        setMessage("");
-      } catch (error) {
-        console.log(error);
+    if (message.trim() !== "") {
+      // check for empty strings or white spaces before sending
+      if (chatToken && storeBroadcasting) {
+        const payload = {
+          Action: "SEND_MESSAGE",
+          Content: message,
+        };
+        try {
+          chatConnection.send(JSON.stringify(payload));
+          if (!firstMessageSent) setFirstMessageSent(true); // checking if the user has sent their first message yet
+          setChatError(null); // reset chat error message
+          setMessage(""); // reset message input
+        } catch (error) {
+          console.log(error);
+        }
       }
+    } else {
+      // handle the case where userId is empty or contains only whitespaces
+      console.error("Cannot send empty messages");
+      setChatError("Enter a message!");
     }
   };
 
@@ -62,7 +73,7 @@ const Chat = () => {
     // check that userId is not an empty string or contains only whitespaces
     if (username.trim() !== "") {
       const body = {
-        username: username,
+        username: username.trim(), // remove any white space from beginning or end of username
         role: "user",
       };
       // try to create a token if we are currently broadcasting
@@ -85,6 +96,7 @@ const Chat = () => {
           };
           setChatToken(token);
           setChatConnection(connection);
+          setChatError(null);
           // }
         } catch (error) {
           if (error.response) {
@@ -100,11 +112,13 @@ const Chat = () => {
             // something happened in setting up the request that triggered an Error
             console.error("Error setting up the request:", error.message);
           }
+          setChatError("Oops! Something went wrong.");
         }
-      } else {
-        // handle the case where userId is empty or contains only whitespaces
-        console.error("userId is empty or contains only whitespaces");
       }
+    } else {
+      // handle the case where userId is empty or contains only whitespaces
+      console.error("userId is empty or contains only whitespaces");
+      setChatError("Enter a valid username");
     }
   };
 
@@ -122,11 +136,12 @@ const Chat = () => {
             />
             <button type="submit">Submit</button>
           </form>
+          {chatError && <p>{chatError}</p>}
         </div>
       )}
       {chatToken && storeBroadcasting && (
         <div className="chatFeed">
-          <h4>Chat</h4>
+          {firstMessageSent ? <h4>Chat</h4> : <h4>Say hello to everyone!</h4>}
           <div className="messagesContainer">
             <MessagesList
               chatMessages={chatMessages}
@@ -142,6 +157,7 @@ const Chat = () => {
             />
             <button type="submit">Submit</button>
           </form>
+          {chatError && <p>{chatError}</p>}
         </div>
       )}
     </div>

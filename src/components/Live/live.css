@@ -1,7 +1,7 @@
 @media only screen and (max-width: 600px) {
   .liveMainContainer {
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
   }
   .phantomContainer {
     display: none;
@@ -17,6 +17,7 @@
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
   .liveMainContainer {
     flex-direction: row;
+    justify-content: center;
   }
   .phantomContainer {
     display: none;
@@ -25,7 +26,7 @@
     width: 70%;
   }
   .chatContainer {
-    width: 30%;
+    display: none;
   }
 }
 
@@ -46,6 +47,7 @@
 
 .liveMainContainer {
   display: flex;
+  gap: 10px;
 }
 
 .playerContainer {
