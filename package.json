@@ -25,6 +25,7 @@
     "react-router": "^6.21.3",
     "react-router-dom": "^6.21.3",
     "react-virtuoso": "^4.6.3",
+    "rollup": "^4.9.6",
     "wavesurfer.js": "^7.7.1"
   },
   "devDependencies": {
