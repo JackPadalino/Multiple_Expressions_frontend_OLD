@@ -5,6 +5,7 @@ import waveformReducer from "./waveformSlice";
 import mobileViewReducer from "./mobileViewSlice";
 import usersReducer from "./usersSlice";
 import liveReducer from "./liveSlice";
+import urlReducer from "./urlSlice";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     mobileView: mobileViewReducer,
     users: usersReducer,
     live: liveReducer,
+    url: urlReducer,
   },
 });
 

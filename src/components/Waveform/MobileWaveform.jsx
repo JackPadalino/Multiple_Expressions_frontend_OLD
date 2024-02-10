@@ -7,9 +7,6 @@ import ModalDiv2 from "./ModalDiv2";
 import "./mobileWaveform.css";
 
 const MobileWaveform = () => {
-  const { mobileView } = useSelector((state) => state.mobileView);
-  const { waveformTrack } = useSelector((state) => state.waveform);
-
   const [trackModalState, setTrackModalState] = useState(false); // modal state
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackDuration, setTrackDuration] = useState(0);
@@ -17,6 +14,8 @@ const MobileWaveform = () => {
 
   const waveformRef = useRef(null);
   const wavesurferRef = useRef(null);
+
+  const { waveformTrack } = useSelector((state) => state.waveform);
 
   // function to format seconds into 00:00 format
   const formatTime = (seconds) =>

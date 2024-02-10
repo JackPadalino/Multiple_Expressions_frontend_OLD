@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { Routes, Route, useLocation } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  // useLocation
+} from "react-router-dom";
 
+import { setUrl } from "../../store/urlSlice";
 import { setStoreArtists } from "../../store/artistSlice";
 import { setStoreTracks, setStoreVideos } from "../../store/musicSlice";
 import { setMobileView } from "../../store/mobileViewSlice";
@@ -20,9 +25,15 @@ import "./app.css";
 
 const App = () => {
   const dispatch = useDispatch();
-  const { waveformTrack } = useSelector((state) => state.waveform);
   const { mobileView } = useSelector((state) => state.mobileView);
   const [loading, setLoading] = useState(true);
+
+  // check for mobile view - send state up to redux store
+  // to be used by other components like waveform
+  const checkMobileView = () => {
+    const mediaQuery = window.matchMedia("(max-width: 1280px)");
+    dispatch(setMobileView(mediaQuery.matches));
+  };
 
   const fetchData = () => {
     let url;
@@ -31,6 +42,8 @@ const App = () => {
     } else {
       url = import.meta.env.VITE_PROD_URL;
     }
+    // set global url in redux store for all other API requests
+    dispatch(setUrl(url));
     axios
       .get(`${url}/api/music/artists/all`)
       .then((artistData) => {
@@ -51,16 +64,9 @@ const App = () => {
       });
   };
 
-  // check for mobile view - send state up to redux store
-  // to be used by other components like waveform
-  const checkMobileView = () => {
-    const mediaQuery = window.matchMedia("(max-width: 1280px)");
-    dispatch(setMobileView(mediaQuery.matches));
-  };
-
   useEffect(() => {
-    fetchData();
     checkMobileView();
+    fetchData();
   }, []);
 
   // const location = useLocation();
@@ -73,8 +79,6 @@ const App = () => {
   return (
     <div className="appContainer">
       <Nav />
-      {/* <Router /> */}
-
       <Routes>
         {/* <Route
         path="/checkout"
@@ -86,7 +90,6 @@ const App = () => {
         <Route path="/live" element={<Live />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
-      {/* {Object.keys(waveformTrack).length > 0 && <Waveform />} */}
       {mobileView ? <MobileWaveform /> : <Waveform />}
     </div>
   );

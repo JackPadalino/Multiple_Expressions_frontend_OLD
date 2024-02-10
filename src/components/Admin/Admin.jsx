@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 // import {
 //   setStoreAccessToken,
@@ -23,6 +24,7 @@ const Admin = () => {
     password: "",
   });
   const [isAuthenicated, setIsAuthenticated] = useState(false);
+  const { url } = useSelector((state) => state.url);
   // const { storeAccessToken } = useSelector((state) => state.users);
 
   const onCredentialsChange = (e) => {
@@ -32,13 +34,6 @@ const Admin = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      let url;
-      if (import.meta.env.VITE_DEV_MODE === "true") {
-        url = import.meta.env.VITE_DEV_URL;
-      } else {
-        url = import.meta.env.VITE_PROD_URL;
-      }
-
       const response = await axios.post(`${url}/api/users/token`, credentials);
       if (
         response.status === 200 ||

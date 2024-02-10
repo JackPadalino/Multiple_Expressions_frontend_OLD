@@ -14,7 +14,6 @@ import Forward10OutlinedIcon from "@mui/icons-material/Forward10Outlined";
 import "./waveform.css";
 
 const Waveform = () => {
-  const { mobileView } = useSelector((state) => state.mobileView);
   const { waveformTrack } = useSelector((state) => state.waveform);
 
   const [isPlaying, setIsPlaying] = useState(false);

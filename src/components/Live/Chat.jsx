@@ -21,7 +21,9 @@ const Chat = () => {
   const [firstMessageSent, setFirstMessageSent] = useState(false);
   const [chatError, setChatError] = useState(null);
 
-  const { storeBroadcasting } = useSelector((state) => state.live);
+  const { url } = useSelector((state) => state.url);
+  // const { storeBroadcasting } = useSelector((state) => state.live);
+  const storeBroadcasting = true;
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -63,13 +65,6 @@ const Chat = () => {
 
   const handleJoinChat = async (e) => {
     e.preventDefault();
-    let url;
-    if (import.meta.env.VITE_DEV_MODE === "true") {
-      url = import.meta.env.VITE_DEV_URL;
-    } else {
-      url = import.meta.env.VITE_PROD_URL;
-    }
-
     // check that userId is not an empty string or contains only whitespaces
     if (username.trim() !== "") {
       const body = {
