@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { setStoreBroadcasting } from "../../store/liveSlice";
 import Chat from "./Chat";
 import {
   Box,
@@ -18,8 +17,6 @@ const Live = () => {
   const videoPlayerRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [hasEnded, setHasEnded] = useState(false);
-
-  // const { storeBroadcasting } = useSelector((state) => state.live);
 
   const theme = createTheme();
 
