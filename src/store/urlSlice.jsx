@@ -9,7 +9,6 @@ export const urlSlice = createSlice({
   initialState,
   reducers: {
     setUrl: (state, action) => {
-      console.log("url slice hit!");
       state.url = action.payload;
     },
   },

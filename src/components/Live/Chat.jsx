@@ -11,7 +11,7 @@ import {
 import MessagesList from "./MessagesList";
 import "./chat.css";
 
-const Chat = () => {
+const Chat = ({ isPlaying }) => {
   const socket = "wss://edge.ivschat.us-east-1.amazonaws.com";
   const [chatToken, setChatToken] = useState(null);
   const [chatConnection, setChatConnection] = useState(null);
@@ -22,8 +22,6 @@ const Chat = () => {
   const [chatError, setChatError] = useState(null);
 
   const { url } = useSelector((state) => state.url);
-  // const { storeBroadcasting } = useSelector((state) => state.live);
-  const storeBroadcasting = true;
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -42,7 +40,7 @@ const Chat = () => {
     // send message if a token has been generated and we are currently broadcasting
     if (message.trim() !== "") {
       // check for empty strings or white spaces before sending
-      if (chatToken && storeBroadcasting) {
+      if (chatToken && isPlaying) {
         const payload = {
           Action: "SEND_MESSAGE",
           Content: message,
@@ -73,7 +71,7 @@ const Chat = () => {
       };
       // try to create a token if we are currently broadcasting
       // prevents new people from joining if there is no stream
-      if (storeBroadcasting) {
+      if (isPlaying) {
         try {
           const response = await axios.post(`${url}/api/chat/join`, body);
           // if (response.status === 200 || response.status === 201) {
@@ -119,7 +117,7 @@ const Chat = () => {
 
   return (
     <div className="chatMainContainer">
-      {!chatToken && storeBroadcasting && (
+      {!chatToken && isPlaying && (
         <div>
           <h4>Join the chat</h4>
           <form onSubmit={handleJoinChat}>
@@ -134,7 +132,7 @@ const Chat = () => {
           {chatError && <p>{chatError}</p>}
         </div>
       )}
-      {chatToken && storeBroadcasting && (
+      {chatToken && isPlaying && (
         <div className="chatFeed">
           {firstMessageSent ? <h4>Chat</h4> : <h4>Say hello to everyone!</h4>}
           <div className="messagesContainer">

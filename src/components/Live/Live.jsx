@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setStoreBroadcasting } from "../../store/liveSlice";
+// import { setStoreBroadcasting } from "../../store/liveSlice";
 import Chat from "./Chat";
 import {
   Box,
@@ -16,10 +16,10 @@ import "./live.css";
 const Live = () => {
   const dispatch = useDispatch();
   const videoPlayerRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [hasEnded, setHasEnded] = useState(false);
 
-  const { storeBroadcasting } = useSelector((state) => state.live);
+  // const { storeBroadcasting } = useSelector((state) => state.live);
 
   const theme = createTheme();
 
@@ -42,19 +42,16 @@ const Live = () => {
       player.addEventListener(IVSPlayer.PlayerState.PLAYING, () => {
         setIsPlaying(true);
         setHasEnded(false);
-        dispatch(setStoreBroadcasting(true)); // sending a boolean up to the redux store to enable chat functionality
       });
 
       player.addEventListener(IVSPlayer.PlayerState.ENDED, () => {
         setIsPlaying(false);
         setHasEnded(true);
-        dispatch(setStoreBroadcasting(false)); // disabling message sending for live chat
       });
 
       player.addEventListener(IVSPlayer.PlayerEventType.ERROR, (err) => {
         if (err.type === "ErrorNotAvailable") {
           setIsPlaying(false);
-          dispatch(setStoreBroadcasting(false)); // disabling message sending for live chat
         }
       });
 
@@ -71,7 +68,6 @@ const Live = () => {
 
   useEffect(() => {
     initPlayer();
-    dispatch(setStoreBroadcasting(true)); // set up for testing - remove when in production!
   }, []);
 
   return (
@@ -106,7 +102,7 @@ const Live = () => {
         </Box>
       </ThemeProvider>
       <Box className="chatContainer">
-        <Chat />
+        <Chat isPlaying={isPlaying} />
       </Box>
     </Box>
   );
