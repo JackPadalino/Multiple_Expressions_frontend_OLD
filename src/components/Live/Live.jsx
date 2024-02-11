@@ -69,18 +69,6 @@ const Live = () => {
       <Box className="phantomContainer" />
       <ThemeProvider theme={theme}>
         <Box className="playerContainer">
-          {isPlaying && <Typography variant="h6">Live</Typography>}
-          {!isPlaying && !hasEnded && (
-            <Typography variant="h6">
-              We are not live right now. Check back soon (or refresh your
-              browser).
-            </Typography>
-          )}
-          {hasEnded && (
-            <Typography variant="h6">
-              Our live stream has ended. Thanks for coming!
-            </Typography>
-          )}
           <video
             ref={videoPlayerRef}
             className="player"
@@ -88,6 +76,17 @@ const Live = () => {
             playsInline
             controls
           ></video>
+          {!isPlaying && !hasEnded && (
+            <Typography variant="h6">
+              Looks likes nothing is playing! Check back soon or refresh your
+              browser.
+            </Typography>
+          )}
+          {hasEnded && (
+            <Typography variant="h6">
+              Our live stream has ended. Thanks for coming!
+            </Typography>
+          )}
         </Box>
       </ThemeProvider>
       <Box className="chatContainer">
