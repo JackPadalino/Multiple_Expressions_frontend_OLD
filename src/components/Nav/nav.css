@@ -3,9 +3,9 @@
   justify-content: center;
   gap: 10px;
   padding: 10px;
+  background-color: black;
 }
 
 .navLink {
   text-decoration: none;
-  color: blue;
 }

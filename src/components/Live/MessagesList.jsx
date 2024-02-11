@@ -27,7 +27,12 @@ const MessagesList = ({ chatMessages, setChatMessages }) => {
       style={{ height: 200 }}
       data={chatMessages}
       itemContent={(index, message) => (
-        <ListItem key={index} component="div" disablePadding>
+        <ListItem
+          key={index}
+          component="div"
+          disablePadding
+          className="listItem"
+        >
           <ListItemText primary={`${message.username}: ${message.content}`} />
         </ListItem>
       )}
