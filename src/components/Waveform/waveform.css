@@ -5,7 +5,8 @@
   bottom: 0;
   width: 100%;
   height: 100px;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  gap: 10px;
   padding-left: 10px;
   padding-right: 10px;
   background-color: black;
@@ -13,11 +14,13 @@
 }
 
 .waveformMain > :nth-child(1) {
-  width: 20%;
+  /* Allow this container to grow to a 20% width limit */
+  max-width: 20%;
 }
 
 .waveformMain > :nth-child(2) {
-  width: calc(67% - 10px); /* adjusted to account for padding on both sides */
+  /* Allow the waveform to grow to fill the remaining space */
+  flex-grow: 1;
 }
 
 /* .waveformMain > :nth-child(3) {

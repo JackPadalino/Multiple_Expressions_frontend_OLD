@@ -14,6 +14,8 @@
 
 body {
   background-color: #262626;
+  /* adding padding to all componets to account for pop up player div */
+  padding-bottom: 122px;
 }
 
 a,
