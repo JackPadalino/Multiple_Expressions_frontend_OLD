@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import Chat from "./Chat";
 import {
   Box,
@@ -13,9 +12,8 @@ import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import "./live.css";
 
 const Live = () => {
-  const dispatch = useDispatch();
   const videoPlayerRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [hasEnded, setHasEnded] = useState(false);
 
   const theme = createTheme();
@@ -30,7 +28,6 @@ const Live = () => {
   };
 
   const initPlayer = async () => {
-    console.log("Initializing player setup...");
     // check if IVSPlayer is supported by the browser
     if (IVSPlayer.isPlayerSupported && videoPlayerRef.current) {
       const player = await IVSPlayer.create();
@@ -72,6 +69,18 @@ const Live = () => {
       <Box className="phantomContainer" />
       <ThemeProvider theme={theme}>
         <Box className="playerContainer">
+          {isPlaying && <Typography variant="h6">Live</Typography>}
+          {!isPlaying && !hasEnded && (
+            <Typography variant="h6">
+              We are not live right now. Check back soon (or refresh your
+              browser).
+            </Typography>
+          )}
+          {hasEnded && (
+            <Typography variant="h6">
+              Our live stream has ended. Thanks for coming!
+            </Typography>
+          )}
           <video
             ref={videoPlayerRef}
             className="player"
@@ -79,23 +88,6 @@ const Live = () => {
             playsInline
             controls
           ></video>
-          {!isPlaying && !hasEnded && (
-            <Typography variant="h6">
-              We are not live right now. Check back soon!
-            </Typography>
-          )}
-          {!isPlaying && !hasEnded && (
-            <Typography variant="h6">
-              (If video <span style={{ fontStyle: "italic" }}>should</span> be
-              playing try refreshing.)
-            </Typography>
-          )}
-          {isPlaying && <Typography variant="h6">Live</Typography>}
-          {hasEnded && (
-            <Typography variant="h6">
-              Our live stream has ended. Thanks for coming!
-            </Typography>
-          )}
         </Box>
       </ThemeProvider>
       <Box className="chatContainer">

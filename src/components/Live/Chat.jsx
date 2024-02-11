@@ -12,14 +12,12 @@ import MessagesList from "./MessagesList";
 import "./chat.css";
 
 const Chat = ({ isPlaying }) => {
-  const socket = "wss://edge.ivschat.us-east-1.amazonaws.com";
-  const [chatToken, setChatToken] = useState(null);
   const [chatConnection, setChatConnection] = useState(null);
   const [username, setUsername] = useState("");
   const [message, setMessage] = useState("");
   const [chatMessages, setChatMessages] = useState([]);
-  const [firstMessageSent, setFirstMessageSent] = useState(false);
   const [chatError, setChatError] = useState(null);
+  const [firstMessageSent, setFirstMessageSent] = useState(false);
 
   const { url } = useSelector((state) => state.url);
 
@@ -40,7 +38,7 @@ const Chat = ({ isPlaying }) => {
     // send message if a token has been generated and we are currently broadcasting
     if (message.trim() !== "") {
       // check for empty strings or white spaces before sending
-      if (chatToken && isPlaying) {
+      if (chatConnection && isPlaying) {
         const payload = {
           Action: "SEND_MESSAGE",
           Content: message,
@@ -74,9 +72,10 @@ const Chat = ({ isPlaying }) => {
       if (isPlaying) {
         try {
           const response = await axios.post(`${url}/api/chat/join`, body);
-          // if (response.status === 200 || response.status === 201) {
-          const token = response.data.token;
-          const connection = new WebSocket(socket, token);
+          const connection = new WebSocket(
+            import.meta.env.VITE_AWS_SOCKET,
+            response.data.token
+          );
           // attach the updateChat function to the newly made connection to
           // listen for new messages
           connection.onmessage = (event) => {
@@ -87,10 +86,8 @@ const Chat = ({ isPlaying }) => {
               timestamp: data.SendTime,
             });
           };
-          setChatToken(token);
           setChatConnection(connection);
           setChatError(null);
-          // }
         } catch (error) {
           if (error.response) {
             // a request was made, but the server responded with an error status
@@ -117,7 +114,7 @@ const Chat = ({ isPlaying }) => {
 
   return (
     <div className="chatMainContainer">
-      {!chatToken && isPlaying && (
+      {!chatConnection && isPlaying && (
         <div>
           <h4>Join the chat</h4>
           <form onSubmit={handleJoinChat}>
@@ -132,7 +129,7 @@ const Chat = ({ isPlaying }) => {
           {chatError && <p>{chatError}</p>}
         </div>
       )}
-      {chatToken && isPlaying && (
+      {chatConnection && isPlaying && (
         <div className="chatFeed">
           {firstMessageSent ? <h4>Chat</h4> : <h4>Say hello to everyone!</h4>}
           <div className="messagesContainer">
