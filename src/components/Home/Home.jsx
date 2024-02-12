@@ -12,7 +12,7 @@ const Home = () => {
           className="homeImg"
         />
       </Link>
-      <h2 className="homeTitle">Multiple Expressions</h2>
+      {/* <h2 className="homeTitle">Multiple Expressions</h2> */}
     </div>
   );
 };
