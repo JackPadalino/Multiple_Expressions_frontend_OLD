@@ -8,6 +8,7 @@ import { setStoreArtists } from "../../store/artistSlice";
 import { setStoreTracks, setStoreVideos } from "../../store/musicSlice";
 import { setMobileView } from "../../store/mobileViewSlice";
 import {
+  NotFound,
   Loading,
   Home,
   Visual,
@@ -72,21 +73,28 @@ const App = () => {
   // Get the value of the 'success' query parameter
   // const someParam = urlParams.get("param");
 
+  // array of routes that should include the Nav component
+  const routesWithNav = ["/visual", "/auditory", "/live", "/admin"];
+
+  // check if the current route is in the array
+  const renderNav = routesWithNav.includes(location.pathname);
+
   if (loading) return <Loading />;
   return (
     <div className="appContainer">
-      {location.pathname !== "/" && <Nav />}
+      {renderNav && <Nav />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/visual" element={<Visual />} />
         <Route path="/auditory" element={<Auditory />} />
         <Route path="/live" element={<Live />} />
         <Route path="/admin" element={<Admin />} />
-      </Routes>
-      {/* <Route
+        <Route path="/*" element={<NotFound />} />
+        {/* <Route
       path="/aRoute"
       element={<Component successQueryParam={someParam} />}
       /> */}
+      </Routes>
       {mobileView ? <MobileWaveform /> : <Waveform />}
     </div>
   );
