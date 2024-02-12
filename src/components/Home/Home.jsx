@@ -4,7 +4,6 @@ import "./home.css";
 
 const Home = () => {
   const imgRef = useRef(null);
-  const [imageLoaded, setImageLoaded] = useState(false);
 
   // using useEffect to create the fade-in animation when component loads
   useEffect(() => {

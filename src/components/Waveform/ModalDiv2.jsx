@@ -26,12 +26,9 @@ const ModalDiv2 = ({
       }}
     >
       <Box className="drawerDiv">
-        <img
-          src={waveformTrack.track_photo}
-          style={{ width: "auto", height: "125px" }}
-        />
+        <img src={waveformTrack.track_photo} className="drawerImg2" />
         <Typography variant="h5">{waveformTrack.title}</Typography>
-        <Box className="trackUsersDiv">
+        <Box className="trackArtistsDiv">
           {Object.keys(waveformTrack).length > 0 &&
             waveformTrack.artists.map((artist) => (
               <Typography variant="h6" key={artist.id} sx={{ color: "white" }}>
