@@ -64,4 +64,6 @@
 .auditoryMainContainer {
   padding-left: 10px;
   padding-right: 10px;
+  /* adding padding to all componets to account for pop up player div */
+  padding-bottom: 122px;
 }

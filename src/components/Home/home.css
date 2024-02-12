@@ -36,8 +36,8 @@
   padding-left: 10px;
   padding-right: 10px;
   gap: 10px;
-
   height: 100vh;
+  background-color: black;
 }
 
 .homeImg {
@@ -47,5 +47,5 @@
 }
 
 .homeTitle {
-  color: #262626;
+  color: black;
 }
