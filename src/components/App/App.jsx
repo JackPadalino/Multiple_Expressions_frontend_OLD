@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Routes,
-  Route,
-  // useLocation
-} from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import { setUrl } from "../../store/urlSlice";
 import { setStoreArtists } from "../../store/artistSlice";
@@ -69,7 +65,7 @@ const App = () => {
     fetchData();
   }, []);
 
-  // const location = useLocation();
+  const location = useLocation();
   // const urlParams = new URLSearchParams(location.search);
 
   // Get the value of the 'success' query parameter
@@ -78,11 +74,12 @@ const App = () => {
   if (loading) return <p>Loading...</p>;
   return (
     <div className="appContainer">
+      {/* {location.pathname !== "/" && <Nav />} */}
       <Nav />
       <Routes>
         {/* <Route
-        path="/checkout"
-        element={<Checkout successQueryParam={successQueryParam} />}
+      path="/checkout"
+      element={<Checkout successQueryParam={successQueryParam} />}
       /> */}
         <Route path="/" element={<Home />} />
         <Route path="/visual" element={<Visual />} />
