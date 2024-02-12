@@ -1,7 +1,7 @@
 @media only screen and (max-width: 600px) {
-  .homeMainContainer {
+  /* .homeMainContainer {
     padding-top: 150px;
-  }
+  } */
 
   .homeImg {
     width: 300px;
@@ -9,9 +9,9 @@
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
-  .homeMainContainer {
+  /* .homeMainContainer {
     padding-top: 25px;
-  }
+  } */
 
   .homeImg {
     width: 400px;
@@ -19,9 +19,9 @@
 }
 
 @media only screen and (min-width: 1280px) {
-  .homeMainContainer {
+  /* .homeMainContainer {
     padding-top: 150px;
-  }
+  } */
 
   .homeImg {
     width: 600px;
@@ -36,10 +36,16 @@
   padding-left: 10px;
   padding-right: 10px;
   gap: 10px;
+
+  height: 100vh;
 }
 
 .homeImg {
   cursor: pointer;
   top: 25vh;
   height: auto; /* maintain the aspect ratio */
+}
+
+.homeTitle {
+  color: #262626;
 }
