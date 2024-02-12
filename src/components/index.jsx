@@ -1,3 +1,4 @@
+export { default as Loading } from "./Loading/Loading";
 export { default as Home } from "./Home/Home";
 export { default as Visual } from "./Visual/Visual";
 export { default as Auditory } from "./Auditory/Auditory";

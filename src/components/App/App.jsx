@@ -8,6 +8,7 @@ import { setStoreArtists } from "../../store/artistSlice";
 import { setStoreTracks, setStoreVideos } from "../../store/musicSlice";
 import { setMobileView } from "../../store/mobileViewSlice";
 import {
+  Loading,
   Home,
   Visual,
   Auditory,
@@ -71,7 +72,7 @@ const App = () => {
   // Get the value of the 'success' query parameter
   // const someParam = urlParams.get("param");
 
-  if (loading) return <p>Please wait...</p>;
+  if (loading) return <Loading />;
   return (
     <div className="appContainer">
       {location.pathname !== "/" && <Nav />}
