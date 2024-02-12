@@ -1,47 +1,8 @@
-@media only screen and (max-width: 600px) {
-  /* .loadingMainContainer {
-    padding-top: 150px;
-  } */
-
-  .loadingImg {
-    width: 300px;
-  }
-}
-
-@media only screen and (min-width: 600px) and (max-width: 1280px) {
-  /* .loadingMainContainer {
-    padding-top: 25px;
-  } */
-
-  .loadingImg {
-    width: 400px;
-  }
-}
-
-@media only screen and (min-width: 1280px) {
-  /* .loadingMainContainer {
-    padding-top: 150px;
-  } */
-
-  .loadingImg {
-    width: 600px;
-  }
-}
-
 .loadingMainContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  height: 100vh;
   padding-left: 10px;
   padding-right: 10px;
-  gap: 10px;
-
-  height: 100vh;
-}
-
-.loadingImg {
-  cursor: pointer;
-  top: 25vh;
-  height: auto; /* maintain the aspect ratio */
 }
