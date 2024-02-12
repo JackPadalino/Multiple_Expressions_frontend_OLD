@@ -69,24 +69,23 @@ const App = () => {
   // const urlParams = new URLSearchParams(location.search);
 
   // Get the value of the 'success' query parameter
-  // const successQueryParam = urlParams.get("success");
+  // const someParam = urlParams.get("param");
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p>Please wait...</p>;
   return (
     <div className="appContainer">
-      {/* {location.pathname !== "/" && <Nav />} */}
-      <Nav />
+      {location.pathname !== "/" && <Nav />}
       <Routes>
-        {/* <Route
-      path="/checkout"
-      element={<Checkout successQueryParam={successQueryParam} />}
-      /> */}
         <Route path="/" element={<Home />} />
         <Route path="/visual" element={<Visual />} />
         <Route path="/auditory" element={<Auditory />} />
         <Route path="/live" element={<Live />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
+      {/* <Route
+      path="/aRoute"
+      element={<Component successQueryParam={someParam} />}
+      /> */}
       {mobileView ? <MobileWaveform /> : <Waveform />}
     </div>
   );

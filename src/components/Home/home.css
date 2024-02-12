@@ -1,8 +1,34 @@
+@media only screen and (max-width: 600px) {
+  .homeImg {
+    width: 285px;
+    height: 190px;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1280px) {
+  .homeImg {
+    width: 285px;
+    height: 190px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .homeImg {
+    position: relative;
+    width: 500px;
+    height: 333px;
+  }
+}
+
 .homeMainContainer {
+  display: flex;
+  justify-content: center;
   padding-left: 10px;
   padding-right: 10px;
 }
 
-.homeTitle {
-  text-align: center;
+.homeImg {
+  position: relative;
+  top: 25vh;
+  cursor: pointer;
 }
