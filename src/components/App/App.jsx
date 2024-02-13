@@ -69,6 +69,8 @@ const App = () => {
     fetchData();
   }, []);
 
+  // useLocation to determine the path name and render a nav
+  // only on certain routes
   const location = useLocation();
 
   // array of routes that should include the Nav component
@@ -80,15 +82,11 @@ const App = () => {
     "admin",
     "artist",
   ];
-  // check if the current route is in the array
-  const renderNav = routesWithNav.includes(location.pathname);
 
   if (loading) return null;
   return (
     <div className="appContainer">
-      {routesWithNav.includes(window.location.pathname.split("/")[1]) && (
-        <Nav />
-      )}
+      {routesWithNav.includes(location.pathname.split("/")[1]) && <Nav />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/visual" element={<Visual />} />
