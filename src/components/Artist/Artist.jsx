@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { SocialIcon } from "react-social-icons/component";
+import "react-social-icons/instagram";
+import "react-social-icons/soundcloud";
 
 import Loading from "../Loading/Loading";
 import "./artist.css";
@@ -39,12 +42,22 @@ const Artist = () => {
     fetchArtistData();
   }, []);
 
-  console.log(loading);
-
-  if (loading) return <Loading />;
+  if (loading) return null;
   return (
     <div className="artistMainContainer">
-      <h1>{artist.name}</h1>
+      <div className="artistInfoDiv">
+        <h1>{artist.name}</h1>
+        <p>{artist.bio}</p>
+        {artist.social_media.map((social) => (
+          <SocialIcon
+            key={social.id}
+            bgColor="black"
+            network={social.platform}
+            url={social.link}
+            target="_blank"
+          />
+        ))}
+      </div>
     </div>
   );
 };

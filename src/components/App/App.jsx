@@ -83,7 +83,7 @@ const App = () => {
   // check if the current route is in the array
   const renderNav = routesWithNav.includes(location.pathname);
 
-  if (loading) return <Loading />;
+  if (loading) return null;
   return (
     <div className="appContainer">
       {routesWithNav.includes(window.location.pathname.split("/")[1]) && (
