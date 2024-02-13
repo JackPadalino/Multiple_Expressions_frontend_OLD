@@ -14,7 +14,6 @@ const Auditory = () => {
   return (
     <div className="auditoryMainContainer">
       <div>
-        <h1>Auditory</h1>
         <div className="tracksDiv">
           {storeTracks.map((track) => (
             <div key={track.id}>

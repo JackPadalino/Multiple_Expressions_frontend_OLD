@@ -46,8 +46,7 @@ const Visual = () => {
 
   return (
     <div className="visualMainContainer">
-      <h1>Visual</h1>
-      <p>Visual expressions coming soon!</p>
+      <p>Visual expressions coming soon.</p>
       {/* <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           {storeVideos.map((video) => (
             <div key={video.id}>
