@@ -47,17 +47,14 @@ const Artist = () => {
     <>
       <div className="artistPageMainContainer">
         <div className="artistPageMobilePortaitContainer">
-          <div className="artistPageMobilePortaitInfo">
+          <div className="artistPageInfo">
             <div className="artistPageMobilePortaitText">
-              <div className="artistPageMobilePoraitImgDiv">
-                <img
-                  className="artistPageMobilePoraitImg"
-                  src={artist.profile_photo}
-                />
+              <div className="artistPageImgDiv">
+                <img className="artistPageImg" src={artist.profile_photo} />
               </div>
               <h1>{artist.name}</h1>
               <p>{artist.bio}</p>
-              <div className="artistPageMobilePortaitSocials">
+              <div className="artistPageSocials">
                 {artist.social_media.map((social) => (
                   <SocialIcon
                     key={social.id}

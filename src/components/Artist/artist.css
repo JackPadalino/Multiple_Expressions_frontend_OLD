@@ -7,27 +7,17 @@
     display: none;
   }
 
-  .artistPageMobilePortaitInfo {
-    display: flex;
+  .artistPageImg {
+    width: 150px;
+    height: 150px;
   }
 
-  .artistPageMobilePoraitImg {
+  .artistPageImgDiv {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-  }
-
-  .artistPageMobilePoraitImgDiv {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    shape-outside: circle();
+    /* shape-outside: circle(); */
     float: right;
-  }
-
-  .artistPageMobilePortaitSocials {
-    display: flex;
-    gap: 10px;
   }
 }
 
