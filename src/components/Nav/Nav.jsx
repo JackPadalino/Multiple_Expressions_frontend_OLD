@@ -3,8 +3,6 @@ import { Box } from "@mui/material";
 import "./nav.css";
 
 const Nav = () => {
-  console.log(window.location.pathname);
-
   return (
     <Box className="navMainContainer">
       <NavLink to="/auditory" className="navLink">
