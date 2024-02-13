@@ -5,7 +5,6 @@
   bottom: 0;
   width: 100%;
   height: 100px;
-  /* justify-content: space-between; */
   gap: 10px;
   padding-left: 10px;
   padding-right: 10px;
@@ -14,12 +13,12 @@
 }
 
 .waveformMain > :nth-child(1) {
-  /* Allow this container to grow to a 20% width limit */
+  /* allow this container to grow to a 20% width limit */
   max-width: 20%;
 }
 
 .waveformMain > :nth-child(2) {
-  /* Allow the waveform to grow to fill the remaining space */
+  /* allow the waveform to grow to fill the remaining space */
   flex-grow: 1;
 }
 
@@ -27,7 +26,7 @@
   width: 10%;
 } */
 
-.trackinfoDiv {
+.waveformTrackInfoDiv {
   display: flex;
   color: white;
   overflow: hidden;
@@ -35,18 +34,12 @@
   gap: 10px;
 }
 
-.trackTitle {
+.waveformTrackTitle {
   font-size: 20px;
   color: rgb(234, 162, 42);
 }
 
-.trackImg {
+.waveformTrackImg {
   width: auto;
   height: 70px;
 }
-
-/* .waveformDiv {
-} */
-
-/* .controlsDiv {
-} */

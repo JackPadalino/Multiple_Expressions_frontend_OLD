@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, useLocation } from "react-router-dom";
-
 import { setUrl } from "../../store/urlSlice";
+
 import { setStoreArtists } from "../../store/artistSlice";
 import { setStoreTracks, setStoreVideos } from "../../store/musicSlice";
 import { setMobileView } from "../../store/mobileViewSlice";
@@ -18,7 +18,9 @@ import {
   MobileWaveform,
   Nav,
   Admin,
+  Artist,
 } from "..";
+
 import "./app.css";
 
 const App = () => {
@@ -68,32 +70,33 @@ const App = () => {
   }, []);
 
   const location = useLocation();
-  // const urlParams = new URLSearchParams(location.search);
-
-  // Get the value of the 'success' query parameter
-  // const someParam = urlParams.get("param");
 
   // array of routes that should include the Nav component
-  const routesWithNav = ["/visual", "/auditory", "/live", "/admin"];
-
+  const routesWithNav = [
+    "home",
+    "visual",
+    "auditory",
+    "live",
+    "admin",
+    "artist",
+  ];
   // check if the current route is in the array
   const renderNav = routesWithNav.includes(location.pathname);
 
   if (loading) return <Loading />;
   return (
     <div className="appContainer">
-      {renderNav && <Nav />}
+      {routesWithNav.includes(window.location.pathname.split("/")[1]) && (
+        <Nav />
+      )}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/visual" element={<Visual />} />
-        <Route path="/auditory" element={<Auditory />} />
-        <Route path="/live" element={<Live />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/*" element={<NotFound />} />
-        {/* <Route
-      path="/aRoute"
-      element={<Component successQueryParam={someParam} />}
-      /> */}
+        <Route path="/" element={<Home />} name="home" />
+        <Route path="/visual" element={<Visual />} name="visual" />
+        <Route path="/auditory" element={<Auditory name="auditory" />} />
+        <Route path="/live" element={<Live />} name="live" />
+        <Route path="/admin" element={<Admin />} name="admin" />
+        <Route path="/artist/:id" element={<Artist />} name="artist" />
+        <Route path="/*" element={<NotFound />} name="notFound" />
       </Routes>
       {mobileView ? <MobileWaveform /> : <Waveform />}
     </div>

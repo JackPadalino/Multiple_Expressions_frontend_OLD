@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setWaveformTrack } from "../../store/waveformSlice";
 import "./auditory.css";
@@ -14,43 +15,34 @@ const Auditory = () => {
     <div className="auditoryMainContainer">
       <div>
         <h1>Auditory</h1>
-        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+        <div className="tracksDiv">
           {storeTracks.map((track) => (
             <div key={track.id}>
-              {/* <div
-                style={{ display: "flex", alignItems: "center", gap: "5px" }}
-              > */}
-              <h2
-                onClick={() => handlePlay(track)}
-                style={{ cursor: "pointer" }}
-              >
+              <h2 className="trackTitle" onClick={() => handlePlay(track)}>
                 {track.title}
               </h2>
-              {/* {playerLoading[track.id] && <p>-_-</p>} */}
-              {/* </div> */}
-              <div style={{ display: "flex", gap: "10px" }}>
+              <div className="artistInfoDiv">
                 {track.artists.map((artist) => (
-                  <a
+                  <Link
                     key={artist.id}
-                    href={`#`}
-                    style={{ textDecoration: "none", color: "#3366cc" }}
+                    to={`/artist/${artist.id}`}
+                    className="artistLink"
                   >
                     {artist.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
-              <div style={{ display: "flex", gap: "10px" }}>
+              <div className="tagsDiv">
                 {track.tags.map((tag) => (
-                  <p key={tag.id}>#{tag.title}</p>
+                  <p className="tag" key={tag.id}>
+                    #{tag.title}
+                  </p>
                 ))}
               </div>
             </div>
           ))}
         </div>
       </div>
-      {/* <div className="waveformDiv">
-        <div ref={waveformRef}></div>
-      </div> */}
     </div>
   );
 };

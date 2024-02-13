@@ -3,20 +3,6 @@
     display: flex;
     flex-direction: column;
   }
-
-  /* .waveformDiv {
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 75px;
-  }
-
-  .waveformDiv > :nth-child(1) {
-    width: 95%;
-  } */
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
@@ -24,20 +10,6 @@
     display: flex;
     justify-content: space-between;
   }
-
-  /* .waveformDiv {
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 75px;
-  }
-
-  .waveformDiv > :nth-child(1) {
-    width: 95%;
-  } */
 }
 
 @media only screen and (min-width: 1280px) {
@@ -45,20 +17,6 @@
     display: flex;
     justify-content: space-between;
   }
-
-  /* .waveformDiv {
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-  }
-
-  .waveformDiv > :nth-child(1) {
-    width: 95%;
-  } */
 }
 
 .auditoryMainContainer {
@@ -66,4 +24,29 @@
   padding-right: 10px;
   /* adding padding to all componets to account for pop up player div */
   padding-bottom: 122px;
+}
+
+.tracksDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.trackTitle {
+  cursor: pointer;
+}
+
+.artistLink {
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(234, 162, 42);
+}
+
+.tagsDiv {
+  display: flex;
+  gap: 10px;
+}
+
+.tag {
+  font-size: 12px;
 }

@@ -91,10 +91,10 @@ const Waveform = () => {
     <>
       {Object.keys(waveformTrack).length > 0 && (
         <Box className="waveformMain">
-          <Box className="trackinfoDiv">
-            <img src={waveformTrack.track_photo} className="trackImg" />
+          <Box className="waveformTrackInfoDiv">
+            <img src={waveformTrack.track_photo} className="waveformTrackImg" />
             <Box>
-              <Typography className="trackTitle">
+              <Typography className="waveformTrackTitle">
                 {waveformTrack.title}
               </Typography>
               {Object.keys(waveformTrack).length > 0 &&

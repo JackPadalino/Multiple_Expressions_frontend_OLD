@@ -10,3 +10,4 @@ export { default as VideoJS } from "./VideoJS/VideoJS";
 export { default as MobileWaveform } from "./Waveform/MobileWaveform";
 export { default as Admin } from "./Admin/Admin";
 export { default as Chat } from "./Live/Chat";
+export { default as Artist } from "./Artist/Artist";
