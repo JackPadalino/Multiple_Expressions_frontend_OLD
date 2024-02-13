@@ -1,10 +1,10 @@
-import "./mobileWaveform.css";
-
 // MUI imports
 import { Box, Typography, Avatar, IconButton, Drawer } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+
+import "./mobileWaveform.css";
 
 const ModalDiv2 = ({
   trackModalState,
@@ -46,12 +46,22 @@ const ModalDiv2 = ({
         <img src={waveformTrack.track_photo} className="drawerImg2" />
         {/* <Typography variant="h5">{waveformTrack.title}</Typography> */}
         <Box className="trackArtistsDiv">
-          {Object.keys(waveformTrack).length > 0 &&
-            waveformTrack.artists.map((artist) => (
-              <Typography variant="h6" key={artist.id} sx={{ color: "white" }}>
-                {artist.name}
+          {Object.keys(waveformTrack).length > 0 && (
+            <>
+              <Typography variant="h4" sx={{ color: "white" }}>
+                {waveformTrack.title}
               </Typography>
-            ))}
+              {waveformTrack.artists.map((artist) => (
+                <Typography
+                  variant="h6"
+                  key={artist.id}
+                  sx={{ color: "white" }}
+                >
+                  {artist.name}
+                </Typography>
+              ))}
+            </>
+          )}
         </Box>
         <Box ref={waveformRef} className="waveformRef"></Box>
         <Box className="controlsDiv">
