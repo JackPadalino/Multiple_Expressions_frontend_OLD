@@ -44,23 +44,55 @@ const Artist = () => {
 
   if (loading) return null;
   return (
-    <div className="artistMainContainer">
-      <div className="artistInfoDiv">
-        <h1>{artist.name}</h1>
-        <p>{artist.bio}</p>
-        <div className="socialsDiv">
-          {artist.social_media.map((social) => (
-            <SocialIcon
-              key={social.id}
-              bgColor="black"
-              network={social.platform}
-              url={social.link}
-              target="_blank"
-            />
-          ))}
+    <>
+      <div className="artistPageMainContainer">
+        <div className="artistPageMobilePortaitContainer">
+          <div className="artistPageMobilePortaitInfo">
+            <div className="artistPageMobilePortaitText">
+              <div className="artistPageMobilePoraitImgDiv">
+                <img
+                  className="artistPageMobilePoraitImg"
+                  src={artist.profile_photo}
+                />
+              </div>
+              <h1>{artist.name}</h1>
+              <p>{artist.bio}</p>
+              <div className="artistPageMobilePortaitSocials">
+                {artist.social_media.map((social) => (
+                  <SocialIcon
+                    key={social.id}
+                    bgColor="black"
+                    network={social.platform}
+                    url={social.link}
+                    target="_blank"
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="artistPageRegularContainer">
+          <div className="artistPageInfo">
+            <div className="artistPageText">
+              <h1>{artist.name}</h1>
+              <p>{artist.bio}</p>
+              <div className="artistPageSocials">
+                {artist.social_media.map((social) => (
+                  <SocialIcon
+                    key={social.id}
+                    bgColor="black"
+                    network={social.platform}
+                    url={social.link}
+                    target="_blank"
+                  />
+                ))}
+              </div>
+            </div>
+            <img className="artistPageImg" src={artist.profile_photo} />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

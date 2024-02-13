@@ -1,29 +1,83 @@
 @media only screen and (max-width: 600px) {
-}
+  .artistPageMobilePortaitContainer {
+    display: block;
+  }
 
-@media only screen and (min-width: 600px) and (max-width: 1280px) {
-}
+  .artistPageRegularContainer {
+    display: none;
+  }
 
-@media only screen and (min-width: 1280px) {
-  .artistInfoDiv {
-    width: 50%;
+  .artistPageMobilePortaitInfo {
+    display: flex;
+  }
+
+  .artistPageMobilePoraitImg {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+
+  .artistPageMobilePoraitImgDiv {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    shape-outside: circle();
+    float: right;
+  }
+
+  .artistPageMobilePortaitSocials {
+    display: flex;
+    gap: 10px;
   }
 }
 
-.artistMainContainer {
+@media only screen and (min-width: 600px) and (max-width: 1280px) {
+  .artistPageMobilePortaitContainer {
+    display: none;
+  }
+
+  .artistPageRegularContainer {
+    display: block;
+  }
+
+  .artistPageImg {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .artistPageMobilePortaitContainer {
+    display: none;
+  }
+
+  .artistPageRegularContainer {
+    display: block;
+  }
+
+  .artistPageImg {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+.artistPageMainContainer {
   padding-left: 10px;
   padding-right: 10px;
   /* adding padding to all componets to account for pop up player div */
   padding-bottom: 122px;
 }
 
-.artistInfoDiv {
+.artistPageInfo {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  justify-content: space-between;
 }
 
-.socialsDiv {
+.artistPageImg {
+  border-radius: 50%;
+}
+
+.artistPageSocials {
   display: flex;
   gap: 10px;
 }
