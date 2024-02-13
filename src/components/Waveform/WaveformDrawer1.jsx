@@ -16,7 +16,11 @@ const WaveformDrawer1 = ({
   return (
     <Box className="waveformDrawer1Container">
       <img src={waveformTrack.track_photo} className="waveformDrawer1Img" />
-      <Typography variant="h6" onClick={toggleDrawer("bottom", true)}>
+      <Typography
+        variant="h6"
+        sx={{ color: "#EAA128" }}
+        onClick={toggleDrawer("bottom", true)}
+      >
         {waveformTrack.title}
       </Typography>
       <IconButton onClick={() => wavesurferRef.current.playPause()}>

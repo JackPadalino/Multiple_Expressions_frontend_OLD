@@ -32,6 +32,12 @@
   gap: 20px;
 }
 
+.auditoryTrackTitlePlayDiv {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .auditoryTrackTitle {
   cursor: pointer;
 }

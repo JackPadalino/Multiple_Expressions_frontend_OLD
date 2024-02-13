@@ -107,8 +107,8 @@ const Waveform = () => {
                 ))}
             </Box>
           </Box>
-          <Box ref={waveformRef} className="waveformDiv"></Box>
-          <div className="controlsDiv">
+          <Box ref={waveformRef}></Box>
+          <div className="waveformControlsDiv">
             <Typography sx={{ color: "white" }}>{currentTime}</Typography>
             <IconButton onClick={() => wavesurferRef.current.playPause()}>
               {isPlaying ? (

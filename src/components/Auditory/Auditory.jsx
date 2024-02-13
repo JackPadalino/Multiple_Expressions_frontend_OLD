@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { Box, Typography, Avatar, IconButton } from "@mui/material";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { setWaveformTrack } from "../../store/waveformSlice";
 import "./auditory.css";
 
@@ -17,12 +19,25 @@ const Auditory = () => {
         <div className="auditoryTracksDiv">
           {storeTracks.map((track) => (
             <div key={track.id}>
-              <h2
-                className="auditoryTrackTitle"
-                onClick={() => handlePlay(track)}
-              >
-                {track.title}
-              </h2>
+              <div className="auditoryTrackTitlePlayDiv">
+                <h2
+                  className="auditoryTrackTitle"
+                  onClick={() => handlePlay(track)}
+                >
+                  {track.title}
+                </h2>
+                <IconButton
+                  onClick={() => handlePlay(track)}
+                  sx={{ padding: "0px", margin: "0px" }}
+                >
+                  <PlayArrowIcon
+                    fontSize="medium"
+                    sx={{
+                      color: "orange",
+                    }}
+                  />
+                </IconButton>
+              </div>
               <div className="auditoryArtistInfoDiv">
                 {track.artists.map((artist) => (
                   <Link
