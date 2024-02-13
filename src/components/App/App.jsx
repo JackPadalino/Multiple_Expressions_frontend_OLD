@@ -90,13 +90,13 @@ const App = () => {
         <Nav />
       )}
       <Routes>
-        <Route path="/" element={<Home />} name="home" />
-        <Route path="/visual" element={<Visual />} name="visual" />
-        <Route path="/auditory" element={<Auditory name="auditory" />} />
-        <Route path="/live" element={<Live />} name="live" />
-        <Route path="/admin" element={<Admin />} name="admin" />
-        <Route path="/artist/:id" element={<Artist />} name="artist" />
-        <Route path="/*" element={<NotFound />} name="notFound" />
+        <Route path="/" element={<Home />} />
+        <Route path="/visual" element={<Visual />} />
+        <Route path="/auditory" element={<Auditory />} />
+        <Route path="/live" element={<Live />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/artist/:id" element={<Artist />} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
       {mobileView ? <MobileWaveform /> : <Waveform />}
     </div>
