@@ -1,19 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Box } from "@mui/material";
 import "./nav.css";
 
 const Nav = () => {
+  console.log(window.location.pathname);
+
   return (
     <Box className="navMainContainer">
-      <Link to="/auditory" className="navLink">
+      <NavLink to="/auditory" className="navLink">
         Auditory
-      </Link>
-      <Link to="/visual" className="navLink">
+      </NavLink>
+      <NavLink to="/visual" className="navLink">
         Visual
-      </Link>
-      <Link to="/live" className="navLink">
+      </NavLink>
+      <NavLink to="/live" className="navLink">
         Live
-      </Link>
+      </NavLink>
     </Box>
   );
 };
