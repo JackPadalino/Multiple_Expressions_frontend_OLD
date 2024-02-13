@@ -1,17 +1,21 @@
 @media only screen and (max-width: 600px) {
-  .drawerImg2 {
+  .waveformDrawer2Img {
     height: 35%;
     width: "auto";
   }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
-  .drawerImg2 {
+  .waveformDrawer2Img {
     display: none;
   }
 }
 
-.modalTriggerDiv {
+.waveformRef {
+  width: 95%;
+}
+
+.waveformDrawer1Container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,7 +28,12 @@
   color: white;
 }
 
-.drawerDiv {
+.waveformDrawer1Img {
+  height: 40px;
+  width: auto;
+}
+
+.waveformDrawer2Container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,25 +45,20 @@
   color: white;
 }
 
-.trackArtistsDiv {
+.waveformDrawer2TrackArtistsDiv {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
 }
 
-.waveformRef {
-  width: 95%;
+.waveformDrawer2ArtistLink {
+  text-decoration: none;
 }
 
-.controlsDiv {
+.waveformDrawer2ControlsDiv {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
-}
-
-.drawerImg1 {
-  height: 40px;
-  width: auto;
 }

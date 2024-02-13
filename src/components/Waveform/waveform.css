@@ -34,6 +34,11 @@
   gap: 10px;
 }
 
+.waveformTrackArtistsDiv {
+  display: flex;
+  flex-direction: column;
+}
+
 .waveformTrackTitle {
   font-size: 20px;
   color: rgb(234, 162, 42);
@@ -42,4 +47,13 @@
 .waveformTrackImg {
   width: auto;
   height: 70px;
+}
+
+.waveformArtistLink {
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.waveformArtistLink:hover {
+  text-decoration: underline;
 }

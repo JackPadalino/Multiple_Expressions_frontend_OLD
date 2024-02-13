@@ -14,26 +14,29 @@ const Auditory = () => {
   return (
     <div className="auditoryMainContainer">
       <div>
-        <div className="tracksDiv">
+        <div className="auditoryTracksDiv">
           {storeTracks.map((track) => (
             <div key={track.id}>
-              <h2 className="trackTitle" onClick={() => handlePlay(track)}>
+              <h2
+                className="auditoryTrackTitle"
+                onClick={() => handlePlay(track)}
+              >
                 {track.title}
               </h2>
-              <div className="auditoryArtistInfo">
+              <div className="auditoryArtistInfoDiv">
                 {track.artists.map((artist) => (
                   <Link
                     key={artist.id}
                     to={`/artist/${artist.id}`}
-                    className="artistLink"
+                    className="auditoryArtistLink"
                   >
                     {artist.name}
                   </Link>
                 ))}
               </div>
-              <div className="tagsDiv">
+              <div className="auditoryTagsDiv">
                 {track.tags.map((tag) => (
-                  <p className="tag" key={tag.id}>
+                  <p className="auditoryTag" key={tag.id}>
                     #{tag.title}
                   </p>
                 ))}

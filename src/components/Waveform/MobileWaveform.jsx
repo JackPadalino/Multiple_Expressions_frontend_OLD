@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import WaveSurfer from "wavesurfer.js";
 
-import ModalDiv1 from "./ModalDiv1";
-import ModalDiv2 from "./ModalDiv2";
+import WaveformDrawer1 from "./WaveformDrawer1";
+import WaveformDrawer2 from "./WaveformDrawer2";
 import "./mobileWaveform.css";
 
 const MobileWaveform = () => {
@@ -96,14 +96,14 @@ const MobileWaveform = () => {
   return (
     <>
       {Object.keys(waveformTrack).length > 0 && (
-        <ModalDiv1
+        <WaveformDrawer1
           waveformTrack={waveformTrack}
           wavesurferRef={wavesurferRef}
           isPlaying={isPlaying}
           toggleDrawer={toggleDrawer}
         />
       )}
-      <ModalDiv2
+      <WaveformDrawer2
         trackModalState={trackModalState}
         toggleDrawer={toggleDrawer}
         waveformTrack={waveformTrack}

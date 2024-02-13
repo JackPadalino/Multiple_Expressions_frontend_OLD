@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import WaveSurfer from "wavesurfer.js";
+import { Link } from "react-router-dom";
 
 // MUI imports
 import { Box, Typography, Avatar, IconButton } from "@mui/material";
@@ -47,7 +48,8 @@ const Waveform = () => {
         dragToSeek: true,
         backend: "MediaElement",
         normalize: true,
-        // for now we are pre-generating a random array of peaks - not ideal!
+        // for now we are pre-generating a random array of peaks
+        // to help speed up loading - not ideal!
         peaks: Array.from({ length: 1000 }, () => Math.random()),
       });
 
@@ -89,27 +91,25 @@ const Waveform = () => {
         <Box className="waveformMain">
           <Box className="waveformTrackInfoDiv">
             <img src={waveformTrack.track_photo} className="waveformTrackImg" />
-            <Box>
+            <Box className="waveformTrackArtistsDiv">
               <Typography className="waveformTrackTitle">
                 {waveformTrack.title}
               </Typography>
               {Object.keys(waveformTrack).length > 0 &&
                 waveformTrack.artists.map((artist) => (
-                  <Typography key={artist.id} sx={{ color: "white" }}>
+                  <Link
+                    key={artist.id}
+                    to={`/artist/${artist.id}`}
+                    className="waveformArtistLink"
+                  >
                     {artist.name}
-                  </Typography>
+                  </Link>
                 ))}
             </Box>
           </Box>
           <Box ref={waveformRef} className="waveformDiv"></Box>
           <div className="controlsDiv">
             <Typography sx={{ color: "white" }}>{currentTime}</Typography>
-            {/* <Replay10OutlinedIcon
-              fontSize="large"
-              sx={{
-                color: "white",
-              }}
-            /> */}
             <IconButton onClick={() => wavesurferRef.current.playPause()}>
               {isPlaying ? (
                 <Avatar
@@ -145,12 +145,6 @@ const Waveform = () => {
                 </Avatar>
               )}
             </IconButton>
-            {/* <Forward10OutlinedIcon
-              fontSize="large"
-              sx={{
-                color: "white",
-              }}
-            /> */}
             <Typography sx={{ color: "white" }}>{trackDuration}</Typography>
           </div>
         </Box>

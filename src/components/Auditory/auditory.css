@@ -26,27 +26,36 @@
   padding-bottom: 122px;
 }
 
-.tracksDiv {
+.auditoryTracksDiv {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.trackTitle {
+.auditoryTrackTitle {
   cursor: pointer;
 }
 
-.artistLink {
+.auditoryArtistInfoDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.auditoryArtistLink {
   cursor: pointer;
   text-decoration: none;
   color: rgb(234, 162, 42);
 }
 
-.tagsDiv {
+.auditoryArtistLink:hover {
+  text-decoration: underline;
+}
+
+.auditoryTagsDiv {
   display: flex;
   gap: 10px;
 }
 
-.tag {
+.auditoryTag {
   font-size: 12px;
 }

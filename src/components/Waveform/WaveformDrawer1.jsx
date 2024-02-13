@@ -7,15 +7,15 @@ import IconButton from "@mui/material/IconButton";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 
-const ModalDiv1 = ({
+const WaveformDrawer1 = ({
   waveformTrack,
   wavesurferRef,
   isPlaying,
   toggleDrawer,
 }) => {
   return (
-    <Box className="modalTriggerDiv">
-      <img src={waveformTrack.track_photo} className="drawerImg1" />
+    <Box className="waveformDrawer1Container">
+      <img src={waveformTrack.track_photo} className="waveformDrawer1Img" />
       <Typography variant="h6" onClick={toggleDrawer("bottom", true)}>
         {waveformTrack.title}
       </Typography>
@@ -40,4 +40,4 @@ const ModalDiv1 = ({
   );
 };
 
-export default ModalDiv1;
+export default WaveformDrawer1;

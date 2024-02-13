@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 // MUI imports
 import { Box, Typography, Avatar, IconButton, Drawer } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
@@ -6,7 +8,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 import "./mobileWaveform.css";
 
-const ModalDiv2 = ({
+const WaveformDrawer2 = ({
   trackModalState,
   toggleDrawer,
   waveformTrack,
@@ -26,7 +28,7 @@ const ModalDiv2 = ({
         keepMounted: true,
       }}
     >
-      <Box className="drawerDiv">
+      <Box className="waveformDrawer2Container">
         <IconButton
           onClick={toggleDrawer("bottom", false)}
           sx={{
@@ -43,28 +45,28 @@ const ModalDiv2 = ({
             }}
           />
         </IconButton>
-        <img src={waveformTrack.track_photo} className="drawerImg2" />
-        {/* <Typography variant="h5">{waveformTrack.title}</Typography> */}
-        <Box className="trackArtistsDiv">
+        <img src={waveformTrack.track_photo} className="waveformDrawer2Img" />
+        <Box className="waveformDrawer2TrackArtistsDiv">
           {Object.keys(waveformTrack).length > 0 && (
             <>
               <Typography variant="h4" sx={{ color: "white" }}>
                 {waveformTrack.title}
               </Typography>
               {waveformTrack.artists.map((artist) => (
-                <Typography
-                  variant="h6"
+                <Link
                   key={artist.id}
-                  sx={{ color: "white" }}
+                  to={`/artist/${artist.id}`}
+                  className="waveformDrawer2ArtistLink"
+                  onClick={toggleDrawer("bottom", false)}
                 >
                   {artist.name}
-                </Typography>
+                </Link>
               ))}
             </>
           )}
         </Box>
         <Box ref={waveformRef} className="waveformRef"></Box>
-        <Box className="controlsDiv">
+        <Box className="waveformDrawer2ControlsDiv">
           <Typography variant="h6">{currentTime}</Typography>
           <IconButton onClick={() => wavesurferRef.current.playPause()}>
             {isPlaying ? (
@@ -108,4 +110,4 @@ const ModalDiv2 = ({
   );
 };
 
-export default ModalDiv2;
+export default WaveformDrawer2;
