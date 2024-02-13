@@ -21,7 +21,7 @@ const Auditory = () => {
               <h2 className="trackTitle" onClick={() => handlePlay(track)}>
                 {track.title}
               </h2>
-              <div className="artistInfoDiv">
+              <div className="auditoryArtistInfo">
                 {track.artists.map((artist) => (
                   <Link
                     key={artist.id}

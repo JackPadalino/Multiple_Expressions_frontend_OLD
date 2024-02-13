@@ -48,15 +48,17 @@ const Artist = () => {
       <div className="artistInfoDiv">
         <h1>{artist.name}</h1>
         <p>{artist.bio}</p>
-        {artist.social_media.map((social) => (
-          <SocialIcon
-            key={social.id}
-            bgColor="black"
-            network={social.platform}
-            url={social.link}
-            target="_blank"
-          />
-        ))}
+        <div className="socialsDiv">
+          {artist.social_media.map((social) => (
+            <SocialIcon
+              key={social.id}
+              bgColor="black"
+              network={social.platform}
+              url={social.link}
+              target="_blank"
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
