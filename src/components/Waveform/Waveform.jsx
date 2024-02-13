@@ -6,10 +6,6 @@ import WaveSurfer from "wavesurfer.js";
 import { Box, Typography, Avatar, IconButton } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
-import PauseCircleIcon from "@mui/icons-material/PauseCircle";
-import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFilledWhiteOutlined";
-import Replay10OutlinedIcon from "@mui/icons-material/Replay10Outlined";
-import Forward10OutlinedIcon from "@mui/icons-material/Forward10Outlined";
 
 import "./waveform.css";
 

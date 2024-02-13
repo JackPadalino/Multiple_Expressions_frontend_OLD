@@ -1,9 +1,9 @@
 const colorsArr = [
-  { primary: "#3A7D49", secondary: "#cedfd2" },
-  { primary: "#4C5081", secondary: "#d2d3e0" },
-  { primary: "#E34028", secondary: "#f8cfc9" },
-  { primary: "#EAA128", secondary: "#fae8c9" },
-  { primary: "#E0745F", secondary: "#f7dcd7" },
+  { primary: "#3A7D49", secondary: "#cedfd2" }, // green
+  { primary: "#4C5081", secondary: "#d2d3e0" }, //grey
+  { primary: "#E34028", secondary: "#f8cfc9" }, // red
+  { primary: "#EAA128", secondary: "#fae8c9" }, // yellow
+  { primary: "#E0745F", secondary: "#f7dcd7" }, // salmon
 ];
 
 export default colorsArr;
