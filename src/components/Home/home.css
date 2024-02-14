@@ -45,6 +45,7 @@
   height: auto;
   position: absolute;
   opacity: 0;
+  transition: opacity 2s ease;
 }
 
 .homeImg.imgLoaded {
@@ -58,20 +59,16 @@
 /* layering images and effects */
 #homeImg1 {
   z-index: 0;
-  transition: opacity 1s ease;
 }
 
 #homeImg2 {
   z-index: 1;
-  transition: opacity 2s ease;
 }
 
 #homeImg3 {
   z-index: 2;
-  transition: opacity 4s ease;
 }
 
 #homeImg4 {
   z-index: 3;
-  transition: opacity 6s ease;
 }
