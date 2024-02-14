@@ -181,38 +181,40 @@ const Home = () => {
 
   return (
     <div className="homeMainContainer">
-      <img
-        data-src={`https://${
-          import.meta.env.VITE_AWS_S3_BUCKET
-        }.s3.amazonaws.com/site_photos/Home Img Slice 1.jpg`}
-        ref={imgRefs[0]}
-        className="homeImg"
-        alt="Home Image"
-      />
-      <img
-        data-src={`https://${
-          import.meta.env.VITE_AWS_S3_BUCKET
-        }.s3.amazonaws.com/site_photos/Home Img Slice 2.jpg`}
-        ref={imgRefs[1]}
-        className="homeImg"
-        alt="Home Image"
-      />
-      <img
-        data-src={`https://${
-          import.meta.env.VITE_AWS_S3_BUCKET
-        }.s3.amazonaws.com/site_photos/Home Img Slice 3.jpg`}
-        ref={imgRefs[2]}
-        className="homeImg"
-        alt="Home Image"
-      />
-      <img
-        data-src={`https://${
-          import.meta.env.VITE_AWS_S3_BUCKET
-        }.s3.amazonaws.com/site_photos/Home Img Slice 4.jpg`}
-        ref={imgRefs[3]}
-        className="homeImg"
-        alt="Home Image"
-      />
+      <Link to="/auditory" className="imgLink">
+        <img
+          data-src={`https://${
+            import.meta.env.VITE_AWS_S3_BUCKET
+          }.s3.amazonaws.com/site_photos/Home Img Slice 1.jpg`}
+          ref={imgRefs[0]}
+          className="homeImg"
+          alt="Home Image"
+        />
+        <img
+          data-src={`https://${
+            import.meta.env.VITE_AWS_S3_BUCKET
+          }.s3.amazonaws.com/site_photos/Home Img Slice 2.jpg`}
+          ref={imgRefs[1]}
+          className="homeImg"
+          alt="Home Image"
+        />
+        <img
+          data-src={`https://${
+            import.meta.env.VITE_AWS_S3_BUCKET
+          }.s3.amazonaws.com/site_photos/Home Img Slice 3.jpg`}
+          ref={imgRefs[2]}
+          className="homeImg"
+          alt="Home Image"
+        />
+        <img
+          data-src={`https://${
+            import.meta.env.VITE_AWS_S3_BUCKET
+          }.s3.amazonaws.com/site_photos/Home Img Slice 4.jpg`}
+          ref={imgRefs[3]}
+          className="homeImg"
+          alt="Home Image"
+        />
+      </Link>
     </div>
   );
 };

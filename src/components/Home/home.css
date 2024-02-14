@@ -33,11 +33,20 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  /* position: relative; */
   padding-left: 10px;
   padding-right: 10px;
   gap: 10px;
   height: 100vh;
   background-color: black;
+}
+
+.imgLink {
+  /* position: relative; */
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  z-index: 4;
 }
 
 .homeImg {
