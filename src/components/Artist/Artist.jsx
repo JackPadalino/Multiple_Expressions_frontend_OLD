@@ -46,9 +46,9 @@ const Artist = () => {
   return (
     <>
       <div className="artistPageMainContainer">
-        <div className="artistPageInfo">
+        <div className="artistPageArtistDiv">
           <img className="artistPageMobileImg" src={artist.profile_photo} />
-          <div className="artistPageText">
+          <div className="artistPageArtistInfo">
             <h1>{artist.name}</h1>
             <p>{artist.bio}</p>
             <div className="artistPageSocials">

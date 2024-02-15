@@ -12,7 +12,7 @@
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
-  .artistPageInfo {
+  .artistPageArtistDiv {
     display: flex;
     justify-content: space-between;
   }
@@ -30,12 +30,12 @@
 }
 
 @media only screen and (min-width: 1280px) {
-  .artistPageInfo {
+  .artistPageArtistDiv {
     display: flex;
     justify-content: space-between;
   }
 
-  .artistPageText {
+  .artistPageArtistInfo {
     width: 50%;
   }
 
@@ -56,6 +56,12 @@
   padding-right: 10px;
   /* adding padding to all componets to account for pop up player div */
   padding-bottom: 122px;
+}
+
+.artistPageArtistInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .artistPageSocials {
