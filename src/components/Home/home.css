@@ -1,28 +1,16 @@
 @media only screen and (max-width: 600px) {
-  /* .homeMainContainer {
-    padding-top: 150px;
-  } */
-
   .homeImg {
     width: 300px;
   }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
-  /* .homeMainContainer {
-    padding-top: 25px;
-  } */
-
   .homeImg {
     width: 400px;
   }
 }
 
 @media only screen and (min-width: 1280px) {
-  /* .homeMainContainer {
-    padding-top: 150px;
-  } */
-
   .homeImg {
     width: 600px;
   }
@@ -33,7 +21,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* position: relative; */
   padding-left: 10px;
   padding-right: 10px;
   gap: 10px;
@@ -42,11 +29,10 @@
 }
 
 .imgLink {
-  /* position: relative; */
-  /* top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
-  z-index: 4;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .homeImg {
