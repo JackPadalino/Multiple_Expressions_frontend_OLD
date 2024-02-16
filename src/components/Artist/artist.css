@@ -68,3 +68,34 @@
   display: flex;
   gap: 10px;
 }
+
+.artistPageTracksDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.artistPageTrackTitlePlayDiv {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.artistPageArtistLink {
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(234, 162, 42);
+}
+
+.artistPageArtistLink:hover {
+  text-decoration: underline;
+}
+
+.artistPageTagsDiv {
+  display: flex;
+  gap: 10px;
+}
+
+.artistPageTag {
+  font-size: 12px;
+}
