@@ -45,7 +45,7 @@ const Live = () => {
 
       player.addEventListener(IVSPlayer.PlayerEventType.ERROR, (err) => {
         if (err.type === "ErrorNotAvailable") {
-          setIsPlaying(true);
+          setIsPlaying(false);
         }
       });
 
