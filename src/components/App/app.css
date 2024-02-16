@@ -28,6 +28,10 @@ h6 {
   color: white;
 }
 
+input,
+button,
+a,
+p,
 h1,
 h2,
 h3,
@@ -35,13 +39,21 @@ h4,
 h5,
 h6 {
   font-family: "Poppins", sans-serif;
-  font-weight: 400;
   font-style: normal;
 }
 
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+}
+
+input,
 a,
 p {
-  font-family: "Poppins", sans-serif;
   font-weight: 300;
-  font-style: normal;
 }

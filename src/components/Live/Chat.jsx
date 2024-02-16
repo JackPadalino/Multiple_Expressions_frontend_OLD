@@ -117,14 +117,17 @@ const Chat = ({ isPlaying }) => {
       {!chatConnection && isPlaying && (
         <div>
           <h4>Join the chat</h4>
-          <form onSubmit={handleJoinChat}>
+          <form className="chatForm" onSubmit={handleJoinChat}>
             <input
+              className="chatFormElement"
               type="text"
               value={username}
               onChange={handleUsernameChange}
               placeholder="Create username"
             />
-            <button type="submit">Submit</button>
+            <button className="chatFormElement" type="submit">
+              Submit
+            </button>
           </form>
           {chatError && <p>{chatError}</p>}
         </div>
@@ -138,14 +141,17 @@ const Chat = ({ isPlaying }) => {
               setChatMessages={setChatMessages}
             />
           </div>
-          <form onSubmit={handleSendMessage}>
+          <form className="chatForm" onSubmit={handleSendMessage}>
             <input
+              className="chatFormElement"
               type="text"
               value={message}
               placeholder="Say something nice"
               onChange={handleMessageChange}
             />
-            <button type="submit">Submit</button>
+            <button className="chatFormElement" type="submit">
+              Submit
+            </button>
           </form>
           {chatError && <p>{chatError}</p>}
         </div>
