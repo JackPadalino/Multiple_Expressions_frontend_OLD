@@ -81,12 +81,7 @@ const Artist = () => {
           {artist.tracks.map((track) => (
             <div key={track.id}>
               <div className="artistPageTrackTitlePlayDiv">
-                <h2
-                  className="artistPageTrackTitle"
-                  onClick={() => handlePlay(track)}
-                >
-                  {track.title}
-                </h2>
+                <h2 className="artistPageTrackTitle">{track.title}</h2>
                 <IconButton
                   onClick={() => handlePlay(track)}
                   sx={{ padding: "0px", margin: "0px" }}

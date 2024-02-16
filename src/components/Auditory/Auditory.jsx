@@ -20,12 +20,7 @@ const Auditory = () => {
           {storeTracks.map((track) => (
             <div key={track.id}>
               <div className="auditoryTrackTitlePlayDiv">
-                <h2
-                  className="auditoryTrackTitle"
-                  onClick={() => handlePlay(track)}
-                >
-                  {track.title}
-                </h2>
+                <h2 className="auditoryTrackTitle">{track.title}</h2>
                 <IconButton
                   onClick={() => handlePlay(track)}
                   sx={{ padding: "0px", margin: "0px" }}

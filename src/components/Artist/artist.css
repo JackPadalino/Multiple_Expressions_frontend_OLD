@@ -79,7 +79,7 @@
   gap: 10px;
 }
 
-.artistPageTracksDiv {
+.artistPageTracks {
   display: flex;
   flex-direction: column;
   gap: 20px;
