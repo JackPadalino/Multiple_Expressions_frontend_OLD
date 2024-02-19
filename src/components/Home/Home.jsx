@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { Box, IconButton } from "@mui/material";
 import "./home.css";
 
 const Home = () => {
@@ -27,7 +28,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="homeMainContainer">
+    <Box className="homeMainContainer">
       <Link to="/auditory" className="imgLink">
         <img
           data-src={`https://${
@@ -62,7 +63,7 @@ const Home = () => {
           alt="Home Image"
         />
       </Link>
-    </div>
+    </Box>
   );
 };
 

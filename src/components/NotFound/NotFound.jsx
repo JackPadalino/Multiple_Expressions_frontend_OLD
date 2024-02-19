@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import { Box, IconButton } from "@mui/material";
 import "./notFound.css";
 
 const NotFound = () => {
   return (
-    <div className="notFoundMainContainer">
+    <Box className="notFoundMainContainer">
       <h2 className="notFoundTitle">Sorry. Page not found.</h2>
-    </div>
+    </Box>
   );
 };
 

@@ -7,6 +7,7 @@ import { setUrl } from "../../store/urlSlice";
 import { setStoreArtists } from "../../store/artistSlice";
 import { setStoreTracks, setStoreVideos } from "../../store/musicSlice";
 import { setMobileView } from "../../store/mobileViewSlice";
+
 import {
   NotFound,
   Loading,
@@ -20,6 +21,8 @@ import {
   Admin,
   Artist,
 } from "..";
+
+import { Box } from "@mui/material";
 
 import "./app.css";
 
@@ -85,7 +88,7 @@ const App = () => {
 
   if (loading) return null;
   return (
-    <div className="appContainer">
+    <Box className="appContainer">
       {routesWithNav.includes(location.pathname.split("/")[1]) && <Nav />}
       <Routes>
         <Route path="/" element={<Home />} />
@@ -97,7 +100,7 @@ const App = () => {
         <Route path="/*" element={<NotFound />} />
       </Routes>
       {mobileView ? <MobileWaveform /> : <Waveform />}
-    </div>
+    </Box>
   );
 };
 

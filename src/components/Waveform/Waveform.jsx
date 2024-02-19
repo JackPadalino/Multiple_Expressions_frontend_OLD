@@ -108,7 +108,7 @@ const Waveform = () => {
             </Box>
           </Box>
           <Box ref={waveformRef}></Box>
-          <div className="waveformControlsDiv">
+          <Box className="waveformControlsDiv">
             <Typography sx={{ color: "white" }}>{currentTime}</Typography>
             <IconButton onClick={() => wavesurferRef.current.playPause()}>
               {isPlaying ? (
@@ -146,7 +146,7 @@ const Waveform = () => {
               )}
             </IconButton>
             <Typography sx={{ color: "white" }}>{trackDuration}</Typography>
-          </div>
+          </Box>
         </Box>
       )}
     </>

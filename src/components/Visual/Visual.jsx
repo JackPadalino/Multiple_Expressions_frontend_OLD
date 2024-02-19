@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ReactPlayer from "react-player";
+import { Box } from "@mui/material";
 import "./visual.css";
 
 import VideoJS from "../VideoJS/VideoJS";
@@ -45,18 +46,18 @@ const Visual = () => {
   };
 
   return (
-    <div className="visualMainContainer">
+    <Box className="visualMainContainer">
       <p>Visual expressions coming soon.</p>
-      {/* <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+      {/* <Box style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           {storeVideos.map((video) => (
-            <div key={video.id}>
+            <Box key={video.id}>
               <h2
                 onClick={() => handlePlay(video)}
                 style={{ cursor: "pointer" }}
               >
                 {video.title}
               </h2>
-              <div style={{ display: "flex", gap: "10px" }}>
+              <Box style={{ display: "flex", gap: "10px" }}>
                 {video.artists.map((artist) => (
                   <a
                     key={artist.id}
@@ -66,19 +67,19 @@ const Visual = () => {
                     {artist.name}
                   </a>
                 ))}
-              </div>
-              <div style={{ display: "flex", gap: "10px" }}>
+              </Box>
+              <Box style={{ display: "flex", gap: "10px" }}>
                 {video.tags.map((tag) => (
                   <p key={tag.id}>#{tag.title}</p>
                 ))}
-              </div>
-            </div>
+              </Box>
+            </Box>
           ))}
-        </div> */}
+        </Box> */}
       {/* {renderPlayer && (
         <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
       )} */}
-    </div>
+    </Box>
   );
 };
 

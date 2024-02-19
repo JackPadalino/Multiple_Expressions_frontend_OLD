@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Box, Typography, Avatar, IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { setWaveformTrack } from "../../store/waveformSlice";
 import "./auditory.css";
@@ -14,12 +14,12 @@ const Auditory = () => {
   };
 
   return (
-    <div className="auditoryMainContainer">
-      <div>
-        <div className="auditoryTracksDiv">
+    <Box className="auditoryMainContainer">
+      <Box>
+        <Box className="auditoryTracksDiv">
           {storeTracks.map((track) => (
-            <div key={track.id}>
-              <div className="auditoryTrackTitlePlayDiv">
+            <Box key={track.id}>
+              <Box className="auditoryTrackTitlePlayDiv">
                 <h2 className="auditoryTrackTitle">{track.title}</h2>
                 <IconButton
                   onClick={() => handlePlay(track)}
@@ -32,8 +32,8 @@ const Auditory = () => {
                     }}
                   />
                 </IconButton>
-              </div>
-              <div className="auditoryArtistInfoDiv">
+              </Box>
+              <Box className="auditoryArtistInfoDiv">
                 {track.artists.map((artist) => (
                   <Link
                     key={artist.id}
@@ -43,19 +43,19 @@ const Auditory = () => {
                     {artist.name}
                   </Link>
                 ))}
-              </div>
-              <div className="auditoryTagsDiv">
+              </Box>
+              <Box className="auditoryTagsDiv">
                 {track.tags.map((tag) => (
                   <p className="auditoryTag" key={tag.id}>
                     #{tag.title}
                   </p>
                 ))}
-              </div>
-            </div>
+              </Box>
+            </Box>
           ))}
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

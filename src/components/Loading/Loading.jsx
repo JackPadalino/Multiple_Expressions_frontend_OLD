@@ -1,10 +1,11 @@
+import { Box, IconButton } from "@mui/material";
 import "./loading.css";
 
 const Loading = () => {
   return (
-    <div className="loadingMainContainer">
+    <Box className="loadingMainContainer">
       <h2 className="loadingTitle">Patience...</h2>
-    </div>
+    </Box>
   );
 };
 

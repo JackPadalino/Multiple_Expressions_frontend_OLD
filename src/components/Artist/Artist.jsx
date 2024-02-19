@@ -6,7 +6,7 @@ import { SocialIcon } from "react-social-icons/component";
 import "react-social-icons/instagram";
 import "react-social-icons/soundcloud";
 
-import { Box, Typography, Avatar, IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { setWaveformTrack } from "../../store/waveformSlice";
 
@@ -56,13 +56,13 @@ const Artist = () => {
   if (loading) return null;
   return (
     <>
-      <div className="artistPageMainContainer">
-        <div className="artistPageArtistDiv">
+      <Box className="artistPageMainContainer">
+        <Box className="artistPageArtistDiv">
           <img className="artistPageMobileImg" src={artist.profile_photo} />
-          <div className="artistPageArtistInfo">
+          <Box className="artistPageArtistInfo">
             <h1>{artist.name}</h1>
             <p>{artist.bio}</p>
-            <div className="artistPageSocials">
+            <Box className="artistPageSocials">
               {artist.social_media.map((social) => (
                 <SocialIcon
                   key={social.id}
@@ -72,15 +72,15 @@ const Artist = () => {
                   target="_blank"
                 />
               ))}
-            </div>
-          </div>
+            </Box>
+          </Box>
           <img className="artistPageDesktopImg" src={artist.profile_photo} />
-        </div>
-        <div className="artistPageTracks">
+        </Box>
+        <Box className="artistPageTracks">
           <h1>Tracks</h1>
           {artist.tracks.map((track) => (
-            <div key={track.id}>
-              <div className="artistPageTrackTitlePlayDiv">
+            <Box key={track.id}>
+              <Box className="artistPageTrackTitlePlayDiv">
                 <h2 className="artistPageTrackTitle">{track.title}</h2>
                 <IconButton
                   onClick={() => handlePlay(track)}
@@ -93,8 +93,8 @@ const Artist = () => {
                     }}
                   />
                 </IconButton>
-              </div>
-              <div className="artistPageArtistInfoDiv">
+              </Box>
+              <Box className="artistPageArtistInfoDiv">
                 {track.artists.map((artist) => (
                   <Link
                     key={artist.id}
@@ -104,18 +104,18 @@ const Artist = () => {
                     {artist.name}
                   </Link>
                 ))}
-              </div>
-              <div className="artistPageTagsDiv">
+              </Box>
+              <Box className="artistPageTagsDiv">
                 {track.tags.map((tag) => (
                   <p className="artistPageTag" key={tag.id}>
                     #{tag.title}
                   </p>
                 ))}
-              </div>
-            </div>
+              </Box>
+            </Box>
           ))}
-        </div>
-      </div>
+        </Box>
+      </Box>
     </>
   );
 };

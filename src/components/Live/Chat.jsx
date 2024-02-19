@@ -113,9 +113,9 @@ const Chat = ({ isPlaying }) => {
   };
 
   return (
-    <div className="chatMainContainer">
+    <Box className="chatMainContainer">
       {!chatConnection && isPlaying && (
-        <div>
+        <Box>
           <h4>Join the chat</h4>
           <form className="chatForm" onSubmit={handleJoinChat}>
             <input
@@ -130,17 +130,17 @@ const Chat = ({ isPlaying }) => {
             </button>
           </form>
           {chatError && <p>{chatError}</p>}
-        </div>
+        </Box>
       )}
       {chatConnection && isPlaying && (
-        <div className="chatFeed">
+        <Box className="chatFeed">
           {firstMessageSent ? <h4>Chat</h4> : <h4>Say hello to everyone!</h4>}
-          <div className="messagesContainer">
+          <Box className="messagesContainer">
             <MessagesList
               chatMessages={chatMessages}
               setChatMessages={setChatMessages}
             />
-          </div>
+          </Box>
           <form className="chatForm" onSubmit={handleSendMessage}>
             <input
               className="chatFormElement"
@@ -154,9 +154,9 @@ const Chat = ({ isPlaying }) => {
             </button>
           </form>
           {chatError && <p>{chatError}</p>}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };
 

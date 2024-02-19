@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import videojs from "video.js";
+import { Box, IconButton } from "@mui/material";
 import "video.js/dist/video-js.css";
 
 // video js
@@ -46,7 +47,7 @@ const VideoJS = ({ options, onReady }) => {
   }, [playerRef]);
 
   return (
-    <div
+    <Box
       ref={videoRef}
       className={"video-js vjs-big-play-centered vjs-theme-city"}
     />
