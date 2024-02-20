@@ -13,17 +13,28 @@ const WaveformDrawer1 = ({
   isPlaying,
   toggleDrawer,
 }) => {
+
+  const handlePlayPauseClick = (event) => {
+    // stop the play/pause click event from propogating up the DOM tree
+    // to prevent container click event and triggering 'toggleDrawer'
+    // function
+    event.stopPropagation();
+    wavesurferRef.current.playPause();
+  };
+
   return (
-    <Box className="waveformDrawer1Container">
+    <Box
+      className="waveformDrawer1Container"
+      onClick={toggleDrawer("bottom", true)}
+    >
       <img src={waveformTrack.track_photo} className="waveformDrawer1Img" />
       <Typography
         variant="h6"
         sx={{ color: "#EAA128" }}
-        onClick={toggleDrawer("bottom", true)}
       >
         {waveformTrack.title}
       </Typography>
-      <IconButton onClick={() => wavesurferRef.current.playPause()}>
+      <IconButton onClick={handlePlayPauseClick}>
         {isPlaying ? (
           <PauseIcon
             fontSize="large"
