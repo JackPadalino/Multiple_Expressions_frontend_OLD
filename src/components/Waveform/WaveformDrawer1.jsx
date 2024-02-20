@@ -9,18 +9,10 @@ import PauseIcon from "@mui/icons-material/Pause";
 
 const WaveformDrawer1 = ({
   waveformTrack,
-  wavesurferRef,
   isPlaying,
   toggleDrawer,
+  handlePlayPauseClick
 }) => {
-
-  const handlePlayPauseClick = (event) => {
-    // stop the play/pause click event from propogating up the DOM tree
-    // to prevent container click event and triggering 'toggleDrawer'
-    // function
-    event.stopPropagation();
-    wavesurferRef.current.playPause();
-  };
 
   return (
     <Box

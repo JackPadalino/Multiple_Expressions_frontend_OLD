@@ -13,10 +13,10 @@ const WaveformDrawer2 = ({
   toggleDrawer,
   waveformTrack,
   waveformRef,
-  wavesurferRef,
   currentTime,
   isPlaying,
   trackDuration,
+  handlePlayPauseClick
 }) => {
   return (
     <Drawer
@@ -68,7 +68,7 @@ const WaveformDrawer2 = ({
         <Box ref={waveformRef} className="waveformRef"></Box>
         <Box className="waveformDrawer2ControlsDiv">
           <Typography variant="h6">{currentTime}</Typography>
-          <IconButton onClick={() => wavesurferRef.current.playPause()}>
+          <IconButton onClick={handlePlayPauseClick}>
             {isPlaying ? (
               <Avatar
                 sx={{

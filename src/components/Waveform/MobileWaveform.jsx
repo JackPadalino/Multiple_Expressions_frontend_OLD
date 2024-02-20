@@ -77,6 +77,14 @@ const MobileWaveform = () => {
     }
   };
 
+  const handlePlayPauseClick = (event) => {
+    // stop the play/pause click event from propogating up the DOM tree
+    // to prevent container click event and triggering 'toggleDrawer'
+    // function for the mobile player
+    event.stopPropagation();
+    wavesurferRef.current.playPause();
+  };
+
   // modal toggle function
   const toggleDrawer = () => (event) => {
     if (
@@ -98,19 +106,19 @@ const MobileWaveform = () => {
       {Object.keys(waveformTrack).length > 0 && (
         <WaveformDrawer1
           waveformTrack={waveformTrack}
-          wavesurferRef={wavesurferRef}
           isPlaying={isPlaying}
           toggleDrawer={toggleDrawer}
+          handlePlayPauseClick={handlePlayPauseClick}
         />
       )}
       <WaveformDrawer2
-        trackModalState={trackModalState}
-        toggleDrawer={toggleDrawer}
         waveformTrack={waveformTrack}
-        waveformRef={waveformRef}
-        wavesurferRef={wavesurferRef}
-        currentTime={currentTime}
         isPlaying={isPlaying}
+        toggleDrawer={toggleDrawer}
+        handlePlayPauseClick={handlePlayPauseClick}
+        trackModalState={trackModalState}
+        waveformRef={waveformRef}
+        currentTime={currentTime}
         trackDuration={trackDuration}
       />
     </>
