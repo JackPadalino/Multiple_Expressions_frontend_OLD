@@ -9,6 +9,7 @@ import { setStoreTracks, setStoreVideos } from "../../store/musicSlice";
 import { setMobileView } from "../../store/mobileViewSlice";
 
 import {
+  Home,
   NotFound,
   Loading,
   Entrance,
@@ -92,6 +93,7 @@ const App = () => {
       {routesWithNav.includes(location.pathname.split("/")[1]) && <Nav />}
       <Routes>
         <Route path="/" element={<Entrance />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/visual" element={<Visual />} />
         <Route path="/auditory" element={<Auditory />} />
         <Route path="/live" element={<Live />} />

@@ -29,7 +29,7 @@ const Entrance = () => {
 
   return (
     <Box className="entranceMainContainer">
-      <Link to="/auditory" className="imgLink">
+      <Link to="/home" className="imgLink">
         <img
           data-src={`https://${
             import.meta.env.VITE_AWS_S3_BUCKET

@@ -1,0 +1,94 @@
+@media only screen and (max-width: 600px) {
+  .homeFeaturedTrackDiv {
+    margin-top: 30px;
+  }
+
+  .homeTrackImg {
+    width: 200px;
+    height: auto;
+  }
+
+  .homeDesc {
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1280px) {
+  .homeFeaturedTrackDiv {
+    margin-top: 30px;
+  }
+
+  .homeTrackImg {
+    width: 200px;
+    height: auto;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .homeFeaturedTrackDiv {
+    margin-top: 100px;
+  }
+
+  .homeTrackImg {
+    width: 300px;
+    height: auto;
+  }
+}
+
+.homeMainContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* adding padding to all componets to account for pop up player div */
+  padding-bottom: 122px;
+}
+
+.homeIntroDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homeFeaturedTrackDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homeTracksDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.homeTrackTitlePlayDiv {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.homeArtistInfoDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.homeArtistLink {
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(234, 162, 42);
+}
+
+.homeArtistLink:hover {
+  text-decoration: underline;
+}
+
+.homeTagsDiv {
+  display: flex;
+  gap: 10px;
+}
+
+.homeTag {
+  font-size: 12px;
+}
