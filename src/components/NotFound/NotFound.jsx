@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { Box, IconButton } from "@mui/material";
+import { Box } from "@mui/material";
 import "./notFound.css";
 
 const NotFound = () => {

@@ -1,4 +1,4 @@
-import { Box, IconButton } from "@mui/material";
+import { Box } from "@mui/material";
 import "./loading.css";
 
 const Loading = () => {

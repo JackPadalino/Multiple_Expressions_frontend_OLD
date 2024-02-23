@@ -86,7 +86,7 @@ const App = () => {
     "artist",
   ];
 
-  if (loading) return null;
+  if (loading) return <Loading />;
   return (
     <Box className="appContainer">
       {routesWithNav.includes(location.pathname.split("/")[1]) && <Nav />}

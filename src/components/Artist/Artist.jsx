@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import { SocialIcon } from "react-social-icons/component";
 import "react-social-icons/instagram";
@@ -10,7 +10,6 @@ import { Box, IconButton } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { setWaveformTrack } from "../../store/waveformSlice";
 
-import Loading from "../Loading/Loading";
 import "./artist.css";
 
 const Artist = () => {
@@ -33,7 +32,6 @@ const Artist = () => {
     try {
       const response = await axios.get(`${url}/api/music/artists/${id}`);
       setArtist(response.data);
-      console.log(response.data);
       setLoading(false);
     } catch (error) {
       if (error.response) {
