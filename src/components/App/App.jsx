@@ -11,7 +11,7 @@ import { setMobileView } from "../../store/mobileViewSlice";
 import {
   NotFound,
   Loading,
-  Home,
+  Entrance,
   Visual,
   Auditory,
   Live,
@@ -91,7 +91,7 @@ const App = () => {
     <Box className="appContainer">
       {routesWithNav.includes(location.pathname.split("/")[1]) && <Nav />}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Entrance />} />
         <Route path="/visual" element={<Visual />} />
         <Route path="/auditory" element={<Auditory />} />
         <Route path="/live" element={<Live />} />

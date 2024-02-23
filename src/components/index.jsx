@@ -1,7 +1,7 @@
 export { default as Loading } from "./Loading/Loading";
 export { default as NotFound } from "./NotFound/NotFound";
 export { default as Nav } from "./Nav/Nav";
-export { default as Home } from "./Home/Home";
+export { default as Entrance } from "./Entrance/Entrance";
 export { default as Visual } from "./Visual/Visual";
 export { default as Auditory } from "./Auditory/Auditory";
 export { default as Live } from "./Live/Live";
