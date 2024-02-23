@@ -60,6 +60,11 @@ const Home = () => {
           ))}
         </Box>
       </Box>
+      <p className="homeInvitation">
+        Want to post with us? Have something you want to share? Email
+        <span className="homeEmail"> multiple.expressionsnyc@gmail.com</span>.
+        We post all tracks.
+      </p>
     </Box>
   );
 };

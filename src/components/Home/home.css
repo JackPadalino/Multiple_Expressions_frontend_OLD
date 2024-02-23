@@ -11,6 +11,11 @@
   .homeDesc {
     text-align: center;
   }
+
+  .homeInvitation {
+    font-size: 10px;
+    margin-top: 50px;
+  }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
@@ -22,6 +27,11 @@
     width: 200px;
     height: auto;
   }
+
+  .homeInvitation {
+    font-size: 10px;
+    margin-top: 50px;
+  }
 }
 
 @media only screen and (min-width: 1280px) {
@@ -32,6 +42,10 @@
   .homeTrackImg {
     width: 300px;
     height: auto;
+  }
+
+  .homeInvitation {
+    margin-top: 200px;
   }
 }
 
@@ -91,4 +105,13 @@
 
 .homeTag {
   font-size: 12px;
+}
+
+.homeInvitation {
+  text-align: center;
+  font-style: italic;
+}
+
+.homeEmail {
+  color: rgb(234, 162, 42);
 }
