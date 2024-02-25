@@ -5,6 +5,9 @@ import "./nav.css";
 const Nav = () => {
   return (
     <Box className="navMainContainer">
+      <NavLink to="/home" className="navLink">
+        Home
+      </NavLink>
       <NavLink to="/auditory" className="navLink">
         Auditory
       </NavLink>

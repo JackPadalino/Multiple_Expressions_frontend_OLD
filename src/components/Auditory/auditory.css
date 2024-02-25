@@ -38,6 +38,10 @@
   gap: 10px;
 }
 
+.auditoryTrackTitle {
+  font-family: Quantify;
+}
+
 .auditoryArtistInfoDiv {
   display: flex;
   flex-direction: column;

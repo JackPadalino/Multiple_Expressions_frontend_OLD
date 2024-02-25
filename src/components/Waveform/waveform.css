@@ -39,11 +39,6 @@
   flex-direction: column;
 }
 
-.waveformTrackTitle {
-  font-size: 20px;
-  color: rgb(234, 162, 42);
-}
-
 .waveformTrackImg {
   width: auto;
   height: 70px;

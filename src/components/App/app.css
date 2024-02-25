@@ -22,53 +22,22 @@ h2,
 h3,
 h4,
 h5,
-h6 {
-  font-family: Quantify;
-}
-
+h6,
 a,
 p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+input {
+  font-family: "Poppins", "sans-serif";
   color: white;
-}
-
-input,
-button,
-a,
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Poppins", sans-serif;
-  font-style: normal;
-}
-
-button,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 400;
-}
-
-input,
-a,
-p {
-  font-weight: 300;
 }
 
 @font-face {
   font-family: "Quantify";
   src: local("Quantify"),
     url("../../assets/fonts/Quantify.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Coolvetica";
+  src: local("Coolvetica"),
+    url("../../assets/fonts/coolvetica.otf") format("opentype");
 }

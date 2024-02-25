@@ -25,7 +25,7 @@ const Home = () => {
         </p>
       </Box>
       <Box className="homeFeaturedTrackDiv">
-        <h2>New featured track</h2>
+        <h2 className="homeNewTrackIntro">New featured track</h2>
         <img src={featuredTrack.track_photo} className="homeTrackImg" />
         <Box className="homeTrackTitlePlayDiv">
           <h2 className="homeTrackTitle">{featuredTrack.title}</h2>

@@ -58,7 +58,7 @@ const Artist = () => {
         <Box className="artistPageArtistDiv">
           <img className="artistPageMobileImg" src={artist.profile_photo} />
           <Box className="artistPageArtistInfo">
-            <h1>{artist.name}</h1>
+            <h1 className="artistPageName">{artist.name}</h1>
             <p>{artist.bio}</p>
             <Box className="artistPageSocials">
               {artist.social_media.map((social) => (
@@ -75,7 +75,7 @@ const Artist = () => {
           <img className="artistPageDesktopImg" src={artist.profile_photo} />
         </Box>
         <Box className="artistPageTracks">
-          <h1>Tracks</h1>
+          <h1 className="artistPageTracksSectionTitle">Tracks</h1>
           {artist.tracks.map((track) => (
             <Box key={track.id}>
               <Box className="artistPageTrackTitlePlayDiv">

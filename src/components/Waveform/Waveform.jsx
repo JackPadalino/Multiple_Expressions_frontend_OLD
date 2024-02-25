@@ -92,7 +92,10 @@ const Waveform = () => {
           <Box className="waveformTrackInfoDiv">
             <img src={waveformTrack.track_photo} className="waveformTrackImg" />
             <Box className="waveformTrackArtistsDiv">
-              <Typography className="waveformTrackTitle">
+              <Typography
+                variant="h6"
+                sx={{ color: "#EAA128", fontFamily: "Coolvetica" }}
+              >
                 {waveformTrack.title}
               </Typography>
               {Object.keys(waveformTrack).length > 0 &&

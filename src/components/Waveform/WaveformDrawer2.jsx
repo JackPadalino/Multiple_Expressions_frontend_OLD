@@ -16,7 +16,7 @@ const WaveformDrawer2 = ({
   currentTime,
   isPlaying,
   trackDuration,
-  handlePlayPauseClick
+  handlePlayPauseClick,
 }) => {
   return (
     <Drawer
@@ -49,7 +49,10 @@ const WaveformDrawer2 = ({
         <Box className="waveformDrawer2TrackArtistsDiv">
           {Object.keys(waveformTrack).length > 0 && (
             <>
-              <Typography variant="h4" sx={{ color: "#EAA128" }}>
+              <Typography
+                variant="h4"
+                sx={{ color: "#EAA128", fontFamily: "Quantify" }}
+              >
                 {waveformTrack.title}
               </Typography>
               {waveformTrack.artists.map((artist) => (

@@ -74,6 +74,10 @@
   gap: 10px;
 }
 
+.artistPageName {
+  font-family: Quantify;
+}
+
 .artistPageSocials {
   display: flex;
   gap: 10px;
@@ -83,6 +87,10 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.artistPageTracksSectionTitle {
+  font-family: Coolvetica;
 }
 
 .artistPageTrackTitlePlayDiv {

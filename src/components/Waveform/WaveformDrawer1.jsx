@@ -11,9 +11,8 @@ const WaveformDrawer1 = ({
   waveformTrack,
   isPlaying,
   toggleDrawer,
-  handlePlayPauseClick
+  handlePlayPauseClick,
 }) => {
-
   return (
     <Box
       className="waveformDrawer1Container"
@@ -22,7 +21,7 @@ const WaveformDrawer1 = ({
       <img src={waveformTrack.track_photo} className="waveformDrawer1Img" />
       <Typography
         variant="h6"
-        sx={{ color: "#EAA128" }}
+        sx={{ color: "#EAA128", fontFamily: "Coolvetica" }}
       >
         {waveformTrack.title}
       </Typography>

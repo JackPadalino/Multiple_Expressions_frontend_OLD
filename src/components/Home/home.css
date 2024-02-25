@@ -8,10 +8,6 @@
     height: auto;
   }
 
-  .homeDesc {
-    text-align: center;
-  }
-
   .homeInvitation {
     font-size: 10px;
     margin-top: 50px;
@@ -65,6 +61,15 @@
   align-items: center;
 }
 
+.homeDesc {
+  text-align: center;
+  color: rgb(234, 162, 42);
+}
+
+.homeTitle {
+  font-family: Quantify;
+}
+
 .homeFeaturedTrackDiv {
   display: flex;
   flex-direction: column;
@@ -81,6 +86,11 @@
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.homeTrackTitle {
+  font-size: 30px;
+  font-family: Coolvetica;
 }
 
 .homeArtistInfoDiv {
