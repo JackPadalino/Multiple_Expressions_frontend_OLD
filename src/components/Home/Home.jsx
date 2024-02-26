@@ -23,6 +23,7 @@ const Home = () => {
       <Box className="homeFeaturedTrackDiv">
         <img src={featuredTrack.track_photo} className="homeTrackImg" />
         <Box>
+          <h3>New featured track</h3>
           <Box className="homeTrackTitlePlayDiv">
             <h2 className="homeTrackTitle">{featuredTrack.title}</h2>
             <IconButton
