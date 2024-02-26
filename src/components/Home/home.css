@@ -59,6 +59,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 5px;
+}
+
+.homeTitle {
+  font-family: Quantify;
 }
 
 .homeDesc {
@@ -66,8 +71,9 @@
   color: rgb(234, 162, 42);
 }
 
-.homeTitle {
-  font-family: Quantify;
+.homeSocialsDiv {
+  display: flex;
+  gap: 5px;
 }
 
 .homeFeaturedTrackDiv {

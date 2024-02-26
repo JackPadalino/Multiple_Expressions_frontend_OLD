@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { Box, IconButton } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { setWaveformTrack } from "../../store/waveformSlice";
+import { SocialIcon } from "react-social-icons/component";
+import "react-social-icons/instagram";
+import "react-social-icons/tiktok";
 import "./home.css";
 
 const Home = () => {
@@ -23,9 +26,22 @@ const Home = () => {
           Showcasing the wealth of lesser-known talent of the NYC electronic
           music scene.
         </p>
+        <Box className="homeSocialsDiv">
+          <SocialIcon
+            bgColor="black"
+            network="instagram"
+            url="https://www.instagram.com/multiple.expressions?igsh=dzdiOHZsYXZqeXlr&utm_source=qr"
+            target="_blank"
+          />
+          <SocialIcon
+            bgColor="black"
+            network="tiktok"
+            url="https://www.tiktok.com/@multiple.expressions?_t=8kCuPgn7YJn&_r=1"
+            target="_blank"
+          />
+        </Box>
       </Box>
       <Box className="homeFeaturedTrackDiv">
-        <h2 className="homeNewTrackIntro">New featured track</h2>
         <img src={featuredTrack.track_photo} className="homeTrackImg" />
         <Box className="homeTrackTitlePlayDiv">
           <h2 className="homeTrackTitle">{featuredTrack.title}</h2>
