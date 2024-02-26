@@ -8,8 +8,14 @@ import "./auditory.css";
 
 const Auditory = () => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
   const { storeTracks } = useSelector((state) => state.music);
+  const { waveformTrack } = useSelector((state) => state.waveform);
   const [formattedTracks, setFormattedTracks] = useState([]);
+
+  const handlePlay = (track) => {
+    dispatch(setWaveformTrack(track));
+  };
 
   const formatDates = (tracks) => {
     const newDateTracks = tracks.map((track) => {
@@ -23,16 +29,14 @@ const Auditory = () => {
       };
     });
     setFormattedTracks(newDateTracks);
+    setLoading(false);
   };
 
   useEffect(() => {
     formatDates(storeTracks);
   }, []);
 
-  const handlePlay = (track) => {
-    dispatch(setWaveformTrack(track));
-  };
-
+  if (loading) return null;
   return (
     <Box className="auditoryMainContainer">
       <Box>
@@ -76,6 +80,20 @@ const Auditory = () => {
             </Box>
           ))}
         </Box>
+      </Box>
+      <Box className="auditoryPlayingTrackContainer">
+        {Object.keys(waveformTrack).length !== 0 &&
+          waveformTrack.artists.map((artist, index) => (
+            <Box key={index} className="auditoryPlayingTrackArtist">
+              <Link key={artist.id} to={`/artist/${artist.id}`}>
+                <img
+                  className="auditoryPlayingTrackImg"
+                  src={artist.profile_photo}
+                />
+              </Link>
+              <h2>{artist.name}</h2>
+            </Box>
+          ))}
       </Box>
     </Box>
   );

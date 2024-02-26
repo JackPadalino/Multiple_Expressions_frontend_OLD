@@ -7,6 +7,10 @@
     width: 200px;
     height: auto;
   }
+
+  .auditoryPlayingTrackContainer {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
@@ -16,6 +20,16 @@
 
   .auditoryTrackPhoto {
     width: 200px;
+    height: auto;
+  }
+
+  .auditoryPlayingTrackContainer {
+    position: fixed;
+    right: 30px;
+  }
+
+  .auditoryPlayingTrackImg {
+    width: 100px;
     height: auto;
   }
 }
@@ -28,6 +42,17 @@
   .auditoryTrackPhoto {
     width: 300px;
     height: auto;
+  }
+
+  .auditoryPlayingTrackImg {
+    width: 300px;
+    height: auto;
+  }
+
+  .auditoryPlayingTrackContainer {
+    flex-direction: column;
+    position: fixed;
+    right: 30px;
   }
 }
 
@@ -87,4 +112,19 @@
 
 .auditoryPostedDate {
   font-size: 10px;
+}
+
+.auditoryPlayingTrackContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.auditoryPlayingTrackArtist {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.auditoryPlayingTrackImg {
+  border-radius: 50%;
 }
