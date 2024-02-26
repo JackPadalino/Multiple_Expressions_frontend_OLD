@@ -17,6 +17,7 @@
 
   .homeInvitation {
     font-size: 10px;
+    width: 50%;
   }
 }
 
@@ -24,6 +25,11 @@
   .homeTrackImg {
     width: 500px;
     height: auto;
+  }
+
+  .homeInvitation {
+    font-size: 15px;
+    width: 33%;
   }
 }
 
@@ -38,37 +44,17 @@
   padding-bottom: 122px;
 }
 
-.homeIntroDiv {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-}
-
-.homeTitle {
-  font-family: Quantify;
-}
-
-.homeDesc {
-  text-align: center;
-  color: rgb(234, 162, 42);
-}
-
-.homeSocialsDiv {
-  display: flex;
-  gap: 5px;
-}
-
 .homeFeaturedTrackDiv {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  /* flex-direction: column;
+  align-items: center; */
+  position: relative;
 }
 
-.homeTracksDiv {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.homeFeaturedTrackDiv > :nth-child(2) {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
 }
 
 .homeTrackTitlePlayDiv {
@@ -78,7 +64,7 @@
 }
 
 .homeTrackTitle {
-  font-size: 30px;
+  font-size: 20px;
   font-family: Coolvetica;
 }
 
@@ -106,9 +92,31 @@
   font-size: 12px;
 }
 
+.homeIntroDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.homeTitle {
+  font-family: Quantify;
+}
+
+.homeDesc {
+  text-align: center;
+  color: rgb(234, 162, 42);
+}
+
+.homeSocialsDiv {
+  display: flex;
+  gap: 5px;
+}
+
 .homeInvitation {
   text-align: center;
   font-style: italic;
+  margin-top: 100px;
 }
 
 .homeEmail {

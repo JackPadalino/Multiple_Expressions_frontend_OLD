@@ -22,39 +22,42 @@ const Home = () => {
     <Box className="homeMainContainer">
       <Box className="homeFeaturedTrackDiv">
         <img src={featuredTrack.track_photo} className="homeTrackImg" />
-        <Box className="homeTrackTitlePlayDiv">
-          <h2 className="homeTrackTitle">{featuredTrack.title}</h2>
-          <IconButton
-            onClick={() => handlePlay(featuredTrack)}
-            sx={{ padding: "0px", margin: "0px" }}
-          >
-            <PlayArrowIcon
-              fontSize="medium"
-              sx={{
-                color: "orange",
-              }}
-            />
-          </IconButton>
-        </Box>
-        <Box className="homeArtistInfoDiv">
-          {featuredTrack.artists.map((artist) => (
-            <Link
-              key={artist.id}
-              to={`/artist/${artist.id}`}
-              className="homeArtistLink"
+        <Box>
+          <Box className="homeTrackTitlePlayDiv">
+            <h2 className="homeTrackTitle">{featuredTrack.title}</h2>
+            <IconButton
+              onClick={() => handlePlay(featuredTrack)}
+              sx={{ padding: "0px", margin: "0px" }}
             >
-              {artist.name}
-            </Link>
-          ))}
-        </Box>
-        <Box className="homeTagsDiv">
-          {featuredTrack.tags.map((tag) => (
-            <p className="homeTag" key={tag.id}>
-              #{tag.title}
-            </p>
-          ))}
+              <PlayArrowIcon
+                fontSize="medium"
+                sx={{
+                  color: "orange",
+                }}
+              />
+            </IconButton>
+          </Box>
+          <Box className="homeArtistInfoDiv">
+            {featuredTrack.artists.map((artist) => (
+              <Link
+                key={artist.id}
+                to={`/artist/${artist.id}`}
+                className="homeArtistLink"
+              >
+                {artist.name}
+              </Link>
+            ))}
+          </Box>
+          <Box className="homeTagsDiv">
+            {featuredTrack.tags.map((tag) => (
+              <p className="homeTag" key={tag.id}>
+                #{tag.title}
+              </p>
+            ))}
+          </Box>
         </Box>
       </Box>
+
       <Box className="homeIntroDiv">
         <h1 className="homeTitle">Multiple Expressions</h1>
         <p className="homeDesc">
