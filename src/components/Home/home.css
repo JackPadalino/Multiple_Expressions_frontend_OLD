@@ -1,47 +1,29 @@
 @media only screen and (max-width: 600px) {
-  .homeFeaturedTrackDiv {
-    margin-top: 30px;
-  }
-
   .homeTrackImg {
-    width: 200px;
+    width: 350px;
     height: auto;
   }
 
   .homeInvitation {
     font-size: 10px;
-    margin-top: 50px;
   }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
-  .homeFeaturedTrackDiv {
-    margin-top: 30px;
-  }
-
   .homeTrackImg {
-    width: 200px;
+    width: 350px;
     height: auto;
   }
 
   .homeInvitation {
     font-size: 10px;
-    margin-top: 50px;
   }
 }
 
 @media only screen and (min-width: 1280px) {
-  .homeFeaturedTrackDiv {
-    margin-top: 100px;
-  }
-
   .homeTrackImg {
-    width: 300px;
+    width: 500px;
     height: auto;
-  }
-
-  .homeInvitation {
-    margin-top: 200px;
   }
 }
 
@@ -49,6 +31,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  gap: 50px;
   padding-left: 10px;
   padding-right: 10px;
   /* adding padding to all componets to account for pop up player div */

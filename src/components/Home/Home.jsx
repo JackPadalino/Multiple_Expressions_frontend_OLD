@@ -20,27 +20,6 @@ const Home = () => {
 
   return (
     <Box className="homeMainContainer">
-      <Box className="homeIntroDiv">
-        <h1 className="homeTitle">Multiple Expressions</h1>
-        <p className="homeDesc">
-          Showcasing the wealth of lesser-known talent of the NYC electronic
-          music scene.
-        </p>
-        <Box className="homeSocialsDiv">
-          <SocialIcon
-            bgColor="black"
-            network="instagram"
-            url="https://www.instagram.com/multiple.expressions?igsh=dzdiOHZsYXZqeXlr&utm_source=qr"
-            target="_blank"
-          />
-          <SocialIcon
-            bgColor="black"
-            network="tiktok"
-            url="https://www.tiktok.com/@multiple.expressions?_t=8kCuPgn7YJn&_r=1"
-            target="_blank"
-          />
-        </Box>
-      </Box>
       <Box className="homeFeaturedTrackDiv">
         <img src={featuredTrack.track_photo} className="homeTrackImg" />
         <Box className="homeTrackTitlePlayDiv">
@@ -76,6 +55,28 @@ const Home = () => {
           ))}
         </Box>
       </Box>
+      <Box className="homeIntroDiv">
+        <h1 className="homeTitle">Multiple Expressions</h1>
+        <p className="homeDesc">
+          Showcasing the wealth of lesser-known talent of the NYC electronic
+          music scene.
+        </p>
+        <Box className="homeSocialsDiv">
+          <SocialIcon
+            bgColor="black"
+            network="instagram"
+            url="https://www.instagram.com/multiple.expressions?igsh=dzdiOHZsYXZqeXlr&utm_source=qr"
+            target="_blank"
+          />
+          <SocialIcon
+            bgColor="black"
+            network="tiktok"
+            url="https://www.tiktok.com/@multiple.expressions?_t=8kCuPgn7YJn&_r=1"
+            target="_blank"
+          />
+        </Box>
+      </Box>
+
       <p className="homeInvitation">
         Want to post with us? Have something you want to share? Email
         <span className="homeEmail"> multiple.expressionsnyc@gmail.com</span>.
