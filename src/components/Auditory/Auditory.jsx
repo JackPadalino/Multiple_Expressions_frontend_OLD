@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Box, IconButton } from "@mui/material";
@@ -8,6 +9,25 @@ import "./auditory.css";
 const Auditory = () => {
   const dispatch = useDispatch();
   const { storeTracks } = useSelector((state) => state.music);
+  const [formattedTracks, setFormattedTracks] = useState([]);
+
+  const formatDates = (tracks) => {
+    const newDateTracks = tracks.map((track) => {
+      const dateObject = new Date(track.upload_date);
+      const formattedDate = dateObject.toISOString().split("T")[0];
+      // creating a new object to append the new updated upload date
+      // the original objects are 'read only'
+      return {
+        ...track,
+        upload_date: formattedDate,
+      };
+    });
+    setFormattedTracks(newDateTracks);
+  };
+
+  useEffect(() => {
+    formatDates(storeTracks);
+  }, []);
 
   const handlePlay = (track) => {
     dispatch(setWaveformTrack(track));
@@ -17,8 +37,9 @@ const Auditory = () => {
     <Box className="auditoryMainContainer">
       <Box>
         <Box className="auditoryTracksDiv">
-          {storeTracks.map((track) => (
-            <Box key={track.id}>
+          {formattedTracks.map((track) => (
+            <Box key={track.id} className="auditoryTrackContainer">
+              <img className="auditoryTrackPhoto" src={track.track_photo} />
               <Box className="auditoryTrackTitlePlayDiv">
                 <h2 className="auditoryTrackTitle">{track.title}</h2>
                 <IconButton
@@ -51,6 +72,7 @@ const Auditory = () => {
                   </p>
                 ))}
               </Box>
+              <p className="auditoryPostedDate">Posted {track.upload_date}</p>
             </Box>
           ))}
         </Box>
