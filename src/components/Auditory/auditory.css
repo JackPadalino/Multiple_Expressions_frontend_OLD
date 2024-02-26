@@ -4,13 +4,17 @@
   }
 
   .auditoryTrackPhoto {
-    width: 125px;
+    width: 150px;
     height: auto;
   }
 
   .auditoryPlayingTrackImg {
     width: 100px;
     height: auto;
+  }
+
+  .auditoryPlayingTrackArtistName {
+    font-size: 10px;
   }
 }
 

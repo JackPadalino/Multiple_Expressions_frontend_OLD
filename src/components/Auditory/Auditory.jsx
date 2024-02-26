@@ -91,7 +91,7 @@ const Auditory = () => {
                   src={artist.profile_photo}
                 />
               </Link>
-              <h2>{artist.name}</h2>
+              <p className="auditoryPlayingTrackArtistName">{artist.name}</p>
             </Box>
           ))}
       </Box>
