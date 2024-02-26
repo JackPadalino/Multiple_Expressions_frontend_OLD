@@ -4,12 +4,13 @@
   }
 
   .auditoryTrackPhoto {
-    width: 200px;
+    width: 125px;
     height: auto;
   }
 
-  .auditoryPlayingTrackContainer {
-    display: none;
+  .auditoryPlayingTrackImg {
+    width: 100px;
+    height: auto;
   }
 }
 
@@ -23,13 +24,8 @@
     height: auto;
   }
 
-  .auditoryPlayingTrackContainer {
-    position: fixed;
-    right: 30px;
-  }
-
   .auditoryPlayingTrackImg {
-    width: 100px;
+    width: 150px;
     height: auto;
   }
 }
@@ -45,14 +41,12 @@
   }
 
   .auditoryPlayingTrackImg {
-    width: 300px;
+    width: 225px;
     height: auto;
   }
 
   .auditoryPlayingTrackContainer {
     flex-direction: column;
-    position: fixed;
-    right: 30px;
   }
 }
 
@@ -117,6 +111,8 @@
 .auditoryPlayingTrackContainer {
   display: flex;
   gap: 10px;
+  position: fixed;
+  right: 30px;
 }
 
 .auditoryPlayingTrackArtist {
