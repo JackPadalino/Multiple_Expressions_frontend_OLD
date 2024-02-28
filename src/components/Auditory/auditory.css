@@ -3,55 +3,82 @@
     flex-direction: column;
   }
 
-  .auditoryTrackPhoto {
-    width: 150px;
-    height: auto;
+  .auditoryTracksDiv {
+    gap: 10px;
   }
 
-  .auditoryPlayingTrackImg {
+  .auditoryTrackPhoto {
+    width: 125px;
+    height: auto;
+    max-height: 125px;
+  }
+
+  .auditoryTrackTitle {
+    font-size: 16px;
+  }
+
+  .auditoryArtistLink {
+    font-size: 13px;
+  }
+
+  .auditoryTag {
+    font-size: 10px;
+  }
+
+  /* .auditoryPlayingTrackImg {
     width: 100px;
     height: auto;
   }
 
   .auditoryPlayingTrackArtistName {
     font-size: 10px;
-  }
+  } */
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
-  .auditoryMainContainer {
-    justify-content: space-between;
-  }
-
   .auditoryTrackPhoto {
-    width: 200px;
-    height: auto;
-  }
-
-  .auditoryPlayingTrackImg {
     width: 150px;
     height: auto;
+    max-height: 150px;
   }
+
+  .auditoryTracksDiv {
+    gap: 10px;
+  }
+
+  .auditoryTag {
+    font-size: 10px;
+  }
+
+  /* .auditoryPlayingTrackImg {
+    width: 150px;
+    height: auto;
+  } */
 }
 
 @media only screen and (min-width: 1280px) {
-  .auditoryMainContainer {
-    justify-content: space-between;
-  }
-
   .auditoryTrackPhoto {
-    width: 300px;
+    width: 250px;
     height: auto;
+    max-height: 250px;
   }
 
-  .auditoryPlayingTrackImg {
+  .auditoryTracksDiv {
+    gap: 20px;
+  }
+
+  .auditoryTrackTitle {
+    font-size: 40px;
+  }
+
+  /* .auditoryPlayingTrackImg {
     width: 225px;
     height: auto;
   }
 
   .auditoryPlayingTrackContainer {
     flex-direction: column;
-  }
+  } */
 }
 
 .auditoryMainContainer {
@@ -65,19 +92,16 @@
 .auditoryTracksDiv {
   display: flex;
   flex-direction: column;
-  gap: 30px;
 }
 
 .auditoryTrackContainer {
-  /* display: flex; */
-  /* align-items: center; */
+  display: flex;
   gap: 5px;
 }
 
 .auditoryTrackTitlePlayDiv {
   display: flex;
   align-items: center;
-  gap: 10px;
 }
 
 .auditoryTrackTitle {
@@ -101,18 +125,15 @@
 
 .auditoryTagsDiv {
   display: flex;
-  gap: 10px;
-}
-
-.auditoryTag {
-  font-size: 12px;
+  flex-wrap: wrap;
+  gap: 2px;
 }
 
 .auditoryPostedDate {
   font-size: 10px;
 }
 
-.auditoryPlayingTrackContainer {
+/* .auditoryPlayingTrackContainer {
   display: flex;
   gap: 10px;
   position: fixed;
@@ -127,4 +148,4 @@
 
 .auditoryPlayingTrackImg {
   border-radius: 50%;
-}
+} */

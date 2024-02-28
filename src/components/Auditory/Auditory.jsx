@@ -10,7 +10,7 @@ const Auditory = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const { storeTracks } = useSelector((state) => state.music);
-  const { waveformTrack } = useSelector((state) => state.waveform);
+  // const { waveformTrack } = useSelector((state) => state.waveform);
   const [formattedTracks, setFormattedTracks] = useState([]);
 
   const handlePlay = (track) => {
@@ -44,44 +44,46 @@ const Auditory = () => {
           {formattedTracks.map((track) => (
             <Box key={track.id} className="auditoryTrackContainer">
               <img className="auditoryTrackPhoto" src={track.track_photo} />
-              <Box className="auditoryTrackTitlePlayDiv">
-                <h2 className="auditoryTrackTitle">{track.title}</h2>
-                <IconButton
-                  onClick={() => handlePlay(track)}
-                  sx={{ padding: "0px", margin: "0px" }}
-                >
-                  <PlayArrowIcon
-                    fontSize="medium"
-                    sx={{
-                      color: "orange",
-                    }}
-                  />
-                </IconButton>
-              </Box>
-              <Box className="auditoryArtistInfoDiv">
-                {track.artists.map((artist) => (
-                  <Link
-                    key={artist.id}
-                    to={`/artist/${artist.id}`}
-                    className="auditoryArtistLink"
+              <Box>
+                <Box className="auditoryTrackTitlePlayDiv">
+                  <h2 className="auditoryTrackTitle">{track.title}</h2>
+                  <IconButton
+                    onClick={() => handlePlay(track)}
+                    sx={{ padding: "0px", margin: "0px" }}
                   >
-                    {artist.name}
-                  </Link>
-                ))}
+                    <PlayArrowIcon
+                      fontSize="medium"
+                      sx={{
+                        color: "orange",
+                      }}
+                    />
+                  </IconButton>
+                </Box>
+                <Box className="auditoryArtistInfoDiv">
+                  {track.artists.map((artist) => (
+                    <Link
+                      key={artist.id}
+                      to={`/artist/${artist.id}`}
+                      className="auditoryArtistLink"
+                    >
+                      {artist.name}
+                    </Link>
+                  ))}
+                </Box>
+                <Box className="auditoryTagsDiv">
+                  {track.tags.map((tag) => (
+                    <p className="auditoryTag" key={tag.id}>
+                      #{tag.title}
+                    </p>
+                  ))}
+                </Box>
+                <p className="auditoryPostedDate">Posted {track.upload_date}</p>
               </Box>
-              <Box className="auditoryTagsDiv">
-                {track.tags.map((tag) => (
-                  <p className="auditoryTag" key={tag.id}>
-                    #{tag.title}
-                  </p>
-                ))}
-              </Box>
-              <p className="auditoryPostedDate">Posted {track.upload_date}</p>
             </Box>
           ))}
         </Box>
       </Box>
-      <Box className="auditoryPlayingTrackContainer">
+      {/* <Box className="auditoryPlayingTrackContainer">
         {Object.keys(waveformTrack).length !== 0 &&
           waveformTrack.artists.map((artist, index) => (
             <Box key={index} className="auditoryPlayingTrackArtist">
@@ -94,7 +96,7 @@ const Auditory = () => {
               <p className="auditoryPlayingTrackArtistName">{artist.name}</p>
             </Box>
           ))}
-      </Box>
+      </Box> */}
     </Box>
   );
 };
