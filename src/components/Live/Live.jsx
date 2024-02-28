@@ -19,11 +19,11 @@ const Live = () => {
   const theme = createTheme();
 
   theme.typography.h6 = {
-    fontFamily: "Coolvetica",
+    fontFamily: "Poppins",
     textAlign: "center",
     fontSize: "10px", // font size for portrait and landscape views
     "@media (min-width:1280px)": {
-      fontSize: "20px",
+      fontSize: "16px",
     },
   };
 

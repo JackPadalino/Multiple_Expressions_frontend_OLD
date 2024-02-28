@@ -8,13 +8,13 @@
   }
 
   .auditoryTrackPhoto {
-    width: 125px;
+    width: 100px;
     height: auto;
-    max-height: 125px;
+    max-height: 100px;
   }
 
   .auditoryTrackTitle {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .auditoryArtistLink {
@@ -37,9 +37,9 @@
 
 @media only screen and (min-width: 600px) and (max-width: 1280px) {
   .auditoryTrackPhoto {
-    width: 150px;
+    width: 125px;
     height: auto;
-    max-height: 150px;
+    max-height: 125px;
   }
 
   .auditoryTracksDiv {

@@ -96,7 +96,6 @@
 .artistPageTrackTitlePlayDiv {
   display: flex;
   align-items: center;
-  gap: 10px;
 }
 
 .artistPageArtistLink {
@@ -111,7 +110,7 @@
 
 .artistPageTagsDiv {
   display: flex;
-  gap: 10px;
+  gap: 2px;
 }
 
 .artistPageTag {

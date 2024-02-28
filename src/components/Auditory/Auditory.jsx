@@ -43,7 +43,11 @@ const Auditory = () => {
         <Box className="auditoryTracksDiv">
           {formattedTracks.map((track) => (
             <Box key={track.id} className="auditoryTrackContainer">
-              <img className="auditoryTrackPhoto" src={track.track_photo} />
+              <img
+                className="auditoryTrackPhoto"
+                src={track.track_photo}
+                onClick={() => handlePlay(track)}
+              />
               <Box>
                 <Box className="auditoryTrackTitlePlayDiv">
                   <h2 className="auditoryTrackTitle">{track.title}</h2>
