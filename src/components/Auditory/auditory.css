@@ -94,9 +94,13 @@
   flex-direction: column;
 }
 
+.auditoryTrackPhoto {
+  cursor: pointer;
+}
+
 .auditoryTrackContainer {
   display: flex;
-  gap: 5px;
+  gap: 10px;
 }
 
 .auditoryTrackTitlePlayDiv {

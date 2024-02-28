@@ -6,13 +6,13 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { setWaveformTrack } from "../../store/waveformSlice";
 import { SocialIcon } from "react-social-icons/component";
 import "react-social-icons/instagram";
-import "react-social-icons/tiktok";
+// import "react-social-icons/tiktok";
 import "./home.css";
 
 const Home = () => {
   const dispatch = useDispatch();
   const { storeTracks } = useSelector((state) => state.music);
-  const [featuredTrack, setFeaturedTrack] = useState(storeTracks[0]);
+  const featuredTrack = storeTracks[0];
 
   const handlePlay = (track) => {
     dispatch(setWaveformTrack(track));
@@ -65,27 +65,30 @@ const Home = () => {
           Showcasing the wealth of lesser-known talent of the NYC electronic
           music scene.
         </p>
-        <Box className="homeSocialsDiv">
-          <SocialIcon
-            bgColor="black"
-            network="instagram"
-            url="https://www.instagram.com/multiple.expressions?igsh=dzdiOHZsYXZqeXlr&utm_source=qr"
-            target="_blank"
-          />
-          <SocialIcon
+      </Box>
+
+      <p className="homeInvitation">
+        Want to post with us? DM us on Instagram or email
+        <span className="homeEmail"> multiple.expressionsnyc@gmail.com</span>.
+      </p>
+
+      <Box className="homeSocialsDiv">
+        <p style={{ fontSize: "14px", fontStyle: "italic" }}>
+          We post all tracks.
+        </p>
+        <SocialIcon
+          bgColor="black"
+          network="instagram"
+          url="https://www.instagram.com/multiple.expressions?igsh=dzdiOHZsYXZqeXlr&utm_source=qr"
+          target="_blank"
+        />
+        {/* <SocialIcon
             bgColor="black"
             network="tiktok"
             url="https://www.tiktok.com/@multiple.expressions?_t=8kCuPgn7YJn&_r=1"
             target="_blank"
-          />
-        </Box>
+          /> */}
       </Box>
-
-      <p className="homeInvitation">
-        Want to post with us? Have something you want to share? Email
-        <span className="homeEmail"> multiple.expressionsnyc@gmail.com</span>.
-        We post all tracks.
-      </p>
     </Box>
   );
 };

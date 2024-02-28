@@ -115,13 +115,15 @@
 
 .homeSocialsDiv {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 5px;
 }
 
 .homeInvitation {
   text-align: center;
   font-style: italic;
-  /* font-size: 14px; */
+  font-size: 14px;
 }
 
 .homeEmail {
