@@ -3,7 +3,7 @@ import { Box, ListItem, ListItemButton, ListItemText } from "@mui/material";
 import { Virtuoso } from "react-virtuoso";
 import "./messagesList.css";
 
-const MessagesList = ({ chatMessages, setChatMessages }) => {
+const MessagesList = ({ chatMessages }) => {
   const virtuosoRef = useRef(null);
 
   useEffect(() => {
