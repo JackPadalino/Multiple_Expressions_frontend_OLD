@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { setUrl } from "../../store/urlSlice";
 
 import { setStoreArtists } from "../../store/artistSlice";
 import { setStoreTracks, setStoreVideos } from "../../store/musicSlice";
@@ -46,8 +45,6 @@ const App = () => {
     } else {
       url = import.meta.env.VITE_PROD_URL;
     }
-    // set global url in redux store for all other API requests
-    dispatch(setUrl(url));
     axios
       .get(`${url}/api/music/artists/all`)
       .then((artistData) => {

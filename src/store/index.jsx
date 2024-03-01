@@ -4,7 +4,6 @@ import musicReducer from "./musicSlice";
 import waveformReducer from "./waveformSlice";
 import mobileViewReducer from "./mobileViewSlice";
 import usersReducer from "./usersSlice";
-import urlReducer from "./urlSlice";
 
 const store = configureStore({
   reducer: {
@@ -13,7 +12,6 @@ const store = configureStore({
     waveform: waveformReducer,
     mobileView: mobileViewReducer,
     users: usersReducer,
-    url: urlReducer,
   },
 });
 

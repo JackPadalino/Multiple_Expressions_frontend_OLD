@@ -13,7 +13,7 @@ import "./live.css";
 
 const Live = () => {
   const videoPlayerRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [hasEnded, setHasEnded] = useState(false);
 
   const theme = createTheme();
@@ -45,7 +45,7 @@ const Live = () => {
 
       player.addEventListener(IVSPlayer.PlayerEventType.ERROR, (err) => {
         if (err.type === "ErrorNotAvailable") {
-          setIsPlaying(false);
+          setIsPlaying(true);
         }
       });
 
