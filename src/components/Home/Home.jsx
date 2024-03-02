@@ -9,10 +9,19 @@ import "react-social-icons/instagram";
 // import "react-social-icons/tiktok";
 import "./home.css";
 
+// Swiper js
+import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+// import required modules
+import { Navigation } from "swiper/modules";
+
 const Home = () => {
   const dispatch = useDispatch();
   const { storeTracks } = useSelector((state) => state.music);
   const featuredTrack = storeTracks[0];
+  const swiperTracks = storeTracks.slice(0, 3);
 
   const handlePlay = (track) => {
     dispatch(setWaveformTrack(track));
@@ -89,6 +98,20 @@ const Home = () => {
             target="_blank"
           /> */}
       </Box>
+      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+        {swiperTracks.map((track, index) => (
+          <SwiperSlide key={index}>{track.title}</SwiperSlide>
+        ))}
+        {/* <SwiperSlide>Slide 1</SwiperSlide>
+        <SwiperSlide>Slide 2</SwiperSlide>
+        <SwiperSlide>Slide 3</SwiperSlide>
+        <SwiperSlide>Slide 4</SwiperSlide>
+        <SwiperSlide>Slide 5</SwiperSlide>
+        <SwiperSlide>Slide 6</SwiperSlide>
+        <SwiperSlide>Slide 7</SwiperSlide>
+        <SwiperSlide>Slide 8</SwiperSlide>
+        <SwiperSlide>Slide 9</SwiperSlide> */}
+      </Swiper>
     </Box>
   );
 };
