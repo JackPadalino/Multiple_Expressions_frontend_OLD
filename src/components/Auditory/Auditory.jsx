@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Box, IconButton } from "@mui/material";
@@ -8,40 +7,18 @@ import "./auditory.css";
 
 const Auditory = () => {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true);
   const { storeTracks } = useSelector((state) => state.music);
-  // const { waveformTrack } = useSelector((state) => state.waveform);
-  const [formattedTracks, setFormattedTracks] = useState([]);
 
   const handlePlay = (track) => {
     dispatch(setWaveformTrack(track));
   };
 
-  const formatDates = (tracks) => {
-    const newDateTracks = tracks.map((track) => {
-      const dateObject = new Date(track.upload_date);
-      const formattedDate = dateObject.toISOString().split("T")[0];
-      // creating a new object to append the new updated upload date
-      // the original objects are 'read only'
-      return {
-        ...track,
-        upload_date: formattedDate,
-      };
-    });
-    setFormattedTracks(newDateTracks);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    formatDates(storeTracks);
-  }, []);
-
-  if (loading) return null;
+  if (Object.keys(storeTracks).length == 0) return null;
   return (
     <Box className="auditoryMainContainer">
       <Box>
         <Box className="auditoryTracksDiv">
-          {formattedTracks.map((track) => (
+          {storeTracks.map((track) => (
             <Box key={track.id} className="auditoryTrackContainer">
               <img
                 className="auditoryTrackPhoto"
@@ -87,20 +64,6 @@ const Auditory = () => {
           ))}
         </Box>
       </Box>
-      {/* <Box className="auditoryPlayingTrackContainer">
-        {Object.keys(waveformTrack).length !== 0 &&
-          waveformTrack.artists.map((artist, index) => (
-            <Box key={index} className="auditoryPlayingTrackArtist">
-              <Link key={artist.id} to={`/artist/${artist.id}`}>
-                <img
-                  className="auditoryPlayingTrackImg"
-                  src={artist.profile_photo}
-                />
-              </Link>
-              <p className="auditoryPlayingTrackArtistName">{artist.name}</p>
-            </Box>
-          ))}
-      </Box> */}
     </Box>
   );
 };

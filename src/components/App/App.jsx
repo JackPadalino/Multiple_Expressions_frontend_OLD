@@ -52,7 +52,8 @@ const App = () => {
         return axios.get(`${url}/api/music/tracks/all`);
       })
       .then((trackData) => {
-        dispatch(setStoreTracks(trackData.data));
+        const updatedTracks = formatDates(trackData.data);
+        dispatch(setStoreTracks(updatedTracks));
         return axios.get(`${url}/api/music/videos/all`);
       })
       .then((videoData) => {
@@ -63,6 +64,20 @@ const App = () => {
         console.error("Error fetching data:", error);
         setLoading(false);
       });
+  };
+
+  const formatDates = (tracks) => {
+    const newDateTracks = tracks.map((track) => {
+      const dateObject = new Date(track.upload_date);
+      const formattedDate = dateObject.toISOString().split("T")[0];
+      // creating a new object to append the new updated upload date
+      // the original objects are 'read only'
+      return {
+        ...track,
+        upload_date: formattedDate,
+      };
+    });
+    return newDateTracks;
   };
 
   useEffect(() => {

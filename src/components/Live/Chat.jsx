@@ -116,8 +116,6 @@ const Chat = ({ isPlaying }) => {
     }
   };
 
-  console.log("hey!");
-
   return (
     <Box className="chatMainContainer">
       {!chatConnection && isPlaying && (
