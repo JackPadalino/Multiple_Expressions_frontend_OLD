@@ -130,26 +130,32 @@
   color: rgb(234, 162, 42);
 }
 
-/* swiper styling */
+/* Swiper JS styling */
+/* 
+Swiper JS comes with built-in styles
+like swiper,swiper-slide, and swiper-slide img
+these class names are not explicitly set in the .jsx
+component 
+*/
 .swiper {
-  width: 100%;
-  height: 100%;
+  width: 33%;
+  height: auto;
 }
 
 .swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-
-  /* Center slide text vertically */
   display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
 }
 
-.swiper-slide img {
+.swiper-slide > :nth-child(2) {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+/* .swiper-slide img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
+} */
