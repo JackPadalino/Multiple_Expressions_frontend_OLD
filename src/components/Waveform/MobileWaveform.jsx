@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import WaveSurfer from "wavesurfer.js";
+import { Box } from "@mui/material";
 
 import WaveformDrawer1 from "./WaveformDrawer1";
 import WaveformDrawer2 from "./WaveformDrawer2";
@@ -102,7 +103,7 @@ const MobileWaveform = () => {
   }, [waveformTrack]);
 
   return (
-    <>
+    <Box className="mobileWaveformContainer">
       {Object.keys(waveformTrack).length > 0 && (
         <WaveformDrawer1
           waveformTrack={waveformTrack}
@@ -121,7 +122,7 @@ const MobileWaveform = () => {
         currentTime={currentTime}
         trackDuration={trackDuration}
       />
-    </>
+    </Box>
   );
 };
 

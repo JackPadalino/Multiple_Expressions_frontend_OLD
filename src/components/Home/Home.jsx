@@ -20,7 +20,7 @@ import { Navigation } from "swiper/modules";
 const Home = () => {
   const dispatch = useDispatch();
   const { storeTracks } = useSelector((state) => state.music);
-  const featuredTrack = storeTracks[0];
+  // const featuredTrack = storeTracks[0];
   const swiperTracks = storeTracks.slice(0, 2);
 
   const handlePlay = (track) => {
