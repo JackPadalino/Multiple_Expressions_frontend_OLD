@@ -13,38 +13,29 @@ import "./chat.css";
 
 const Chat = ({ isPlaying }) => {
   const [chatConnection, setChatConnection] = useState(null);
-  // const [username, setUsername] = useState("");
-  // const [message, setMessage] = useState("");
-  // const [chatMessages, setChatMessages] = useState([]);
-  const username = useRef("");
-  const message = useRef("");
-  const chatMessages = useRef([]);
+  const [username, setUsername] = useState("");
+  const [message, setMessage] = useState("");
+  const [chatMessages, setChatMessages] = useState([]);
   const [chatError, setChatError] = useState(null);
   const [firstMessageSent, setFirstMessageSent] = useState(false);
 
   const handleUsernameChange = (e) => {
-    // setUsername(e.target.value);
-    username.current = e.target.value;
+    setUsername(e.target.value);
   };
 
   const handleMessageChange = (e) => {
-    // setMessage(e.target.value);
-    message.current = e.target.value;
+    setMessage(e.target.value);
   };
 
   const updateChat = (newMessage) => {
-    // setChatMessages((prevChatMessages) => [...prevChatMessages, newMessage]);
-    chatMessages.current = (prevChatMessages) => [
-      ...prevChatMessages,
-      newMessage,
-    ];
+    setChatMessages((prevChatMessages) => [...prevChatMessages, newMessage]);
   };
 
   const handleSendMessage = (e) => {
     e.preventDefault();
-    // send message if a token has been generated and we are currently broadcasting
-    if (message.current.trim() !== "") {
-      // check for empty strings or white spaces before sending
+    // check for empty strings or white spaces before sending
+    if (message.trim() !== "") {
+      // send message if a token has been generated and we are currently broadcasting
       if (chatConnection && isPlaying) {
         const payload = {
           Action: "SEND_MESSAGE",
@@ -54,8 +45,7 @@ const Chat = ({ isPlaying }) => {
           chatConnection.send(JSON.stringify(payload));
           if (!firstMessageSent) setFirstMessageSent(true); // checking if the user has sent their first message yet
           setChatError(null); // reset chat error message
-          // setMessage(""); // reset message input
-          message.current = "";
+          setMessage(""); // reset message input
         } catch (error) {
           console.log(error);
         }
@@ -76,9 +66,9 @@ const Chat = ({ isPlaying }) => {
       url = import.meta.env.VITE_PROD_URL;
     }
     // check that userId is not an empty string or contains only whitespaces
-    if (username.current.trim() !== "") {
+    if (username.trim() !== "") {
       const body = {
-        username: username.current.trim(), // remove any white space from beginning or end of username
+        username: username.trim(), // remove any white space from beginning or end of username
         role: "user",
       };
       // try to create a token if we are currently broadcasting
@@ -126,6 +116,8 @@ const Chat = ({ isPlaying }) => {
     }
   };
 
+  console.log("hey!");
+
   return (
     <Box className="chatMainContainer">
       {!chatConnection && isPlaying && (
@@ -135,7 +127,7 @@ const Chat = ({ isPlaying }) => {
             <input
               className="chatFormElement"
               type="text"
-              value={username.current.value}
+              value={username}
               onChange={handleUsernameChange}
               placeholder="Create username"
             />
@@ -156,7 +148,7 @@ const Chat = ({ isPlaying }) => {
             <input
               className="chatFormElement"
               type="text"
-              value={message.current.value}
+              value={message}
               placeholder="Say something nice"
               onChange={handleMessageChange}
             />
