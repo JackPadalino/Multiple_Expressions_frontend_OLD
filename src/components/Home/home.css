@@ -60,11 +60,11 @@
   }
 
   .swiper-button-next::after {
-    color: grey;
+    color: rgb(234, 162, 42);
   }
 
   .swiper-button-prev::after {
-    color: grey;
+    color: rgb(234, 162, 42);
   }
 }
 
@@ -159,7 +159,7 @@
   color: rgb(234, 162, 42);
 }
 
-/* Swiper JS styling */
+/*~~~~~Swiper JS styling~~~~~*/
 /* 
 Swiper JS comes with built-in styles
 like swiper,swiper-slide, and swiper-slide img
@@ -181,4 +181,20 @@ component
   position: absolute;
   bottom: 10px;
   left: 10px;
+}
+
+/* 
+using "unset" to removev the default positioning of
+the pagination div set by Swiper JS
+ */
+.swiper-pagination {
+  position: unset;
+}
+
+.swiper-pagination-bullet {
+  background: white;
+}
+
+.swiper-pagination-bullet-active {
+  background: white;
 }
