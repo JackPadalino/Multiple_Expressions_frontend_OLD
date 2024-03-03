@@ -21,7 +21,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const { storeTracks } = useSelector((state) => state.music);
   // const featuredTrack = storeTracks[0];
-  const swiperTracks = storeTracks.slice(0, 2);
+  const swiperTracks = storeTracks.slice(0, 3);
 
   const handlePlay = (track) => {
     dispatch(setWaveformTrack(track));
