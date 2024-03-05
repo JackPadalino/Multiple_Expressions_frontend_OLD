@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, Pagination, Stack } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { setWaveformTrack } from "../../store/waveformSlice";
 import "./auditory.css";
@@ -8,6 +9,17 @@ import "./auditory.css";
 const Auditory = () => {
   const dispatch = useDispatch();
   const { storeTracks } = useSelector((state) => state.music);
+
+  // pagiation variables
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 5;
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentTracks = storeTracks.slice(indexOfFirstPost, indexOfLastPost);
+
+  const handleChange = (event, value) => {
+    setCurrentPage(value);
+  };
 
   const handlePlay = (track) => {
     dispatch(setWaveformTrack(track));
@@ -18,7 +30,7 @@ const Auditory = () => {
     <Box className="auditoryMainContainer">
       <Box>
         <Box className="auditoryTracksDiv">
-          {storeTracks.map((track) => (
+          {currentTracks.map((track) => (
             <Box key={track.id} className="auditoryTrackContainer">
               <img
                 className="auditoryTrackPhoto"
@@ -63,6 +75,14 @@ const Auditory = () => {
             </Box>
           ))}
         </Box>
+        <Stack spacing={2}>
+          <Pagination
+            count={Math.ceil(storeTracks.length / postsPerPage)}
+            color="primary"
+            page={currentPage}
+            onChange={handleChange}
+          />
+        </Stack>
       </Box>
     </Box>
   );
