@@ -12,7 +12,7 @@ const Auditory = () => {
 
   // pagiation variables
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 5;
+  const postsPerPage = 4;
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentTracks = storeTracks.slice(indexOfFirstPost, indexOfLastPost);
@@ -78,9 +78,13 @@ const Auditory = () => {
         <Stack spacing={2}>
           <Pagination
             count={Math.ceil(storeTracks.length / postsPerPage)}
-            color="primary"
             page={currentPage}
             onChange={handleChange}
+            // variant="outlined"
+            size="large"
+            sx={{ "& button": { color: "white" } }}
+            // color="secondary"
+            shape="rounded"
           />
         </Stack>
       </Box>
