@@ -83,10 +83,12 @@
 
 .auditoryMainContainer {
   display: flex;
+  flex-direction: column;
   padding-left: 30px;
   padding-right: 30px;
   /* adding padding to all componets to account for pop up player div */
   padding-bottom: 122px;
+  gap: 20px;
 }
 
 .auditoryTracksDiv {
@@ -135,6 +137,11 @@
 
 .auditoryPostedDate {
   font-size: 10px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
 }
 
 /* .auditoryPlayingTrackContainer {
