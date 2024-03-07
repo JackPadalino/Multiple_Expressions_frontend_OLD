@@ -87,7 +87,6 @@ const Auditory = () => {
               onChange={handleChange}
               shape="rounded"
               size="large"
-              // color="warning"
               sx={{
                 "& button": {
                   color: "white",

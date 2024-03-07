@@ -139,9 +139,23 @@
   font-size: 10px;
 }
 
+/* pagination styling */
 .pagination {
   display: flex;
   justify-content: center;
+}
+
+.css-gfrm81-MuiPagination-root {
+  color: white;
+}
+
+.css-yx0nvq-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+  background-color: unset;
+  background: red;
+
+  border-bottom: 1px solid rgb(234, 162, 42);
+  border: 1px solid rgb(234, 162, 42);
+  /* border-radius: 0px; */
 }
 
 /* .auditoryPlayingTrackContainer {
