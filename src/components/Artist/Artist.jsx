@@ -18,8 +18,18 @@ const Artist = () => {
   const [loading, setLoading] = useState(true);
   const [artist, setArtist] = useState({});
 
-  const handlePlay = (track) => {
-    dispatch(setWaveformTrack(track));
+  const formatDates = (tracks) => {
+    const newDateTracks = tracks.map((track) => {
+      const dateObject = new Date(track.upload_date);
+      const formattedDate = dateObject.toISOString().split("T")[0];
+      // creating a new object to append the new updated upload date
+      // the original objects are 'read only'
+      return {
+        ...track,
+        upload_date: formattedDate,
+      };
+    });
+    return newDateTracks;
   };
 
   const fetchArtistData = async () => {
@@ -31,6 +41,8 @@ const Artist = () => {
     }
     try {
       const response = await axios.get(`${url}/api/music/artists/${id}`);
+      const updatedTracks = formatDates(response.data.tracks);
+      response.data.tracks = updatedTracks;
       setArtist(response.data);
       setLoading(false);
     } catch (error) {
@@ -45,6 +57,10 @@ const Artist = () => {
         console.error("Error setting up the request:", error.message);
       }
     }
+  };
+
+  const handlePlay = (track) => {
+    dispatch(setWaveformTrack(track));
   };
 
   useEffect(() => {
@@ -116,6 +132,9 @@ const Artist = () => {
                     </p>
                   ))}
                 </Box>
+                <p className="artistPagePostedDate">
+                  Posted {track.upload_date}
+                </p>
               </Box>
             </Box>
           ))}
