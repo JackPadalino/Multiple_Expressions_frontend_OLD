@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Box, IconButton, Pagination, Stack } from "@mui/material";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import { Box } from "@mui/material";
 import { setWaveformTrack } from "../../store/waveformSlice";
+
+import SingleTrack from "./SingleTrack";
+import Paginate from "./Pagination";
 import "./auditory.css";
 
 const Auditory = () => {
@@ -32,68 +33,21 @@ const Auditory = () => {
         <Box>
           <Box className="auditoryTracksDiv">
             {currentTracks.map((track) => (
-              <Box key={track.id} className="auditoryTrackContainer">
-                <img
-                  className="auditoryTrackPhoto"
-                  src={track.track_photo}
-                  onClick={() => handlePlay(track)}
-                />
-                <Box>
-                  <Box className="auditoryTrackTitlePlayDiv">
-                    <h2 className="auditoryTrackTitle">{track.title}</h2>
-                    <IconButton
-                      onClick={() => handlePlay(track)}
-                      sx={{ padding: "0px", margin: "0px" }}
-                    >
-                      <PlayArrowIcon
-                        fontSize="medium"
-                        sx={{
-                          color: "orange",
-                        }}
-                      />
-                    </IconButton>
-                  </Box>
-                  <Box className="auditoryArtistInfoDiv">
-                    {track.artists.map((artist) => (
-                      <Link
-                        key={artist.id}
-                        to={`/artist/${artist.id}`}
-                        className="auditoryArtistLink"
-                      >
-                        {artist.name}
-                      </Link>
-                    ))}
-                  </Box>
-                  <Box className="auditoryTagsDiv">
-                    {track.tags.map((tag) => (
-                      <p className="auditoryTag" key={tag.id}>
-                        #{tag.title}
-                      </p>
-                    ))}
-                  </Box>
-                  <p className="auditoryPostedDate">
-                    Posted {track.upload_date}
-                  </p>
-                </Box>
-              </Box>
+              <SingleTrack
+                key={track.id}
+                track={track}
+                handlePlay={handlePlay}
+              />
             ))}
           </Box>
         </Box>
         <Box className="pagination">
-          <Stack spacing={2}>
-            <Pagination
-              count={Math.ceil(storeTracks.length / postsPerPage)}
-              page={currentPage}
-              onChange={handleChange}
-              shape="rounded"
-              size="large"
-              sx={{
-                "& button": {
-                  color: "white",
-                },
-              }}
-            />
-          </Stack>
+          <Paginate
+            storeTracks={storeTracks}
+            postsPerPage={postsPerPage}
+            currentPage={currentPage}
+            handleChange={handleChange}
+          />
         </Box>
       </Box>
     </>
