@@ -15,7 +15,10 @@ export { default as VideoJS } from "./VideoJS/VideoJS";
 export { default as Waveform } from "./Waveform/Waveform";
 export { default as MobileWaveform } from "./Waveform/MobileWaveform";
 
+// Home component
 export { default as Home } from "./Home/Home";
+export { default as TrackSwiper } from "./Home/TrackSwiper";
+
 export { default as Loading } from "./Loading/Loading";
 export { default as NotFound } from "./NotFound/NotFound";
 export { default as Nav } from "./Nav/Nav";
