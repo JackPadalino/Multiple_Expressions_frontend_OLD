@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import { setWaveformTrack } from "../../store/waveformSlice";
 
 import SingleTrack from "./SingleTrack";
-import Paginate from "./Pagination";
+import Paginate from "./Paginate";
 import "./auditory.css";
 
 const Auditory = () => {
