@@ -1,15 +1,12 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { SocialIcon } from "react-social-icons/component";
-import "react-social-icons/instagram";
-import "react-social-icons/soundcloud";
-
-import { Box, IconButton } from "@mui/material";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import { Box } from "@mui/material";
 import { setWaveformTrack } from "../../store/waveformSlice";
 
+import ArtistInfo from "./ArtistInfo";
+import ArtistTracks from "./ArtistTracks";
 import "./artist.css";
 
 const Artist = () => {
@@ -71,74 +68,8 @@ const Artist = () => {
   return (
     <>
       <Box className="artistPageMainContainer">
-        <Box className="artistPageArtistDiv">
-          <img className="artistPageMobileImg" src={artist.profile_photo} />
-          <Box className="artistPageArtistInfo">
-            <h1 className="artistPageName">{artist.name}</h1>
-            <p>{artist.bio}</p>
-            <Box className="artistPageSocials">
-              {artist.social_media.map((social) => (
-                <SocialIcon
-                  key={social.id}
-                  bgColor="black"
-                  network={social.platform}
-                  url={social.link}
-                  target="_blank"
-                />
-              ))}
-            </Box>
-          </Box>
-          <img className="artistPageDesktopImg" src={artist.profile_photo} />
-        </Box>
-        <Box className="artistPageTracks">
-          <h1 className="artistPageTracksSectionTitle">Tracks</h1>
-          {artist.tracks.map((track) => (
-            <Box key={track.id} className="artistPageTrackContainer">
-              <img
-                className="artistPageTrackPhoto"
-                src={track.track_photo}
-                onClick={() => handlePlay(track)}
-              />
-              <Box>
-                <Box className="artistPageTrackTitlePlayDiv">
-                  <h2 className="artistPageTrackTitle">{track.title}</h2>
-                  <IconButton
-                    onClick={() => handlePlay(track)}
-                    sx={{ padding: "0px", margin: "0px" }}
-                  >
-                    <PlayArrowIcon
-                      fontSize="medium"
-                      sx={{
-                        color: "orange",
-                      }}
-                    />
-                  </IconButton>
-                </Box>
-                <Box className="artistPageArtistInfoDiv">
-                  {track.artists.map((artist) => (
-                    <Link
-                      key={artist.id}
-                      to={`/artist/${artist.id}`}
-                      className="artistPageArtistLink"
-                    >
-                      {artist.name}
-                    </Link>
-                  ))}
-                </Box>
-                <Box className="artistPageTagsDiv">
-                  {track.tags.map((tag) => (
-                    <p className="artistPageTag" key={tag.id}>
-                      #{tag.title}
-                    </p>
-                  ))}
-                </Box>
-                <p className="artistPagePostedDate">
-                  Posted {track.upload_date}
-                </p>
-              </Box>
-            </Box>
-          ))}
-        </Box>
+        <ArtistInfo artist={artist} />
+        <ArtistTracks artist={artist} handlePlay={handlePlay} />
       </Box>
     </>
   );
