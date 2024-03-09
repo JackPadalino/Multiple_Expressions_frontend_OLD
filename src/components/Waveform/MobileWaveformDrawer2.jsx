@@ -8,7 +8,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 import "./mobileWaveform.css";
 
-const WaveformDrawer2 = ({
+const MobileWaveformDrawer2 = ({
   trackModalState,
   toggleDrawer,
   waveformTrack,
@@ -113,4 +113,4 @@ const WaveformDrawer2 = ({
   );
 };
 
-export default WaveformDrawer2;
+export default MobileWaveformDrawer2;

@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import WaveSurfer from "wavesurfer.js";
 import { Box } from "@mui/material";
 
-import WaveformDrawer1 from "./WaveformDrawer1";
-import WaveformDrawer2 from "./WaveformDrawer2";
+import MobileWaveformDrawer1 from "./MobileWaveformDrawer1";
+import MobileWaveformDrawer2 from "./MobileWaveformDrawer2";
 import "./mobileWaveform.css";
 
 const MobileWaveform = () => {
@@ -105,14 +105,14 @@ const MobileWaveform = () => {
   return (
     <Box className="mobileWaveformContainer">
       {Object.keys(waveformTrack).length > 0 && (
-        <WaveformDrawer1
+        <MobileWaveformDrawer1
           waveformTrack={waveformTrack}
           isPlaying={isPlaying}
           toggleDrawer={toggleDrawer}
           handlePlayPauseClick={handlePlayPauseClick}
         />
       )}
-      <WaveformDrawer2
+      <MobileWaveformDrawer2
         waveformTrack={waveformTrack}
         isPlaying={isPlaying}
         toggleDrawer={toggleDrawer}

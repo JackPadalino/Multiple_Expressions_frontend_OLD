@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 
-const WaveformDrawer1 = ({
+const MobileWaveformDrawer1 = ({
   waveformTrack,
   isPlaying,
   toggleDrawer,
@@ -46,4 +46,4 @@ const WaveformDrawer1 = ({
   );
 };
 
-export default WaveformDrawer1;
+export default MobileWaveformDrawer1;
