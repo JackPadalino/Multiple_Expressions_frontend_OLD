@@ -1,0 +1,44 @@
+@media only screen and (max-width: 600px) {
+  .trackPhoto {
+    width: 300px;
+    height: auto;
+  }
+
+  .trackTitle {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1280px) {
+  .trackPhoto {
+    width: 300px;
+    height: auto;
+  }
+
+  .trackTitle {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .trackPhoto {
+    width: 400px;
+    height: auto;
+  }
+
+  .trackTitle {
+    font-size: 40px;
+  }
+}
+
+.trackMainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.trackTitle {
+  font-family: Quantify;
+  color: rgb(234, 162, 42);
+}
