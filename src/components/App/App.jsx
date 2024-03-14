@@ -12,6 +12,7 @@ import {
   NotFound,
   Loading,
   Entrance,
+  Track,
   Visual,
   Auditory,
   Live,
@@ -95,6 +96,7 @@ const App = () => {
     "visual",
     "auditory",
     "live",
+    "track",
     "admin",
     "artist",
   ];
@@ -111,6 +113,7 @@ const App = () => {
         <Route path="/live" element={<Live />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/artist/:id" element={<Artist />} />
+        <Route path="/track/:id" element={<Track />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
       {mobileView ? <MobileWaveform /> : <Waveform />}

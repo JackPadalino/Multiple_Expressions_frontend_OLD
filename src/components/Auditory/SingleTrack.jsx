@@ -6,11 +6,18 @@ import "./auditory.css";
 const SingleTrack = ({ track, handlePlay }) => {
   return (
     <Box key={track.id} className="auditoryTrackContainer">
-      <img
+      <Link to={`/track/${track.id}`} className="auditoryTrackLink">
+        <img
+          className="auditoryTrackPhoto"
+          src={track.track_photo}
+          // onClick={() => handlePlay(track)}
+        />
+      </Link>
+      {/* <img
         className="auditoryTrackPhoto"
         src={track.track_photo}
         onClick={() => handlePlay(track)}
-      />
+      /> */}
       <Box>
         <Box className="auditoryTrackTitlePlayDiv">
           <h2 className="auditoryTrackTitle">{track.title}</h2>

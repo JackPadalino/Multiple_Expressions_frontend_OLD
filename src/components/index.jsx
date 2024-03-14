@@ -26,3 +26,4 @@ export { default as Entrance } from "./Entrance/Entrance";
 export { default as Visual } from "./Visual/Visual";
 export { default as Admin } from "./Admin/Admin";
 export { default as Chat } from "./Live/Chat";
+export { default as Track } from "./Track/Track";
