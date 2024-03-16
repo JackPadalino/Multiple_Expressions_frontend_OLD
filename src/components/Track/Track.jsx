@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { Box, IconButton } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { setWaveformTrack } from "../../store/waveformSlice";
@@ -62,9 +63,35 @@ const Track = () => {
       <img
         className="trackPhoto"
         src={track.track_photo}
-        // onClick={() => handlePlay(track)}
+        onClick={() => handlePlay(track)}
       />
-      <h2 className="trackTitle">{track.title}</h2>
+      <Box className="trackTrackInfo">
+        <Box className="trackTitlePlayDiv">
+          <h2 className="trackTitle">{track.title}</h2>
+          <IconButton
+            onClick={() => handlePlay(track)}
+            sx={{ padding: "0px", margin: "0px" }}
+          >
+            <PlayArrowIcon
+              fontSize="large"
+              sx={{
+                color: "orange",
+              }}
+            />
+          </IconButton>
+        </Box>
+        <Box className="trackArtists">
+          {track.artists.map((artist) => (
+            <Link
+              key={artist.id}
+              className="trackArtistLink"
+              to={`/artist/${artist.id}`}
+            >
+              {artist.name}
+            </Link>
+          ))}
+        </Box>
+      </Box>
     </Box>
   );
 };

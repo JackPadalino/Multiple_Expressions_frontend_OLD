@@ -69,6 +69,7 @@
 
   .auditoryTrackTitle {
     font-size: 40px;
+    font-family: Quantify;
   }
 
   /* .auditoryPlayingTrackImg {
@@ -108,10 +109,6 @@
 .auditoryTrackTitlePlayDiv {
   display: flex;
   align-items: center;
-}
-
-.auditoryTrackTitle {
-  font-family: Quantify;
 }
 
 .auditoryArtistInfoDiv {

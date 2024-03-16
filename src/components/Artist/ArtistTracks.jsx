@@ -10,11 +10,10 @@ const ArtistTracks = ({ artist, handlePlay }) => {
       <h1 className="artistPageTracksSectionTitle">Tracks</h1>
       {artist.tracks.map((track) => (
         <Box key={track.id} className="artistPageTrackContainer">
-          <img
-            className="artistPageTrackPhoto"
-            src={track.track_photo}
-            onClick={() => handlePlay(track)}
-          />
+          <Link to={`/track/${track.id}`}>
+            <img className="artistPageTrackPhoto" src={track.track_photo} />
+          </Link>
+
           <Box>
             <Box className="artistPageTrackTitlePlayDiv">
               <h2 className="artistPageTrackTitle">{track.title}</h2>
