@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { setChatToken } from "../../store/chatSlice";
 import {
   Box,
   Typography,
@@ -12,6 +13,8 @@ import MessagesList from "./MessagesList";
 import "./chat.css";
 
 const Chat = ({ isPlaying }) => {
+  const dispatch = useDispatch();
+  const { storeChatToken } = useSelector((state) => state.chat);
   const [chatConnection, setChatConnection] = useState(null);
   const [username, setUsername] = useState("");
   const [message, setMessage] = useState("");
@@ -76,6 +79,7 @@ const Chat = ({ isPlaying }) => {
       if (isPlaying) {
         try {
           const response = await axios.post(`${url}/api/chat/join`, body);
+          dispatch(setChatToken(response.data.token));
           const connection = new WebSocket(
             import.meta.env.VITE_AWS_SOCKET,
             response.data.token
@@ -115,6 +119,27 @@ const Chat = ({ isPlaying }) => {
       setChatError("Enter a valid username");
     }
   };
+
+  useEffect(() => {
+    if (storeChatToken) {
+      const connection = new WebSocket(
+        import.meta.env.VITE_AWS_SOCKET,
+        storeChatToken
+      );
+      // attach the updateChat function to the newly made connection to
+      // listen for new messages
+      connection.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        updateChat({
+          username: data.Sender.Attributes.username,
+          content: data.Content,
+          timestamp: data.SendTime,
+        });
+      };
+      setChatConnection(connection);
+      setChatError(null);
+    }
+  }, []);
 
   return (
     <Box className="chatMainContainer">
