@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { Box, Typography, Avatar, IconButton } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
+import Forward10Icon from "@mui/icons-material/Forward10";
+import Replay10Icon from "@mui/icons-material/Replay10";
 
 import "./waveform.css";
 
@@ -108,11 +110,21 @@ const Waveform = () => {
                     {artist.name}
                   </Link>
                 ))}
+              <Typography sx={{ color: "white", fontSize: "12px" }}>
+                {currentTime}/{trackDuration}
+              </Typography>
             </Box>
           </Box>
           <Box ref={waveformRef}></Box>
           <Box className="waveformControlsDiv">
-            <Typography sx={{ color: "white" }}>{currentTime}</Typography>
+            <IconButton onClick={() => wavesurferRef.current.skip(-10)}>
+              <Replay10Icon
+                fontSize="large"
+                sx={{
+                  color: "white",
+                }}
+              />
+            </IconButton>
             <IconButton onClick={() => wavesurferRef.current.playPause()}>
               {isPlaying ? (
                 <Avatar
@@ -148,7 +160,14 @@ const Waveform = () => {
                 </Avatar>
               )}
             </IconButton>
-            <Typography sx={{ color: "white" }}>{trackDuration}</Typography>
+            <IconButton onClick={() => wavesurferRef.current.skip(10)}>
+              <Forward10Icon
+                fontSize="large"
+                sx={{
+                  color: "white",
+                }}
+              />
+            </IconButton>
           </Box>
         </Box>
       )}
