@@ -13,12 +13,13 @@ import "./home.css";
 const Home = () => {
   const dispatch = useDispatch();
   const { storeTracks } = useSelector((state) => state.music);
-  // const featuredTrack = storeTracks[0];
-  const featuredTracks = storeTracks.slice(0, 3);
+  const featuredTracks = storeTracks.filter((track) => track.featured == true);
 
   const handlePlay = (track) => {
     dispatch(setWaveformTrack(track));
   };
+
+  console.log(storeTracks);
 
   return (
     <Box className="homeMainContainer">

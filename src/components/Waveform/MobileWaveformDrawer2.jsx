@@ -5,18 +5,22 @@ import { Box, Typography, Avatar, IconButton, Drawer } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import Forward10Icon from "@mui/icons-material/Forward10";
+import Replay10Icon from "@mui/icons-material/Replay10";
 
 import "./mobileWaveform.css";
 
 const MobileWaveformDrawer2 = ({
-  trackModalState,
-  toggleDrawer,
   waveformTrack,
+  isPlaying,
+  toggleDrawer,
+  handlePlayPauseClick,
+  handleJumpBack,
+  handleJumpForward,
+  trackModalState,
   waveformRef,
   currentTime,
-  isPlaying,
   trackDuration,
-  handlePlayPauseClick,
 }) => {
   return (
     <Drawer
@@ -70,7 +74,14 @@ const MobileWaveformDrawer2 = ({
         </Box>
         <Box ref={waveformRef} className="waveformRef"></Box>
         <Box className="waveformDrawer2ControlsDiv">
-          <Typography variant="h6">{currentTime}</Typography>
+          <IconButton onClick={handleJumpBack}>
+            <Replay10Icon
+              fontSize="large"
+              sx={{
+                color: "white",
+              }}
+            />
+          </IconButton>
           <IconButton onClick={handlePlayPauseClick}>
             {isPlaying ? (
               <Avatar
@@ -106,8 +117,18 @@ const MobileWaveformDrawer2 = ({
               </Avatar>
             )}
           </IconButton>
-          <Typography variant="h6">{trackDuration}</Typography>
+          <IconButton onClick={handleJumpForward}>
+            <Forward10Icon
+              fontSize="large"
+              sx={{
+                color: "white",
+              }}
+            />
+          </IconButton>
         </Box>
+        <Typography sx={{ color: "white", fontSize: "16px" }}>
+          {currentTime}/{trackDuration}
+        </Typography>
       </Box>
     </Drawer>
   );
