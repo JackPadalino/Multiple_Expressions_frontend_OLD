@@ -98,6 +98,14 @@ const MobileWaveform = () => {
     setTrackModalState(!trackModalState);
   };
 
+  const handleJumpBack = () => {
+    wavesurferRef.current.skip(-10);
+  };
+
+  const handleJumpForward = () => {
+    wavesurferRef.current.skip(10);
+  };
+
   useEffect(() => {
     playSong(waveformTrack);
   }, [waveformTrack]);
@@ -117,6 +125,8 @@ const MobileWaveform = () => {
         isPlaying={isPlaying}
         toggleDrawer={toggleDrawer}
         handlePlayPauseClick={handlePlayPauseClick}
+        handleJumpBack={handleJumpBack}
+        handleJumpForward={handleJumpForward}
         trackModalState={trackModalState}
         waveformRef={waveformRef}
         currentTime={currentTime}
